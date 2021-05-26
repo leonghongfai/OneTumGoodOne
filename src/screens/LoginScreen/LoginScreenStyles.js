@@ -6,6 +6,7 @@ const LoginScreenStyles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        justifyContent: 'center'
     },
     logo: {
         flex: 1,
