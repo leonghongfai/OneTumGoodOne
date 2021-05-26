@@ -6,7 +6,7 @@ import LoginScreenStyles from './LoginScreenStyles'
 LoginScreen = (props) => {
     return (
         <View style = {LoginScreenStyles.container}>
-            <Text>HI</Text>
+
         </View>    
 
 
