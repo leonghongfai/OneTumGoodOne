@@ -40,7 +40,7 @@ const RegisterScreen = (props) => {
                    value = {pass2}
                    onChangeText= {(pass2) => setPass2(pass2)}
                    autoCapitalize = 'none'
-                   placeholder = 'Enter Password Again'
+                   placeholder = 'Confirm Password'
                    secureTextEntry
                />
                 <TouchableOpacity style={Styles.logInButton}>
@@ -49,6 +49,7 @@ const RegisterScreen = (props) => {
                 <View style={Styles.noAccount}>
                     <Text style={Styles.noAccountWording}>Already one of us? <Text 
                         style= {Styles.registerWording}
+                        onPress= {() => props.navigation.navigate('Login')}
                         >Login!</Text></Text>
                 </View>
             </View>     
