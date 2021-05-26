@@ -1,11 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import ListScreen from './src/screens/ListScreen'
+import { Provider as PaperProvider } from "react-native-paper";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreen from './src/screens/LoginScreen/LoginScreen'
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <ListScreen />
+    <LoginScreen />
   );
 }
 
