@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import ColorScheme from '../../../global/ColorScheme'
 
-const LoginScreenStyles = StyleSheet.create({
+const Styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
-        backgroundColor: '#fdf8f5',
+        backgroundColor: ColorScheme.background,
         paddingTop: Platform.OS === 'android'? StatusBar.currentHeight: 0,
     },
     topContainer:{
@@ -41,7 +42,7 @@ const LoginScreenStyles = StyleSheet.create({
         width: 250,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#f68817'
+        backgroundColor: ColorScheme.orange,
     },
     logInText: {
         fontWeight: 'bold',
@@ -58,10 +59,10 @@ const LoginScreenStyles = StyleSheet.create({
     },
     registerWording: {
         fontSize: 16,
-        color: '#3366BB',
+        color: ColorScheme.linkBlue,
         textDecorationLine: 'underline'
     }
 
 })
 
-export default LoginScreenStyles;
+export default Styles;

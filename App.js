@@ -5,12 +5,13 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from './src/screens/LoginScreen/LoginScreen'
+import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <LoginScreen />
+    <RegisterScreen />
   );
 }
 
