@@ -13,4 +13,8 @@ const firebaseConfig = {
     databaseURL: "https://orbital-21837-default-rtdb.asia-southeast1.firebasedatabase.app"
   };
   // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = !firebase.apps.length
+    ?firebase.initializeApp(firebaseConfig)
+    :firebase.app()
+
+export default app;
