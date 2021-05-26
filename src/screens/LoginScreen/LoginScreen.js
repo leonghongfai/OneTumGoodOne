@@ -40,6 +40,7 @@ const LoginScreen = (props) => {
                 <View style={Styles.noAccount}>
                     <Text style={Styles.noAccountWording}>Don't have an account? <Text 
                         style= {Styles.registerWording}
+                        onPress= {() => props.navigation.navigate('Register')}
                         >Register!</Text></Text>
                 </View>
             </View>     
