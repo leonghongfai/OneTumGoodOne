@@ -38,17 +38,11 @@ const LoginScreen = (props) => {
                     <Text style={LoginScreenStyles.logInText}>Log In</Text>
                 </TouchableOpacity>  
                 <View style={LoginScreenStyles.noAccount}>
-                    <Text style={LoginScreenStyles.noAccountWording}>Don't have an account? 
-                    <Text 
+                    <Text style={LoginScreenStyles.noAccountWording}>Don't have an account? <Text 
                         style= {LoginScreenStyles.registerWording}
-                        >Register</Text>
-                    </Text>
+                        >Register!</Text></Text>
                 </View>
-            </View>      
-
-
-
-
+            </View>     
     )
 }
 

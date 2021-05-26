@@ -6,7 +6,7 @@ const LoginScreenStyles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
-        backgroundColor: 'grey',
+        backgroundColor: '#fdf8f5',
         paddingTop: Platform.OS === 'android'? StatusBar.currentHeight: 0,
     },
     topContainer:{
