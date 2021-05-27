@@ -44,7 +44,7 @@ const RegisterScreen = (props) => {
                    secureTextEntry
                />
                 <TouchableOpacity style={Styles.logInButton}>
-                    <Text style={Styles.logInText}>Log In</Text>
+                    <Text style={Styles.logInText}>Register</Text>
                 </TouchableOpacity>  
                 <View style={Styles.noAccount}>
                     <Text style={Styles.noAccountWording}>Already one of us? <Text 

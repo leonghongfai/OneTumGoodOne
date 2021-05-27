@@ -35,7 +35,7 @@ const Styles = StyleSheet.create({
     },
     logInText: {
         fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: 16,
     },
 
 })
