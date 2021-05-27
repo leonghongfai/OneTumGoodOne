@@ -16,7 +16,8 @@ const Styles = StyleSheet.create({
     title: {
         height: 40,
         fontSize: 25,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignSelf: 'center',
     },
     logo: {
         //flex: 1,
@@ -45,9 +46,9 @@ const Styles = StyleSheet.create({
         backgroundColor: ColorScheme.orange,
     },
     logInText: {
+        alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 16,
-        alignSelf: 'center'
     },
     noAccount: {
         flex: 1,
