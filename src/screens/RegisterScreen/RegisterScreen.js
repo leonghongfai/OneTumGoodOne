@@ -1,7 +1,7 @@
 import { Assets } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity,SafeAreaView, ScrollView } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import Styles from './Styles'
 import { useState } from 'react'
 
@@ -13,7 +13,8 @@ const RegisterScreen = (props) => {
     const [view, setView] = useState(false)
 
     return (
-            <View style = {Styles.container}>
+        <ScrollView>
+            <KeyboardAvoidingView style = {Styles.container}>
                 <View style={Styles.topContainer} />
                 <Text style={Styles.title}>REGISTER</Text>
                 <Image 
@@ -52,7 +53,8 @@ const RegisterScreen = (props) => {
                         onPress= {() => props.navigation.navigate('Login')}
                         >Login!</Text></Text>
                 </View>
-            </View>     
+            </KeyboardAvoidingView>
+        </ScrollView>    
     )
 }
 
