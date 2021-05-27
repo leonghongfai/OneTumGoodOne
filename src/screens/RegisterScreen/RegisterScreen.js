@@ -6,7 +6,7 @@ import Styles from './Styles'
 import { useState } from 'react'
 
 
-const RegisterScreen = (props) => {
+var RegisterScreen = (props) => {
     const [text, setText] = useState('')
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
