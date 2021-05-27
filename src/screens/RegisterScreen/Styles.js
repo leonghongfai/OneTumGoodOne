@@ -16,7 +16,8 @@ const Styles = StyleSheet.create({
     title: {
         height: 40,
         fontSize: 25,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignSelf: 'center',
     },
     logo: {
         //flex: 1,
@@ -40,11 +41,12 @@ const Styles = StyleSheet.create({
         marginTop: 10,
         height: 40,
         width: 250,
-        alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         backgroundColor: ColorScheme.orange,
     },
     logInText: {
+        alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 16,
     },
