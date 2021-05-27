@@ -11,7 +11,7 @@ const Styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android'? StatusBar.currentHeight: 0,
     },
     topContainer:{
-        height: 200
+        height: 130
     },
     title: {
         height: 40,
