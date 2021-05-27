@@ -1,9 +1,10 @@
 import { Assets } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity,SafeAreaView, ScrollView } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import Styles from './Styles'
 import { useState } from 'react'
+import { Header } from "@react-navigation/stack";
 
 
 const LoginScreen = (props) => {
@@ -12,7 +13,8 @@ const LoginScreen = (props) => {
     const [view, setView] = useState(false)
 
     return (
-            <View style = {Styles.container}>
+        <ScrollView>
+            <KeyboardAvoidingView style = {Styles.container}>
                 <View style={Styles.topContainer} />
                 <Text style={Styles.title}>LOGIN</Text>
                 <Image 
@@ -26,7 +28,7 @@ const LoginScreen = (props) => {
                     autoCapitalize = 'none'
                     placeholder= 'Email'
                 />
-                 <TextInput
+                <TextInput
                     style= {Styles.userInput}
                     value = {pass}
                     onChangeText= {(text) => setPass(text)}
@@ -35,15 +37,16 @@ const LoginScreen = (props) => {
                     secureTextEntry
                 />
                 <TouchableOpacity style={Styles.logInButton}>
-                    <Text style={Styles.logInText}>Log In</Text>
+                        <Text style={Styles.logInText}>Log In</Text>
                 </TouchableOpacity>  
                 <View style={Styles.noAccount}>
                     <Text style={Styles.noAccountWording}>Don't have an account? <Text 
-                        style= {Styles.registerWording}
-                        onPress= {() => props.navigation.navigate('Register')}
-                        >Register!</Text></Text>
+                    style= {Styles.registerWording}
+                    onPress= {() => props.navigation.navigate('Register')}
+                    >Register!</Text></Text>
                 </View>
-            </View>     
+            </KeyboardAvoidingView>    
+        </ScrollView> 
     )
 }
 

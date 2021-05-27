@@ -40,13 +40,14 @@ const Styles = StyleSheet.create({
         marginTop: 10,
         height: 40,
         width: 250,
-        alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         backgroundColor: ColorScheme.orange,
     },
     logInText: {
         fontWeight: 'bold',
         fontSize: 16,
+        alignSelf: 'center'
     },
     noAccount: {
         flex: 1,
