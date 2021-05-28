@@ -16,7 +16,7 @@ import ColorScheme from "../../../global/ColorScheme";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useState } from "react";
 import { render } from "react-dom";
-import styles from "./HomePagesStyles";
+import styles from "./PageStyles";
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = React.useState("");

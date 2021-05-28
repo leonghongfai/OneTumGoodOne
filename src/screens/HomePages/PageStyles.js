@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
 import ColorScheme from '../../../global/ColorScheme'
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         flexDirection: 'column',
@@ -68,4 +68,4 @@ const Styles = StyleSheet.create({
 
 })
 
-export default Styles;
+export default styles;
