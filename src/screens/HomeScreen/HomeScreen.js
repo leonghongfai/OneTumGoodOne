@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ColorScheme from "../../../global/ColorScheme";
 import HomePage from "../HomePages/HomePage";
@@ -50,7 +50,7 @@ const HomeScreen = () => {
       }}
     >
       <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="Follow" component={FollowPage} />
+      <Tab.Screen name="Follow" component={FollowPage} options={{ tabBarBadge: 3}}/>
       <Tab.Screen name="Map" component={MapPage} />
       <Tab.Screen name="Profile" component={ProfilePage} />
       <Tab.Screen name="Settings" component={SettingsPage} />
