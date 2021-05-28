@@ -9,6 +9,7 @@ import {
   ScrollView,
   NavigationContainer,
 } from "react-native";
+import { SearchBar } from 'react-native-elements';
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
