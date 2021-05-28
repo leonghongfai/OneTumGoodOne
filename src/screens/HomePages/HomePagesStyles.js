@@ -1,11 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
 import ColorScheme from '../../../global/ColorScheme'
 
 const Styles = StyleSheet.create({
     container: {
-        //justifyContent: 'center',
+        justifyContent: 'center',
         flexDirection: 'column',
         alignItems: 'center',
         flex: 1,
