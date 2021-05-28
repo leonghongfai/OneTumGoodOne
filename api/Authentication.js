@@ -2,7 +2,7 @@ import firebase from './firebase'
 
 const auth = firebase.auth()
 
-const createAccount = async ({username, email, password}, onSuccess, onFailure) => {
+export const createAccount = async ({username, email, password}, onSuccess, onFailure) => {
     try {
             const credentials = auth.createUserWithEmailAndPassword(
                             email, password)
@@ -18,10 +18,26 @@ const createAccount = async ({username, email, password}, onSuccess, onFailure) 
     } catch (error) {
         return onFailure(error)
     }
+}
 
+export const signOut = async(onSuccess, onFailure) => {
+    try {
+        await auth.signOut()
+        return onSuccess()
+    } catch (error) {
+        return onFailure(error)
+    }
+}
+
+export const logIn = async (email, password, onSuccess, onFailure) => {
+    try {
+        await auth.signInWithEmailAndPassword(email, password)
+        return onSuccess()
+    } catch (error) {
+        return onFailure(error)
+    }
 }
 
 
 
 
-export default createAccount;
