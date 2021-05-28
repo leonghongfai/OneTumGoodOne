@@ -5,12 +5,26 @@ import {
     } from 'react-native';
 import Styles from './Styles'
 import { useState } from 'react'
+import * as Auth from '../../../api/Authentication'
 
 
 const LoginScreen = (props) => {
     const [text, setText] = useState('')
     const [pass, setPass] = useState('')
-    const [view, setView] = useState(false)
+    const handleLogIn = () => {
+        Auth.logIn(text, pass,
+            () => props.navigation.navigate('Home'),
+            (error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                if (errorCode === 'auth/wrong-password') {
+                    alert('Wrong password.');
+                } else {
+                    alert(errorMessage);
+                }
+            }
+        )
+    }
 
     return (
         <View style = {Styles.container}>
@@ -37,7 +51,10 @@ const LoginScreen = (props) => {
                         placeholder = 'Password'
                         secureTextEntry
                     />
-                    <TouchableOpacity style={Styles.logInButton}>
+                    <TouchableOpacity 
+                        style={Styles.logInButton}
+                        onPress= {handleLogIn}
+                        >
                             <Text style={Styles.logInText}>Log In</Text>
                     </TouchableOpacity>  
                     <View style={Styles.noAccount}>

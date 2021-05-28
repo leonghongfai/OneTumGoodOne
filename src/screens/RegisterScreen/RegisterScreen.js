@@ -6,15 +6,15 @@ import {
 import Styles from './Styles'
 import { useState } from 'react'
 import firebase from '../../../api/firebase'
-import createAccount from '../../../api/Authentication'
+import * as Auth from '../../../api/Authentication'
 
 let RegisterScreen = (props) => {
     const [text, setText] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
-    const handleRegister = async () => {
+    const handleRegister = () => {
         Keyboard.dismiss()
-        createAccount({
+        Auth.createAccount({
             username: text,
             email: email,
             password: pass,
