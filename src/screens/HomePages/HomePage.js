@@ -25,12 +25,17 @@ const HomePage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-      />
-      <Text>Home!</Text>
+      <View style={{ flex: 1 }}>
+        <SearchBar
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+        />
+      </View>
+      <View style={{ flex: 3 }}>
+
+      </View>
     </SafeAreaView>
   );
 };
