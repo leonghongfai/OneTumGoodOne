@@ -1,4 +1,5 @@
 import React from "react";
+import { StatusBar } from 'expo-status-bar';
 import {
   Text,
   View,
@@ -14,11 +15,21 @@ import ColorScheme from "../../../global/ColorScheme";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useState } from "react";
 import { render } from "react-dom";
+import * as Auth from '../../../api/Authentication'
 
-const SettingsPage = () => {
+const SettingsPage = (props) => {
+  const handleLogOut = () => {
+    Auth.signOut(
+        () => props.navigation.navigate("Login"),
+        (error) => alert(error.message)
+    )
+}
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Settings!</Text>
+      <TouchableOpacity onPress={handleLogOut}>
+        <Text>Log Out</Text>
+      </TouchableOpacity>
     </View>
   );
 };
