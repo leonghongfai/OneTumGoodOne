@@ -4,6 +4,9 @@ const ColorScheme = {
     linkBlue: '#3366BB',
     NavigationIconActive: 'tomato',
     NavigationIconInactive: 'gray',
+    SearchBar: 'tomato',
+    SearchBarArea: 'tomato',
+    SearchBarInput: 'white',
 }
 
 export default ColorScheme

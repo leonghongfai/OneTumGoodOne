@@ -5,14 +5,26 @@ import ColorScheme from '../../../global/ColorScheme'
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
         flex: 1,
-        backgroundColor: ColorScheme.background,
+        backgroundColor: 'black',
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
-    topContainer:{
-        height: 130
+    searchBarArea: {
+        flex: 5, 
+        justifyContent: 'center',
+        backgroundColor: 'black',
+    },
+    topPadding: {
+        flex: 1,
+        backgroundColor: 'black',
+    },
+    bottomPadding: {
+        flex: 1,
+        backgroundColor: 'black',
+    },
+    homePageMainContainer: {
+        flex: 60,
+        backgroundColor: 'white',
     },
     title: {
         height: 40,
