@@ -16,15 +16,17 @@ const styles = StyleSheet.create({
     },
     topPadding: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
     },
-    bottomPadding: {
+    bottomPadding: {    
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: 'white',
     },
     homePageMainContainer: {
         flex: 60,
         backgroundColor: 'white',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     title: {
         height: 40,
