@@ -10,7 +10,7 @@ import {
   ScrollView,
   NavigationContainer,
 } from "react-native";
-import { SearchBar } from "react-native-elements";
+import { Searchbar } from "react-native-paper";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -27,19 +27,25 @@ const HomePage = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.topPadding} />
       <View style={styles.searchBarArea}>
-        <SearchBar
+        <Searchbar
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
           inputStyle={{ backgroundColor: "white" }}
-          containerStyle={{ backgroundColor: "black", borderWidth: 20 }}
+          containerStyle={{ backgroundColor: "white", borderWidth: 20 }}
         />
         <View style={styles.bottomPadding} />
       </View>
       <View style={styles.homePageMainContainer}>
-        <Text style={{color: 'white'}}>Hi</Text>
-        <Text>Hi</Text>
-        <Text>Hi</Text>
+        <View>
+          <Text style={{ color: "black" }}>Hi</Text>
+        </View>
+        <View>
+          <Text style={{ color: "black" }}>Hi</Text>
+        </View>
+        <View>
+          <Text style={{ color: "black" }}>Hi</Text>
+        </View>
       </View>
     </SafeAreaView>
   );
