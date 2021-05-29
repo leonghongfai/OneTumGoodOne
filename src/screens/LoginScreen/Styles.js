@@ -27,7 +27,7 @@ const Styles = StyleSheet.create({
         margin: 30
     },
     userInput: {
-        height: 60,
+        height: 40,
         width: 250,
         backgroundColor: 'white',
         marginTop: 5,

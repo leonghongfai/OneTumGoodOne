@@ -49,7 +49,6 @@ const LoginScreen = (props) => {
                         autoFocus = {true}
                         onSubmitEditing = {() => ref_input2.current.focus()}
                         blurOnSubmit = {false}
-                        numberOfLines = '1'
                     />
                     <TextInput
                         style= {Styles.userInput}
@@ -63,7 +62,6 @@ const LoginScreen = (props) => {
                                     onPress= {() => setView(!view)} 
                                     style= {{paddingTop: 10}}/>}
                         ref = {ref_input2}
-                        numberOfLines = '1'
                     />
                     <TouchableOpacity 
                         style={Styles.logInButton}
