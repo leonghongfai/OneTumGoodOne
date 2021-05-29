@@ -38,13 +38,13 @@ const HomePage = () => {
       </View>
       <View style={styles.homePageMainContainer}>
         <View>
-          <Text style={{ color: "black" }}>Hi</Text>
+          <Text style={styles.homePageTitleText}>Hi</Text>
         </View>
         <View>
-          <Text style={{ color: "black" }}>Hi</Text>
+          <Text style={styles.homePageTitleText}>Hi</Text>
         </View>
         <View>
-          <Text style={{ color: "black" }}>Hi</Text>
+          <Text style={styles.homePageTitleText}>Hi</Text>
         </View>
       </View>
     </SafeAreaView>
