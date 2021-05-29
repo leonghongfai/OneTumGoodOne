@@ -37,7 +37,3 @@ export const logIn = async (email, password, onSuccess, onFailure) => {
         return onFailure(error)
     }
 }
-
-
-
-
