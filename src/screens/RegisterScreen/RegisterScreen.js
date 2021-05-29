@@ -1,17 +1,20 @@
 import React from 'react';
 import { 
-    Text, View, Image, TextInput, TouchableOpacity, 
+    Text, View, Image, TouchableOpacity, 
     KeyboardAvoidingView, ScrollView, Keyboard
     } from 'react-native';
 import Styles from './Styles'
-import { useState } from 'react'
-import firebase from '../../../api/firebase'
+import { useState, useRef } from 'react'
 import * as Auth from '../../../api/Authentication'
+import {TextInput} from 'react-native-paper'
 
 let RegisterScreen = (props) => {
     const [text, setText] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
+    const [view, setView] = useState(true)
+    const ref_input2 = useRef();
+    const ref_input3 = useRef()
     const handleRegister = () => {
         Keyboard.dismiss()
         Auth.createAccount({
@@ -47,13 +50,24 @@ let RegisterScreen = (props) => {
                 onChangeText= {text => setText(text)}
                 autoCapitalize = 'none'
                 placeholder= 'Enter Username'
+                mode = 'outlined'
+                label = 'Username'
+                autoFocus= {true}
+                onSubmitEditing={() => ref_input2.current.focus()}
+                blurOnSubmit = {false}
+
             />
-                <TextInput
+            <TextInput
                 style= {Styles.userInput}
                 value = {email}
-                onChangeText= {(email) => setEmail(email)}
+                onChangeText= {email => setEmail(email)}
                 autoCapitalize = 'none'
-                placeholder = 'Enter email'
+                placeholder= 'Enter Email'
+                mode = 'outlined'
+                label = 'Email'
+                ref = {ref_input2}
+                onSubmitEditing={() => ref_input3.current.focus()}
+                blurOnSubmit= {false}
             />
             <TextInput
                 style= {Styles.userInput}
@@ -61,7 +75,13 @@ let RegisterScreen = (props) => {
                 onChangeText= {(pass) => setPass(pass)}
                 autoCapitalize = 'none'
                 placeholder = 'Enter Password'
+                mode= 'outlined'
+                label = 'Password'
                 secureTextEntry
+                right = {<TextInput.Icon name= {view ?'eye-outline':'eye-off-outline'}
+                                    onPress= {() => setView(!view)} 
+                                    style= {{paddingTop: 10}}/>}
+                ref = {ref_input3}
             />
             <TouchableOpacity style={Styles.logInButton} onPress={handleRegister}>
                 <Text style={Styles.logInText}>Register</Text>
