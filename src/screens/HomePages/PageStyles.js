@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
+    homePageTitleText: {
+    },
     title: {
         height: 40,
         fontSize: 25,
