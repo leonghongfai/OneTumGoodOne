@@ -38,61 +38,61 @@ let RegisterScreen = (props) => {
         <View style = {Styles.container}>
             <ScrollView>
                 <KeyboardAvoidingView>
-            <View style={Styles.topContainer} />
-            <Text style={Styles.title}>REGISTER</Text>
-            <Image 
-                style={Styles.logo} 
-                source = {require('../../../assets/favicon.png')}
-            />
-            <TextInput
-                style= {Styles.userInput}
-                value = {text}
-                onChangeText= {text => setText(text)}
-                autoCapitalize = 'none'
-                placeholder= 'Enter Username'
-                mode = 'outlined'
-                label = 'Username'
-                autoFocus= {true}
-                onSubmitEditing={() => ref_input2.current.focus()}
-                blurOnSubmit = {false}
+                    <View style={Styles.topContainer} />
+                    <Text style={Styles.title}>REGISTER</Text>
+                    <Image 
+                        style={Styles.logo} 
+                        source = {require('../../../assets/favicon.png')}
+                    />
+                    <TextInput
+                        style= {Styles.userInput}
+                        value = {text}
+                        onChangeText= {text => setText(text)}
+                        autoCapitalize = 'none'
+                        placeholder= 'Enter Username'
+                        mode = 'outlined'
+                        label = 'Username'
+                        autoFocus= {true}
+                        onSubmitEditing={() => ref_input2.current.focus()}
+                        blurOnSubmit = {false}
 
-            />
-            <TextInput
-                style= {Styles.userInput}
-                value = {email}
-                onChangeText= {email => setEmail(email)}
-                autoCapitalize = 'none'
-                placeholder= 'Enter Email'
-                mode = 'outlined'
-                label = 'Email'
-                ref = {ref_input2}
-                onSubmitEditing={() => ref_input3.current.focus()}
-                blurOnSubmit= {false}
-            />
-            <TextInput
-                style= {Styles.userInput}
-                value = {pass}
-                onChangeText= {(pass) => setPass(pass)}
-                autoCapitalize = 'none'
-                placeholder = 'Enter Password'
-                mode= 'outlined'
-                label = 'Password'
-                secureTextEntry
-                right = {<TextInput.Icon name= {view ?'eye-outline':'eye-off-outline'}
-                                    onPress= {() => setView(!view)} 
-                                    style= {{paddingTop: 10}}/>}
-                ref = {ref_input3}
-            />
-            <TouchableOpacity style={Styles.logInButton} onPress={handleRegister}>
-                <Text style={Styles.logInText}>Register</Text>
-            </TouchableOpacity>  
-            <View style={Styles.noAccount}>
-                <Text style={Styles.noAccountWording}>Already one of us? <Text 
-                    style= {Styles.registerWording}
-                    onPress= {() => props.navigation.navigate('Login')}
-                    >Login!</Text></Text>
-            </View>
-            </KeyboardAvoidingView>
+                    />
+                    <TextInput
+                        style= {Styles.userInput}
+                        value = {email}
+                        onChangeText= {email => setEmail(email)}
+                        autoCapitalize = 'none'
+                        placeholder= 'Enter Email'
+                        mode = 'outlined'
+                        label = 'Email'
+                        ref = {ref_input2}
+                        onSubmitEditing={() => ref_input3.current.focus()}
+                        blurOnSubmit= {false}
+                    />
+                    <TextInput
+                        style= {Styles.userInput}
+                        value = {pass}
+                        onChangeText= {(pass) => setPass(pass)}
+                        autoCapitalize = 'none'
+                        placeholder = 'Enter Password'
+                        mode= 'outlined'
+                        label = 'Password'
+                        secureTextEntry
+                        right = {<TextInput.Icon name= {view ?'eye-outline':'eye-off-outline'}
+                                            onPress= {() => setView(!view)} 
+                                            style= {{paddingTop: 10}}/>}
+                        ref = {ref_input3}
+                    />
+                    <TouchableOpacity style={Styles.logInButton} onPress={handleRegister}>
+                        <Text style={Styles.logInText}>Register</Text>
+                    </TouchableOpacity>  
+                    <View style={Styles.noAccount}>
+                        <Text style={Styles.noAccountWording}>Already one of us? <Text 
+                            style= {Styles.registerWording}
+                            onPress= {() => props.navigation.navigate('Login')}
+                            >Login!</Text></Text>
+                    </View>
+                </KeyboardAvoidingView>
             </ScrollView>
         </View> 
     )
