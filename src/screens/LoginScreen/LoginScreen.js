@@ -46,7 +46,6 @@ const LoginScreen = (props) => {
                         autoCapitalize = 'none'
                         placeholder= 'Email'
                         mode = 'outlined'
-                        label = 'Email'
                         autoFocus = {true}
                         onSubmitEditing = {() => ref_input2.current.focus()}
                         blurOnSubmit = {false}
@@ -56,7 +55,6 @@ const LoginScreen = (props) => {
                         value = {pass}
                         onChangeText= {(text) => setPass(text)}
                         autoCapitalize = 'none'
-                        label = 'Password'
                         placeholder = 'Enter Password'
                         secureTextEntry = {view}
                         mode = 'outlined'

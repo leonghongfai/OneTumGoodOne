@@ -51,7 +51,6 @@ let RegisterScreen = (props) => {
                         autoCapitalize = 'none'
                         placeholder= 'Enter Username'
                         mode = 'outlined'
-                        label = 'Username'
                         autoFocus= {true}
                         onSubmitEditing={() => ref_input2.current.focus()}
                         blurOnSubmit = {false}
@@ -64,7 +63,6 @@ let RegisterScreen = (props) => {
                         autoCapitalize = 'none'
                         placeholder= 'Enter Email'
                         mode = 'outlined'
-                        label = 'Email'
                         ref = {ref_input2}
                         onSubmitEditing={() => ref_input3.current.focus()}
                         blurOnSubmit= {false}
@@ -76,7 +74,6 @@ let RegisterScreen = (props) => {
                         autoCapitalize = 'none'
                         placeholder = 'Enter Password'
                         mode= 'outlined'
-                        label = 'Password'
                         secureTextEntry
                         right = {<TextInput.Icon name= {view ?'eye-outline':'eye-off-outline'}
                                             onPress= {() => setView(!view)} 
