@@ -25,16 +25,21 @@ const HomePage = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ flex: 1 }}>
+      <View style={styles.topPadding} />
+      <View style={styles.searchBarArea}>
         <SearchBar
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
-          containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+          inputStyle={{ backgroundColor: "white" }}
+          containerStyle={{ backgroundColor: "black", borderWidth: 20 }}
         />
+        <View style={styles.bottomPadding} />
       </View>
-      <View style={{ flex: 3 }}>
-
+      <View style={styles.homePageMainContainer}>
+        <Text style={{color: 'white'}}>Hi</Text>
+        <Text>Hi</Text>
+        <Text>Hi</Text>
       </View>
     </SafeAreaView>
   );
