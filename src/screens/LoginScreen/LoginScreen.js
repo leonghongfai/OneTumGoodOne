@@ -1,16 +1,19 @@
 import React from 'react';
 import { 
-    Text, View, Image, TextInput, 
+    Text, View, Image,
     TouchableOpacity, KeyboardAvoidingView, ScrollView 
     } from 'react-native';
+import { TextInput } from 'react-native-paper'
 import Styles from './Styles'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import * as Auth from '../../../api/Authentication'
 
 
 const LoginScreen = (props) => {
     const [text, setText] = useState('')
     const [pass, setPass] = useState('')
+    const [view, setView] = useState(true)
+    const ref_input2 = useRef()
     const handleLogIn = () => {
         Auth.logIn(text, pass,
             () => props.navigation.navigate('Home'),
@@ -42,14 +45,25 @@ const LoginScreen = (props) => {
                         onChangeText= {text => setText(text)}
                         autoCapitalize = 'none'
                         placeholder= 'Email'
+                        mode = 'outlined'
+                        label = 'Email'
+                        autoFocus = {true}
+                        onSubmitEditing = {() => ref_input2.current.focus()}
+                        blurOnSubmit = {false}
                     />
                     <TextInput
                         style= {Styles.userInput}
                         value = {pass}
                         onChangeText= {(text) => setPass(text)}
                         autoCapitalize = 'none'
-                        placeholder = 'Password'
-                        secureTextEntry
+                        label = 'Password'
+                        placeholder = 'Enter Password'
+                        secureTextEntry = {view}
+                        mode = 'outlined'
+                        right = {<TextInput.Icon name= {view ?'eye-outline':'eye-off-outline'}
+                                    onPress= {() => setView(!view)} 
+                                    style= {{paddingTop: 10}}/>}
+                        ref = {ref_input2}
                     />
                     <TouchableOpacity 
                         style={Styles.logInButton}

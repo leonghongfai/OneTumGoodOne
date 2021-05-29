@@ -29,13 +29,12 @@ const Styles = StyleSheet.create({
     userInput: {
         height: 40,
         width: 250,
-        borderRadius: 5,
         backgroundColor: 'white',
-        marginTop: 10,
+        marginTop: 5,
         marginLeft: 30,
         marginRight: 30,
-        paddingLeft: 16,
         overflow: 'hidden',
+        justifyContent: 'center',
     },
     logInButton: {
         marginTop: 10,
