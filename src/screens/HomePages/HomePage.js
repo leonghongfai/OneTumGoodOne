@@ -38,6 +38,7 @@ const HomePage = () => {
         <View style={styles.homePageMiddlePadding} />
       </View>
       <View style={styles.homePageMainContainer}>
+        <ScrollView>
         <View style={styles.homePageSmallContainer}>
           <Text style={styles.homePageTitleText}>Around you</Text>
           <ScrollView horizontal={true}>
@@ -89,6 +90,7 @@ const HomePage = () => {
             </TouchableOpacity>
           </ScrollView>
         </View>
+        </ScrollView>
       </View>
       <View style={styles.homePageBottomPadding} />
     </SafeAreaView>
