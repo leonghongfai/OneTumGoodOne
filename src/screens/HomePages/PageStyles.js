@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     },
     homePageTitleText: {
     },
+    homePageBottomPadding: {
+        flex: 1,
+    },
     title: {
         height: 40,
         fontSize: 25,
