@@ -14,24 +14,40 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'black',
     },
-    topPadding: {
+    homePageTopPadding: {
         flex: 1,
         backgroundColor: 'white',
     },
-    bottomPadding: {    
+    homePageMiddlePadding: {    
+        flex: 1,
+        backgroundColor: 'white',
+    },
+    homePageBottomPadding: {
         flex: 1,
         backgroundColor: 'white',
     },
     homePageMainContainer: {
-        flex: 60,
+        flex: 50,
         backgroundColor: 'white',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    homePageSmallContainer: {
+        height: 228,
     },
     homePageTitleText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'left',
     },
-    homePageBottomPadding: {
-        flex: 1,
+    homePageImageBlock: {
+        width: 150,
+        marginRight: 5,
+    },
+    homePageImage: {
+        height: 150,
+        width: 150,
     },
     title: {
         height: 40,
