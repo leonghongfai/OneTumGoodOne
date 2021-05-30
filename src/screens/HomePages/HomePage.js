@@ -37,15 +37,19 @@ const HomePage = () => {
         <View style={styles.bottomPadding} />
       </View>
       <View style={styles.homePageMainContainer}>
-        <View>
+        <View style={{flex: 6}}>
           <Text style={styles.homePageTitleText}>Around you</Text>
+          <TouchableOpacity></TouchableOpacity>
         </View>
-        <View>
+        <View style={{flex: 6}}>
           <Text style={styles.homePageTitleText}>You might like</Text>
+          <TouchableOpacity></TouchableOpacity>
         </View>
         <View>
           <Text style={styles.homePageTitleText}>Promotions today</Text>
+          <TouchableOpacity></TouchableOpacity>
         </View>
+        <View style={styles.homePageBottomPadding}/>
       </View>
     </SafeAreaView>
   );
