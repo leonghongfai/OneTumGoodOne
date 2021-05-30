@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         flex: 1,
-        backgroundColor: 'black',
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
     searchBarArea: {
