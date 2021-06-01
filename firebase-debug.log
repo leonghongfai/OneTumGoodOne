@@ -1,0 +1,21 @@
+[debug] [2021-06-01T10:11:11.687Z] ----------------------------------------------------------------------
+[debug] [2021-06-01T10:11:11.692Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\Fai\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js hosting:disable
+[debug] [2021-06-01T10:11:11.692Z] CLI Version:   9.12.0
+[debug] [2021-06-01T10:11:11.693Z] Platform:      win32
+[debug] [2021-06-01T10:11:11.693Z] Node Version:  v14.17.0
+[debug] [2021-06-01T10:11:11.695Z] Time:          Tue Jun 01 2021 18:11:11 GMT+0800 (Singapore Standard Time)
+[debug] [2021-06-01T10:11:11.696Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-06-01T10:11:11.709Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-06-01T10:11:11.710Z] > authorizing via signed-in user (leonghongfai@gmail.com)
+[debug] [2021-06-01T10:11:11.713Z] [iam] checking project orbital-21837 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2021-06-01T10:11:11.718Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/orbital-21837:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2021-06-01T10:11:12.995Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 01 Jun 2021 10:11:12 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1051","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-01T10:11:13.004Z] > refreshing access token with scopes: []
+[debug] [2021-06-01T10:11:13.004Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-06-01T10:11:13.056Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Tue, 01 Jun 2021 10:11:12 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-06-01T10:11:13.077Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/orbital-21837 [none]
+[debug] [2021-06-01T10:11:13.392Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/orbital-21837 200
+[debug] [2021-06-01T10:11:13.393Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/orbital-21837 {"projectId":"orbital-21837","projectNumber":"685879920678","displayName":"orbital","name":"projects/orbital-21837","resources":{"hostingSite":"orbital-21837","realtimeDatabaseInstance":"orbital-21837-default-rtdb","storageBucket":"orbital-21837.appspot.com","locationId":"australia-southeast1"},"state":"ACTIVE"}
