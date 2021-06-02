@@ -16,7 +16,10 @@ const LoginScreen = (props) => {
     const ref_input2 = useRef()
     const handleLogIn = () => {
         Auth.logIn(text, pass,
-            () => props.navigation.navigate('Home'),
+            () => props.navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home' }],
+              }),
             (error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
