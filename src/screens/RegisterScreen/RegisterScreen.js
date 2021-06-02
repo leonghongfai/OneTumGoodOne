@@ -22,7 +22,10 @@ let RegisterScreen = (props) => {
             email: email,
             password: pass,
         },
-        (user) => props.navigation.navigate('Home'),
+        (user) => props.navigation.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          }),
         (error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
