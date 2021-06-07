@@ -58,7 +58,7 @@ const LoginScreen = (props) => {
                         value = {pass}
                         onChangeText= {(text) => setPass(text)}
                         autoCapitalize = 'none'
-                        placeholder = 'Enter Password'
+                        placeholder = 'Password'
                         secureTextEntry = {view}
                         mode = 'outlined'
                         right = {<TextInput.Icon name= {view ?'eye-outline':'eye-off-outline'}
