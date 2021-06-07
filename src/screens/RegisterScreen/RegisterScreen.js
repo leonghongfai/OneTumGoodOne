@@ -77,7 +77,7 @@ let RegisterScreen = (props) => {
                         autoCapitalize = 'none'
                         placeholder = 'Enter Password'
                         mode= 'outlined'
-                        secureTextEntry
+                        secureTextEntry = {view}
                         right = {<TextInput.Icon name= {view ?'eye-outline':'eye-off-outline'}
                                             onPress= {() => setView(!view)} 
                                             style= {{paddingTop: 10}}/>}
