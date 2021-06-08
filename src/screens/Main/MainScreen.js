@@ -19,7 +19,7 @@ const MainScreen = (props) => {
                 <Text style={Styles.title}>WELCOME</Text>
                 <Image 
                     style={Styles.logo} 
-                    source = {require('../../../assets/favicon.png')}
+                    source = {require('../../../assets/icons/favicon.png')}
                 />
                 <TouchableOpacity style={Styles.logInButton} 
                     onPress= {() => props.navigation.navigate('Login')}>

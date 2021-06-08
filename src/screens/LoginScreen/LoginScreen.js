@@ -40,7 +40,7 @@ const LoginScreen = (props) => {
                     <Text style={Styles.title}>LOGIN</Text>
                     <Image 
                         style={Styles.logo} 
-                        source = {require('../../../assets/favicon.png')}
+                        source = {require('../../../assets/icons/favicon.png')}
                     />
                     <TextInput
                         style= {Styles.userInput}
