@@ -45,7 +45,7 @@ let RegisterScreen = (props) => {
                     <Text style={Styles.title}>REGISTER</Text>
                     <Image 
                         style={Styles.logo} 
-                        source = {require('../../../assets/favicon.png')}
+                        source = {require('../../../assets/icons/favicon.png')}
                     />
                     <TextInput
                         style= {Styles.userInput}

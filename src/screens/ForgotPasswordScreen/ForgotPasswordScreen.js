@@ -18,7 +18,7 @@ const ForgotPasswordScreen = (props) => {
                     <Text style={Styles.title}>RESET PASSWORD</Text>
                     <Image 
                         style={Styles.logo} 
-                        source = {require('../../../assets/favicon.png')}
+                        source = {require('../../../assets/icons/favicon.png')}
                     />
                 </KeyboardAvoidingView>
             </ScrollView>
