@@ -8,11 +8,14 @@ import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen';
 import HomeScreen from './src/screens/HomeScreen/HomeScreen'
 import MainScreen from './src/screens/Main/MainScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen/ForgotPasswordScreen';
+import SaveImageScreen from './src/screens/PicturePages/SaveImageScreen'
+import CameraScreen from './src/screens/PicturePages/CameraScreen'
+import ProfilePage from './src/screens/HomePages/ProfilePage'
 
 
 const Stack = createStackNavigator();
 
-export default function App() {
+export default function App(props) {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={'Main'} headerMode= 'none'>
@@ -21,6 +24,8 @@ export default function App() {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <Stack.Screen name="Camera" component={CameraScreen} />
+        <Stack.Screen name="SaveImage" component={SaveImageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
