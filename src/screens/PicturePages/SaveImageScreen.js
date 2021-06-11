@@ -7,6 +7,9 @@ import {
     Button, 
 } from 'react-native'
 import firebase from 'firebase'
+import styles from "../HomePages/PageStyles"
+import 'firebase/firestore'
+import 'firebase/storage'
 require("firebase/firestore")
 require("firebase/firebase-storage")
 
@@ -24,17 +27,31 @@ export default function SaveImageScreen(props) {
         }
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
+                savePostData(snapshot)
                 console.log(snapshot)
             })
         }
-        const taskError = shapshot => {
+        const taskError = snapshot => {
             console.log(snapshot)
         }
         task.on("state_changed", taskProgress, taskError, taskCompleted)
     }
+    const savePostData = (downloadURL) => {
+        firebase.firestore()
+        .collection('posts')
+        .doc(firebase.auth().currentUser.uid)
+        .collection("userPosts")
+        .add({
+            downloadURL,
+            caption,
+        }).then((function () {
+            //go back to home page, change when deciding where to put post
+            props.navigation.navigate("Home")
+        }))
+    }
 
     return(
-        <View style={{flex: 1}}>
+        <View style={styles.container}>
             <Image source={{uri: props.route.params.image}} />
             <TextInput 
                 placeholder="Write caption here!"
