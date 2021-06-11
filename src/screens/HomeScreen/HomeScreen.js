@@ -1,14 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import {
-	Text,
-	View,
-	Image,
-	TextInput,
-	TouchableOpacity,
-	KeyboardAvoidingView,
-	ScrollView,
-} from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
@@ -17,12 +7,14 @@ import FollowPage from "../HomePages/FollowPage";
 import MapPage from "../HomePages/MapPage";
 import ProfilePage from "../HomePages/ProfilePage";
 import SettingsPage from "../HomePages/SettingsPage";
+import CameraScreen from "../PicturePages/CameraScreen"
 
 const Tab = createBottomTabNavigator();
 
 const HomeScreen = () => {
 	return (
 		<Tab.Navigator
+			initialRouteName={"Home"}
 			screenOptions={({ route }) => ({
 				tabBarIcon: ({ focused, color, size }) => {
 					let iconName;

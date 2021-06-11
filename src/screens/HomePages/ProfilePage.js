@@ -1,24 +1,15 @@
 import React from "react";
 import {
   Text,
+  Button,
   View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  ScrollView,
-  NavigationContainer,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import ColorScheme from "../../../global/ColorScheme";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useState } from "react";
-import { render } from "react-dom";
+import styles from "./PageStyles"
 
-const ProfilePage = () => {
+const ProfilePage = (props) => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Profile!</Text>
+    <View style={styles.container}>
+      <Button onPress={() => props.navigation.navigate('Camera')} title="take pic" />
     </View>
   );
 };
