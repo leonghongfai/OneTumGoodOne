@@ -7,7 +7,7 @@ import {
     Button, 
 } from 'react-native'
 import firebase from 'firebase'
-import styles from "../HomePages/PageStyles"
+import styles from "../PageStyles"
 import 'firebase/firestore'
 import 'firebase/storage'
 require("firebase/firestore")
