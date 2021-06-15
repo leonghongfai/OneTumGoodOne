@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     },
+    homePageLocationBar: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     homePageMiddlePadding: {    
         flex: 1,
         backgroundColor: 'white',
@@ -47,6 +52,24 @@ const styles = StyleSheet.create({
     homePageImage: {
         height: 150,
         width: 150,
+        borderRadius: 30,
+    },
+    rating: {
+        position: 'absolute', 
+        bottom: 0,
+        height: 30,
+        width: 70,
+        backgroundColor: 'white',
+        borderTopRightRadius: 30,
+        borderBottomLeftRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    ratingStar: {
+        height: 15,
+        width: 15,
+        marginRight: 5,
     },
 })
 
