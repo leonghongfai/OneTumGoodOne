@@ -4,7 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
 import HomePage from "../HomePages/HomePage";
 import FollowPage from "../HomePages/FollowPage";
-import MapPage from "../HomePages/MapPage";
+import CameraPage from "../HomePages/CameraPage";
 import ProfilePage from "../HomePages/ProfilePage";
 import SettingsPage from "../HomePages/SettingsPage";
 import CameraScreen from "../PicturePages/CameraScreen"
@@ -23,8 +23,8 @@ const HomeScreen = () => {
 						iconName = focused ? "home" : "home-outline";
 					} else if (route.name === "Follow") {
 						iconName = focused ? "earth" : "earth-outline";
-					} else if (route.name === "Map") {
-						iconName = focused ? "map" : "map-outline";
+					} else if (route.name === "Camera") {
+						iconName = focused ? "camera" : "camera-outline";
 					} else if (route.name === "Profile") {
 						iconName = focused ? "person" : "person-outline";
 					} else if (route.name === "Settings") {
@@ -44,7 +44,7 @@ const HomeScreen = () => {
 				component={FollowPage}
 				options={{ tabBarBadge: 3 }}
 			/>
-			<Tab.Screen name="Map" component={MapPage} />
+			<Tab.Screen name="Camera" component={CameraPage} />
 			<Tab.Screen name="Profile" component={ProfilePage} />
 			<Tab.Screen name="Settings" component={SettingsPage} />
 		</Tab.Navigator>
