@@ -4,9 +4,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
 import HomePage from "../HomePages/HomePage";
 import FollowPage from "../HomePages/FollowPage";
+import CameraScreen from "../HomePages/PicturePages/CameraScreen";
 import ProfilePage from "../HomePages/ProfilePage";
 import SettingsPage from "../HomePages/SettingsPage";
-import CameraScreen from "../PicturePages/CameraScreen"
 
 const Tab = createBottomTabNavigator();
 
