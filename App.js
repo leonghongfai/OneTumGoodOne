@@ -12,7 +12,6 @@ import SaveImageScreen from './src/screens/PicturePages/SaveImageScreen'
 import CameraScreen from './src/screens/PicturePages/CameraScreen'
 import EateryScreen from './src/screens/EateryScreen/EateryScreen'
 import ProfilePage from './src/screens/HomePages/ProfilePage'
-import CameraPage from './src/screens/HomePages/CameraPage';
 
 
 const Stack = createStackNavigator();
@@ -29,7 +28,6 @@ export default function App() {
         <Stack.Screen name="Camera" component={CameraScreen} />
         <Stack.Screen name="SaveImage" component={SaveImageScreen} />
         <Stack.Screen name="Eatery" component={EateryScreen} />
-        <Stack.Screen name="CameraPage" component={CameraPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );
