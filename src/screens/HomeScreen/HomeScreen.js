@@ -4,7 +4,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
 import HomePage from "../HomePages/HomePage";
 import FollowPage from "../HomePages/FollowPage";
-import CameraPage from "../HomePages/CameraPage";
 import ProfilePage from "../HomePages/ProfilePage";
 import SettingsPage from "../HomePages/SettingsPage";
 import CameraScreen from "../PicturePages/CameraScreen"
@@ -44,7 +43,7 @@ const HomeScreen = () => {
 				component={FollowPage}
 				options={{ tabBarBadge: 3 }}
 			/>
-			<Tab.Screen name="Camera" component={CameraPage} />
+			<Tab.Screen name="Camera" component={CameraScreen} />
 			<Tab.Screen name="Profile" component={ProfilePage} />
 			<Tab.Screen name="Settings" component={SettingsPage} />
 		</Tab.Navigator>
