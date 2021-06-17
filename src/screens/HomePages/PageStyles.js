@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
+        ...ColorScheme.shadow,
     },
     ratingStar: {
         height: 15,

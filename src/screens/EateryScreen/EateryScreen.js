@@ -1,28 +1,32 @@
-import { Assets } from '@react-navigation/stack';
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity,SafeAreaView, ScrollView, 
-        KeyboardAvoidingView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Styles from './Styles'
-import { useState } from 'react'
+import React from "react";
+import {
+	Text,
+	View,
+	SafeAreaView,
+	Image,
+	TouchableOpacity,
+	ScrollView,
+	FlatList,
+    KeyboardAvoidingView,
+} from "react-native";
+import { Searchbar } from "react-native-paper";
+import { icons, images } from '../../../constants'
+import styles from "./EateryScreenStyles";
 
-const EateryScreen = (props) => {
-
+const EateryScreen = () => {
     return (
-        <View style = {Styles.container}>
+        <View style={styles.container}>
             <ScrollView>
                 <KeyboardAvoidingView>
-                    <View style={Styles.topContainer} />
-                    <Text style={Styles.title}>RESET PASSWORD</Text>
-                    <Image 
-                        style={Styles.logo} 
-                        source = {require('../../../assets/icons/favicon.png')}
+                    <View style={styles.topContainer} />
+                    <Text style={styles.title}>RESET PASSWORD</Text>
+                    <Image
+                        style={styles.logo}
+                        source={require('../../../assets/icons/favicon.png')}
                     />
                 </KeyboardAvoidingView>
             </ScrollView>
-        </View> 
+        </View>
     )
 }
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import ColorScheme from '../../../global/ColorScheme'
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
