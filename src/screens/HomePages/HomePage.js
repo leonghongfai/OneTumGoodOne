@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableNativeFeedbackComponent } from "react-native";
 import {
 	Text,
 	View,
@@ -10,94 +9,18 @@ import {
 	FlatList
 } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { icons, images } from "../../../constants";
+import { icons, images } from '../../../constants'
 import styles from "./PageStyles";
 
 const HomePage = ({ navigation }) => {
 
-	const initialCurrentLocation = {
-		streetName: "Yishun",
-		gps: {
-			latitude: 1.5496614931250685,
-			longitude: 110.36381866919922
-		}
-	}
-
-	const categoryData = [
+	const aroundYouData = [
 		{
 			id: 1,
-			name: "Rice",
-			icon: icons.rice_bowl,
-		},
-		{
-			id: 2,
-			name: "Noodles",
-			icon: icons.noodle,
-		},
-		{
-			id: 3,
-			name: "Hot Dogs",
-			icon: icons.hotdog,
-		},
-		{
-			id: 4,
-			name: "Salads",
-			icon: icons.salad,
-		},
-		{
-			id: 5,
-			name: "Burgers",
-			icon: icons.hamburger,
-		},
-		{
-			id: 6,
-			name: "Pizza",
-			icon: icons.pizza,
-		},
-		{
-			id: 7,
-			name: "Snacks",
-			icon: icons.fries,
-		},
-		{
-			id: 8,
-			name: "Sushi",
-			icon: icons.sushi,
-		},
-		{
-			id: 9,
-			name: "Desserts",
-			icon: icons.donut,
-		},
-		{
-			id: 10,
-			name: "Drinks",
-			icon: icons.drink,
-		},
-	];
-
-	// price rating
-	const affordable = 1;
-	const fairPrice = 2;
-	const expensive = 3;
-
-	const restaurantData = [
-		{
-			id: 1,
-			name: "ByProgrammers Burger",
+			name: "vc Burger",
 			rating: 4.8,
 			categories: [5, 7],
-			priceRating: affordable,
 			photo: images.burger_restaurant_1,
-			duration: "30 - 45 min",
-			location: {
-				latitude: 1.5347282806345879,
-				longitude: 110.35632207358996,
-			},
-			courier: {
-				avatar: images.avatar_1,
-				name: "Amy",
-			},
 			menu: [
 				{
 					menuId: 1,
@@ -127,20 +50,10 @@ const HomePage = ({ navigation }) => {
 		},
 		{
 			id: 2,
-			name: "ByProgrammers Pizza",
+			name: "vc Pizza",
 			rating: 4.8,
 			categories: [2, 4, 6],
-			priceRating: expensive,
 			photo: images.pizza_restaurant,
-			duration: "15 - 20 min",
-			location: {
-				latitude: 1.556306570595712,
-				longitude: 110.35504616746915,
-			},
-			courier: {
-				avatar: images.avatar_2,
-				name: "Jackson",
-			},
 			menu: [
 				{
 					menuId: 4,
@@ -177,22 +90,15 @@ const HomePage = ({ navigation }) => {
 				},
 			],
 		},
+	];
+
+	const youMightLikeData = [
 		{
-			id: 3,
-			name: "ByProgrammers Hotdogs",
+			id: 1,
+			name: "vc Hotdogs",
 			rating: 4.8,
 			categories: [3],
-			priceRating: expensive,
 			photo: images.hot_dog_restaurant,
-			duration: "20 - 25 min",
-			location: {
-				latitude: 1.5238753474714375,
-				longitude: 110.34261833833622,
-			},
-			courier: {
-				avatar: images.avatar_3,
-				name: "James",
-			},
 			menu: [
 				{
 					menuId: 8,
@@ -205,11 +111,10 @@ const HomePage = ({ navigation }) => {
 			],
 		},
 		{
-			id: 4,
-			name: "ByProgrammers Sushi",
+			id: 2,
+			name: "vc Sushi",
 			rating: 4.8,
 			categories: [8],
-			priceRating: expensive,
 			photo: images.japanese_restaurant,
 			duration: "10 - 15 min",
 			location: {
@@ -231,22 +136,15 @@ const HomePage = ({ navigation }) => {
 				},
 			],
 		},
+	];
+
+	const promotionsTodayData = [
 		{
-			id: 5,
-			name: "ByProgrammers Cuisine",
+			id: 1,
+			name: "vc Cuisine",
 			rating: 4.8,
 			categories: [1, 2],
-			priceRating: affordable,
 			photo: images.noodle_shop,
-			duration: "15 - 20 min",
-			location: {
-				latitude: 1.558050496260768,
-				longitude: 110.34743759630511,
-			},
-			courier: {
-				avatar: images.avatar_4,
-				name: "Muthu",
-			},
 			menu: [
 				{
 					menuId: 10,
@@ -283,21 +181,11 @@ const HomePage = ({ navigation }) => {
 			],
 		},
 		{
-			id: 6,
-			name: "ByProgrammers Dessets",
+			id: 2,
+			name: "vc Dessets",
 			rating: 4.9,
 			categories: [9, 10],
-			priceRating: affordable,
 			photo: images.kek_lapis_shop,
-			duration: "35 - 40 min",
-			location: {
-				latitude: 1.5573478487252896,
-				longitude: 110.35568783282145,
-			},
-			courier: {
-				avatar: images.avatar_1,
-				name: "Jessie",
-			},
 			menu: [
 				{
 					menuId: 12,
@@ -327,10 +215,9 @@ const HomePage = ({ navigation }) => {
 		},
 	];
 
-	const [categories, setCategories] = React.useState(categoryData);
-	const [selectedCategory, setSelectedCategory] = React.useState(null);
-	const [restaurants, setRestaurants] = React.useState(restaurantData);
-	const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation)
+	const [aroundYou, setAroundYou] = React.useState(aroundYouData);
+	const [youMightLike, setYouMightLike] = React.useState(youMightLikeData);
+	const [promotionsToday, setPromotionsToday] = React.useState(promotionsTodayData);
 	const [searchQuery, setSearchQuery] = React.useState("");
 
 
@@ -351,221 +238,65 @@ const HomePage = ({ navigation }) => {
 	}
 
 	function renderRecommendations() {
+		const renderItem = ({ item }) => (
+			<TouchableOpacity
+				style={styles.homePageImageBlock}
+				onPress={() => navigation.navigate("Eatery", {
+					item,
+				})}
+			>
+
+				<View>
+					<Image
+						source={item.photo}
+						resizeMode="cover"
+						style={styles.homePageImage}
+					/>
+					<View style={styles.rating}>
+						<Image
+							source={icons.star}
+							style={styles.ratingStar}
+						/>
+						<Text style={styles.ratingText}>{item.rating}</Text>
+					</View>
+				</View>
+
+				<Text>{item.name}</Text>
+			</TouchableOpacity>
+		)
+
 		return (
 			<View style={styles.homePageMainContainer}>
 				<ScrollView showsVerticalScrollIndicator={false}>
 					<View style={styles.homePageSmallContainer}>
 						<Text style={styles.homePageTitleText}>Around you</Text>
-						<ScrollView
+						<FlatList
+							data={aroundYou}
+							keyExtractor={(item) => item.id}
+							renderItem={renderItem}
 							horizontal={true}
 							showsHorizontalScrollIndicator={false}
-						>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => navigation.navigate("Eatery")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://lh5.googleusercontent.com/p/AF1QipNPaT4z6hEDZ3XWI6es3IjhzBSSDLjzOBqYt3V7=w408-h306-k-no",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>4.2</Text>
-									</View>
-								</View>
-								<Text>KDS Indian and Muslim Food</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 2!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://res.cloudinary.com/abillionveg/image/upload/q_auto,a_exif,w_1080,h_1080,c_fill/v1587483278/c5cxuymoy3mueuziwmpi.jpg",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>4.1</Text>
-									</View>
-								</View>
-								<Text>777 Eating House</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 3!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://lh3.googleusercontent.com/proxy/DdjAzjGAV4pvLV2jZ08oWUdRo3jBrJ7t5292Js1fElSd3MSMvsGITnzLpiu6XgtgVF2F7z1NNTEmdWQonHa86ys",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>4.4</Text>
-									</View>
-								</View>
-								<Text>Kamikaze Asian Tapas Bar</Text>
-							</TouchableOpacity>
-						</ScrollView>
+						/>
 					</View>
 					<View style={styles.homePageSmallContainer}>
 						<Text style={styles.homePageTitleText}>You might like</Text>
-						<ScrollView
+						<FlatList
+							data={youMightLike}
+							keyExtractor={(item) => item.id}
+							renderItem={renderItem}
 							horizontal={true}
 							showsHorizontalScrollIndicator={false}
-						>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 1!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://cdn.foodadvisor.com.sg/3/800/ycqwu/vt-iw/BX/n6in-xuhe.zfw/chowhound-western-grill.jpg",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>3.9</Text>
-									</View>
-								</View>
-								<Text>Chowhound Western Grill</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 2!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://eatbook.sg/wp-content/uploads/2018/07/Do-And-Me-Flatlay.jpg",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>4.1</Text>
-									</View>
-								</View>
-								<Text>Do & Me Western</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 3!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "http://www.smokinjoe.com.sg/common/wp-content/uploads/2018/08/shinmindaily.jpg",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>4.6</Text>
-									</View>
-								</View>
-								<Text>Smokin' Joe</Text>
-							</TouchableOpacity>
-						</ScrollView>
+						/>
 					</View>
 					<View style={styles.homePageSmallContainer}>
 						<Text style={styles.homePageTitleText}>Promotions today</Text>
-						<ScrollView
+						<FlatList
+							data={promotionsToday}
+							keyExtractor={(item) => item.id}
+							renderItem={renderItem}
 							horizontal={true}
 							showsHorizontalScrollIndicator={false}
-						>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 1!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://farm5.staticflickr.com/4714/39276883744_b21c549ca3_o.jpg",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>3.7</Text>
-									</View>
-								</View>
-								<Text>Pizzamaru</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 2!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://farm5.staticflickr.com/4616/39987056621_e18d6a9355_o.jpg",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>4.1</Text>
-									</View>
-								</View>
-								<Text>Big Fish Small Fish</Text>
-							</TouchableOpacity>
-							<TouchableOpacity
-								style={styles.homePageImageBlock}
-								onPress={() => console.log("Pressed Image 3!")}
-							>
-								<View>
-									<Image
-										style={styles.homePageImage}
-										source={{
-											uri: "https://farm5.staticflickr.com/4751/39089165685_db9056645e_o.jpg",
-										}}
-									/>
-									<View style={styles.rating}>
-										<Image
-											source={icons.star}
-											style={styles.ratingStar}
-										/>
-										<Text style={styles.ratingText}>4.5</Text>
-									</View>
-								</View>
-								<Text>Collin's</Text>
-							</TouchableOpacity>
-						</ScrollView>
+						/>
 					</View>
 				</ScrollView>
 			</View>
