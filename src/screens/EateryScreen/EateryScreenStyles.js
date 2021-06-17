@@ -10,22 +10,13 @@ const styles = StyleSheet.create({
         backgroundColor: ColorScheme.background,
         paddingTop: Platform.OS === 'android'? StatusBar.currentHeight: 0,
     },
-    topContainer:{
-        height: 130
+    header: {
+        flexDirection: 'row',
     },
-    title: {
-        height: 40,
-        fontSize: 25,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-    },
-    logo: {
-        //flex: 1,
-        width: 90,
-        height: 90,
-        alignSelf: "center",
-        margin: 30
-    },
+    backBox: {
+        justifyContent: 'center',
+        width: 50,
+    }
 })
 
-export default Styles
+export default styles
