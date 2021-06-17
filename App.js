@@ -34,7 +34,8 @@ export default function App() {
 }
 */
 
-import * as firebase from 'firebase'
+import firebase from 'firebase'
+
 
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
