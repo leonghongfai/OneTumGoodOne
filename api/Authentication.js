@@ -17,7 +17,8 @@ export const createAccount = async ({username, email, password}, onSuccess, onFa
             .catch(function(error){})
             db.collection('users').doc(user.uid).set({
                 username, 
-                email
+                email,
+                password
             })
             return onSuccess(user)
         }

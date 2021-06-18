@@ -47,7 +47,7 @@ export default function SaveImageScreen(props) {
             creation: firebase.firestore.Timestamp()
         }).then((function () {
             //go back to home page, change when deciding where to put post
-            props.navigation.navigate("Home")
+            props.navigation.navigate('Home', { screen: 'Profile' })
         }))
     }
 

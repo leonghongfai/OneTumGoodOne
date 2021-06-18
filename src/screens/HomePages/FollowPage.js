@@ -1,26 +1,45 @@
-import React from "react";
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  ScrollView,
-  NavigationContainer,
-} from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import ColorScheme from "../../../global/ColorScheme";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useState } from "react";
-import { render } from "react-dom";
+import React, { useState } from 'react'
+import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
+import styles from './PageStyles';
+import firebase from 'firebase';
+require('firebase/firestore');
 
-const FollowPage = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Follow!</Text>
-    </View>
-  );
-};
 
-export default FollowPage;
+export default function FollowPage(props) {
+    const [users, setUsers] = useState([])
+
+    const fetchUsers = (search) => {
+        firebase.firestore()
+            .collection('users')
+            .where('username', '>=', search)
+            .get()
+            .then((snapshot) => {
+                let users = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    const id = doc.id;
+                    return { id, ...data }
+                });
+                setUsers(users);
+            })
+    }
+    return (
+        <View style={styles.container}>
+            <TextInput
+                placeholder="Type Here..."
+                onChangeText={(search) => fetchUsers(search)} />
+
+            <FlatList
+                numColumns={1}
+                horizontal={false}
+                data={users}
+                renderItem={({ item }) => (
+                    <TouchableOpacity
+                        onPress={() => props.navigation.navigate("Profile", {uid: item.id})}>
+                        <Text>{item.username}</Text>
+                    </TouchableOpacity>
+
+                )}
+            />
+        </View>
+    )
+}
