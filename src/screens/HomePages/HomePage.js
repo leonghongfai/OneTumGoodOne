@@ -272,7 +272,7 @@ const HomePage = ({ navigation }) => {
 						<Text style={styles.homePageTitleText}>Around you</Text>
 						<FlatList
 							data={aroundYou}
-							keyExtractor={(item) => item.id}
+							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
 							showsHorizontalScrollIndicator={false}
@@ -282,7 +282,7 @@ const HomePage = ({ navigation }) => {
 						<Text style={styles.homePageTitleText}>You might like</Text>
 						<FlatList
 							data={youMightLike}
-							keyExtractor={(item) => item.id}
+							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
 							showsHorizontalScrollIndicator={false}
@@ -292,7 +292,7 @@ const HomePage = ({ navigation }) => {
 						<Text style={styles.homePageTitleText}>Promotions today</Text>
 						<FlatList
 							data={promotionsToday}
-							keyExtractor={(item) => item.id}
+							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
 							showsHorizontalScrollIndicator={false}
