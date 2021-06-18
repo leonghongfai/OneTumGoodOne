@@ -29,7 +29,7 @@ const EateryScreen = ({ route }) => {
 
     function renderHeader() {
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={styles.header}>
 
                 <TouchableOpacity
                     style={styles.backBox}
@@ -41,6 +41,13 @@ const EateryScreen = ({ route }) => {
                 <View style={styles.eateryTitleBox}>
                     <View style={styles.eateryTitle}>
                         <Text style={styles.eateryTitleText}>{eatery?.name}</Text>
+                        <View style={styles.ratingBox}>
+                            <Image
+                                source={icons.star}
+                                style={styles.ratingStar}
+                            />
+                            <Text>{eatery?.rating}</Text>
+                        </View>
                     </View>
                 </View>
 
@@ -79,10 +86,46 @@ const EateryScreen = ({ route }) => {
         )
     }
 
+    function renderMenu() {
+        return (
+            <View>
+                <Text style={styles.menuTitle}>Menu</Text>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                >
+                    {
+                        eatery?.menu.map((item, index) => (
+                            <View
+                                key={`menu-${index}`}
+                                style={styles.menuImageBox}
+                            >
+                                    <Image
+                                        source={item.photo}
+                                        resizeMode='cover'
+                                        style={styles.menuImage}
+                                    />
+                                    <View style={styles.menuItemText}>
+                                        <Text style={styles.menuItemName}>{item.name}</Text>
+                                        <Text style={styles.menuItemPrice}>${item.price.toFixed(2)}</Text>
+                                    </View>
+                            </View>
+                        ))
+                    }
+                </ScrollView>
+            </View>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            {renderMenu()}
+            <ScrollView 
+                style={styles.mainView}
+                showsVerticalScrollIndicator={false}
+            >
+                {renderPictures()}
+                {renderMenu()}
+            </ScrollView>
         </SafeAreaView>
     );
 }
