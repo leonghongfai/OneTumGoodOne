@@ -1,6 +1,8 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
-import ColorScheme from '../../../global/ColorScheme'
+import { Dimensions } from "react-native";
+const { width, height } = Dimensions.get("window");
+import ColorScheme from '../../../global/ColorScheme';
 
 const styles = StyleSheet.create({
     container: {
@@ -12,13 +14,13 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         justifyContent: 'center',
     },
-    restaurantTitleBox: {
+    eateryTitleBox: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 50,
     },
-    restaurantTitle: {
+    eateryTitle: {
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -26,69 +28,21 @@ const styles = StyleSheet.create({
         backgroundColor: 'gainsboro',
         marginHorizontal: 20
     },
-    restaurantTitleText: {
+    eateryTitleText: {
+        fontSize: 15,
         marginHorizontal: 20,
         fontWeight: 'bold'        
     },
-    homePageTopPadding: {
-        flex: 1,
-        backgroundColor: 'white',
+    eateryPicturesBox: {
+        alignItems: 'center'
     },
-    homePageLocationBar: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+    eateryPicturesBox1: {
+        height: height * 0.35,
     },
-    homePageMiddlePadding: {    
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    homePageBottomPadding: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    homePageMainContainer: {
-        flex: 50,
-        backgroundColor: 'white',
-        justifyContent: 'space-between',
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-    homePageSmallContainer: {
-        height: 228,
-    },
-    homePageTitleText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'left',
-    },
-    homePageImageBlock: {
-        width: 150,
-        marginRight: 5,
-    },
-    homePageImage: {
-        height: 150,
-        width: 150,
-        borderRadius: 30,
-    },
-    rating: {
-        position: 'absolute', 
-        bottom: 0,
-        height: 30,
-        width: 70,
-        backgroundColor: 'white',
-        borderTopRightRadius: 30,
-        borderBottomLeftRadius: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-        ...ColorScheme.shadow,
-    },
-    ratingStar: {
-        height: 15,
-        width: 15,
-        marginRight: 5,
-    },
+    eateryPicturesImage: {
+        width: width,
+        height: "100%",
+    }
 })
 
 export default styles;
