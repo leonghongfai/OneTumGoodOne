@@ -17,7 +17,7 @@ const HomePage = ({ navigation }) => {
 	const aroundYouData = [
 		{
 			id: 1,
-			name: "vc Burger",
+			name: "OneTumGudWan Burger",
 			rating: 4.8,
 			categories: [5, 7],
 			photo: images.burger_restaurant_1,
@@ -50,7 +50,7 @@ const HomePage = ({ navigation }) => {
 		},
 		{
 			id: 2,
-			name: "vc Pizza",
+			name: "OneTumGudWan Pizza",
 			rating: 4.8,
 			categories: [2, 4, 6],
 			photo: images.pizza_restaurant,
@@ -95,7 +95,7 @@ const HomePage = ({ navigation }) => {
 	const youMightLikeData = [
 		{
 			id: 1,
-			name: "vc Hotdogs",
+			name: "OneTumGudWan Hotdogs",
 			rating: 4.8,
 			categories: [3],
 			photo: images.hot_dog_restaurant,
@@ -112,7 +112,7 @@ const HomePage = ({ navigation }) => {
 		},
 		{
 			id: 2,
-			name: "vc Sushi",
+			name: "OneTumGudWan Sushi",
 			rating: 4.8,
 			categories: [8],
 			photo: images.japanese_restaurant,
@@ -141,7 +141,7 @@ const HomePage = ({ navigation }) => {
 	const promotionsTodayData = [
 		{
 			id: 1,
-			name: "vc Cuisine",
+			name: "OneTumGudWan Cuisine",
 			rating: 4.8,
 			categories: [1, 2],
 			photo: images.noodle_shop,
@@ -182,7 +182,7 @@ const HomePage = ({ navigation }) => {
 		},
 		{
 			id: 2,
-			name: "vc Dessets",
+			name: "OneTumGudWan Dessets",
 			rating: 4.9,
 			categories: [9, 10],
 			photo: images.kek_lapis_shop,
@@ -257,7 +257,7 @@ const HomePage = ({ navigation }) => {
 							source={icons.star}
 							style={styles.ratingStar}
 						/>
-						<Text style={styles.ratingText}>{item.rating}</Text>
+						<Text>{item.rating}</Text>
 					</View>
 				</View>
 

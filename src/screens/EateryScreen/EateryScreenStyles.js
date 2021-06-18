@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
+    mainView: {
+        flex: 1
+    },
+    header: {
+        flexDirection: 'row',
+        paddingBottom: 5,
+    },
     backBox: {
         width: 50,
         paddingLeft: 20,
@@ -31,10 +38,19 @@ const styles = StyleSheet.create({
     eateryTitleText: {
         fontSize: 15,
         marginHorizontal: 20,
-        fontWeight: 'bold'        
+        fontWeight: 'bold',    
+    },
+    ratingBox: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    ratingStar: {
+        height: 15,
+        width: 15,
+        marginRight: 5,
     },
     eateryPicturesBox: {
-        alignItems: 'center'
+        alignItems: 'center',
     },
     eateryPicturesBox1: {
         height: height * 0.35,
@@ -42,6 +58,35 @@ const styles = StyleSheet.create({
     eateryPicturesImage: {
         width: width,
         height: "100%",
+    },
+    menuTitle: {
+        fontSize: 25,
+        marginHorizontal: 20,
+        fontWeight: 'bold' 
+    },
+    menuImageBox: {
+        flexDirection: 'row',
+        borderColor: 'lightgray',
+        borderWidth: 0.2,
+    },
+    menuImage: {
+        width: 125,
+        height: 125,
+    },
+    menuItemText: {
+        flex: 1,
+        alignItems: 'flex-start',
+        marginLeft: 20,
+        justifyContent: 'center'
+    },
+    menuItemName: {
+        fontSize: 15,
+        paddingBottom: 5,
+    },
+    menuItemPrice: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        paddingBottom: 5,         
     }
 })
 
