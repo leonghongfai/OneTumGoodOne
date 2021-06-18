@@ -97,7 +97,11 @@ export class App extends Component {
           <Stack.Navigator initialRouteName="Login" headerMode='none'>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+            <Stack.Screen name="Camera" component={CameraScreen} />
+            <Stack.Screen name="SaveImage" component={SaveImageScreen} />
+            <Stack.Screen name="Eatery" component={EateryScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       );
@@ -107,7 +111,10 @@ export class App extends Component {
       <Provider store={store}>
         <NavigationContainer >
           <Stack.Navigator initialRouteName="Home" headerMode='none'>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
             <Stack.Screen name="Camera" component={CameraScreen} />
             <Stack.Screen name="SaveImage" component={SaveImageScreen} />
             <Stack.Screen name="Eatery" component={EateryScreen} />
