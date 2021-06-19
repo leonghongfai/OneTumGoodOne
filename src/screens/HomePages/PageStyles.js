@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         width: 150,
         borderRadius: 30,
     },
-    rating: {
+    homePageRating: {
         position: 'absolute', 
         bottom: 0,
         height: 30,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         ...ColorScheme.shadow,
     },
-    ratingStar: {
+    homePageRatingStar: {
         height: 15,
         width: 15,
         marginRight: 5,
