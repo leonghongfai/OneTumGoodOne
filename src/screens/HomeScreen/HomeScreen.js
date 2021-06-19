@@ -7,7 +7,7 @@ import FollowPage from "../HomePages/FollowPage";
 import CameraScreen from "../HomePages/PicturePages/CameraScreen";
 import ProfilePage from "../HomePages/ProfilePage";
 import SettingsPage from "../HomePages/SettingsPage";
-
+import firebase from 'firebase'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchUser, fetchUserPosts } from "../../../redux/actions/index"
@@ -54,7 +54,12 @@ export class HomeScreen extends Component {
 					options={{ tabBarBadge: 3 }}
 				/>
 				<Tab.Screen name="Camera" component={CameraScreen} />
-				<Tab.Screen name="Profile" component={ProfilePage} />
+				<Tab.Screen name="Profile" component={ProfilePage} 
+					 listeners={({ navigation }) => ({
+						tabPress: event => {
+							event.preventDefault();
+							navigation.navigate("Profile", {uid: firebase.auth().currentUser.uid})
+						}})}/>
 				<Tab.Screen name="Settings" component={SettingsPage} />
 			</Tab.Navigator>
 		);
