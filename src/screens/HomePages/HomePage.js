@@ -16,7 +16,7 @@ import styles from "./PageStyles";
 
 
 const HomePage = ({ navigation }) => {
-
+ 
 	const [searchQuery, setSearchQuery] = React.useState("");
 	const [eateries, setEateries] = React.useState([]);
 
