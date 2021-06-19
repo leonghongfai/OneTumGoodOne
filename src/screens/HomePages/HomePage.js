@@ -10,7 +10,10 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { icons, images } from '../../../constants'
+import firebase from 'firebase'
+require('firebase/firestore')
 import styles from "./PageStyles";
+
 
 const HomePage = ({ navigation }) => {
 
@@ -82,7 +85,7 @@ const HomePage = ({ navigation }) => {
 				},
 				{
 					menuId: 7,
-					name: "Mediterranean Chopped Salad ",
+					name: "Mediterranean Chopped Salad",
 					photo: images.salad,
 					description: "Finely chopped lettuce, tomatoes, cucumbers",
 					calories: 100,
@@ -128,7 +131,7 @@ const HomePage = ({ navigation }) => {
 			menu: [
 				{
 					menuId: 9,
-					name: "Sushi sets",
+					name: "Sushi Sets",
 					photo: images.sushi,
 					description: "Fresh salmon, sushi rice, fresh juicy avocado",
 					calories: 100,
@@ -252,10 +255,10 @@ const HomePage = ({ navigation }) => {
 						resizeMode="cover"
 						style={styles.homePageImage}
 					/>
-					<View style={styles.rating}>
+					<View style={styles.homePageRating}>
 						<Image
 							source={icons.star}
-							style={styles.ratingStar}
+							style={styles.homePageRatingStar}
 						/>
 						<Text>{item.rating}</Text>
 					</View>
