@@ -4,7 +4,8 @@ import {
   View,
   Image,
   FlatList,
-  StyleSheet
+  StyleSheet,
+  Button,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
@@ -17,6 +18,7 @@ import { connect } from 'react-redux'
 const ProfilePage = (props) => {
   const [userPosts, setUserPosts] = useState([]);
   const [user, setUser] = useState(null);
+  const [following, setFollowing] = useState(false)
 
   useEffect(() => {
     const { currentUser, posts } = props
@@ -52,7 +54,32 @@ const ProfilePage = (props) => {
           setUserPosts(posts)
       })
     }
-  }, [props.route.params.uid])
+
+    if (props.following.indexOf(props.route.params.uid) > -1) {
+      setFollowing(true)
+    } else {
+      setFollowing(false)
+    }
+
+  }, [props.route.params.uid, props.following])
+
+  const onFollow = () => {
+    firebase.firestore()
+    .collection("following")
+    .doc(firebase.auth().currentUser.uid)
+    .collection("userFollowing")
+    .doc(props.route.params.uid)
+    .set({})
+  }
+
+  const onUnfollow = () => {
+    firebase.firestore()
+    .collection("following")
+    .doc(firebase.auth().currentUser.uid)
+    .collection("userFollowing")
+    .doc(props.route.params.uid)
+    .delete()
+  }
 
   if (user === null) {
     return <View />
@@ -63,6 +90,27 @@ const ProfilePage = (props) => {
       <View style={styles.containerInfo}>
         <Text>{user.username}</Text>
         <Text>{user.email}</Text>
+
+        {props.route.params.uid !== firebase.auth().currentUser.uid
+        ? (
+          <View>
+            {following? (
+              <Button 
+                title="Following"
+                onPress={() => onUnfollow()}
+                />            
+              )
+            : (
+              <Button 
+                title="Follow"
+                onPress={() => onFollow()}
+              />
+            )
+            }
+              
+          </View>
+        ) 
+        :null}
       </View>
 
       <View style={styles.containerGallery}>
@@ -107,6 +155,7 @@ const styles= StyleSheet.create({
 const mapStateToProps = (store) => ({
   currentUser: store.userState.currentUser,
   posts: store.userState.posts,
+  following: store.userState.following
 })
 
 export default connect(mapStateToProps, null)(ProfilePage);
