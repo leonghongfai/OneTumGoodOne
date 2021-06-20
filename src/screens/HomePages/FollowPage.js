@@ -3,6 +3,7 @@ import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
 import styles from './PageStyles';
 import firebase from 'firebase';
 require('firebase/firestore');
+import Feed from "./Feed";
 
 
 export default function FollowPage(props) {
@@ -40,6 +41,8 @@ export default function FollowPage(props) {
 
                 )}
             />
+            <Feed />
+
         </View>
     )
 }
