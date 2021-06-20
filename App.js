@@ -11,37 +11,11 @@ import SaveImageScreen from './src/screens/PicturePages/SaveImageScreen'
 import CameraScreen from './src/screens/PicturePages/CameraScreen'
 import EateryScreen from './src/screens/EateryScreen/EateryScreen'
 import ProfilePage from './src/screens/HomePages/ProfilePage'
-
-
-const Stack = createStackNavigator();
-
-/*
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName={'Main'} headerMode= 'none'>
-        <Stack.Screen name="Main" component={MainScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-        <Stack.Screen name="Camera" component={CameraScreen} />
-        <Stack.Screen name="SaveImage" component={SaveImageScreen} />
-        <Stack.Screen name="Eatery" component={EateryScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
-*/
-
 import firebase from 'firebase'
-
-
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
-const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMC9BdNsV3AFN-IqRbFPweeXr0VHLE2xw",
@@ -56,6 +30,9 @@ const firebaseConfig = {
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
 }
+
+const Stack = createStackNavigator();
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export class App extends Component {
   constructor(props) {
