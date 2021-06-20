@@ -3,14 +3,13 @@ import 'firebase/auth'
 import 'firebase/database'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBKwaiPrr_ENZdkyPaTLkDN-owQn63CSuk",
-    authDomain: "orbital-21837.firebaseapp.com",
-    projectId: "orbital-21837",
-    storageBucket: "orbital-21837.appspot.com",
-    messagingSenderId: "685879920678",
-    appId: "1:685879920678:web:4eef086d8a3721c117fee7",
-    measurementId: "G-XHCD2EP5HK",
-    databaseURL: "https://orbital-21837-default-rtdb.asia-southeast1.firebasedatabase.app"
+  apiKey: "AIzaSyCa2R9x2lIVE5HEAnyd4ZsUBFQU_kFiEDA",
+  authDomain: "orbitalshit.firebaseapp.com",
+  projectId: "orbitalshit",
+  storageBucket: "orbitalshit.appspot.com",
+  messagingSenderId: "677821659279",
+  appId: "1:677821659279:web:6ac349d292b6e3f30b18fa",
+  measurementId: "G-ZZM1KMXS0J"
   };
   // Initialize Firebase
 const app = (!firebase.apps.length)
