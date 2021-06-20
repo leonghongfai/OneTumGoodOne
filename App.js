@@ -44,13 +44,13 @@ import thunk from 'redux-thunk'
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCa2R9x2lIVE5HEAnyd4ZsUBFQU_kFiEDA",
-  authDomain: "orbitalshit.firebaseapp.com",
-  projectId: "orbitalshit",
-  storageBucket: "orbitalshit.appspot.com",
-  messagingSenderId: "677821659279",
-  appId: "1:677821659279:web:6ac349d292b6e3f30b18fa",
-  measurementId: "G-ZZM1KMXS0J"
+  apiKey: "AIzaSyCMC9BdNsV3AFN-IqRbFPweeXr0VHLE2xw",
+  authDomain: "orbitalshit-444b0.firebaseapp.com",
+  projectId: "orbitalshit-444b0",
+  storageBucket: "orbitalshit-444b0.appspot.com",
+  messagingSenderId: "539632643952",
+  appId: "1:539632643952:web:577493dfa37c12195be9b5",
+  measurementId: "G-HWGJRC6R67"
 };
 
 if (firebase.apps.length === 0) {
