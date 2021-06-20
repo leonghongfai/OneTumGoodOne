@@ -46,7 +46,7 @@ export default function SaveImageScreen(props) {
             caption,
             creation: firebase.firestore.FieldValue.serverTimestamp()
         }).then((function () {
-            props.navigation.navigate('Home', { screen: 'Profile' });
+            props.navigation.navigate("Profile", {uid: firebase.auth().currentUser.uid});
         }))
     }
 
