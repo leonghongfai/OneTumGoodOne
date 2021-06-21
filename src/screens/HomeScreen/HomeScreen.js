@@ -10,7 +10,7 @@ import SettingsPage from "../HomePages/SettingsPage";
 import firebase from 'firebase'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchUser, fetchUserPosts, fetchUserFollowing } from "../../../redux/actions/index"
+import { fetchUser, fetchUserPosts, fetchUserFollowing, clearData } from "../../../redux/actions/index"
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +19,7 @@ export class HomeScreen extends Component {
         this.props.fetchUser();
 		this.props.fetchUserPosts();
 		this.props.fetchUserFollowing()
+		this.props.clearData();
     }
 	render() {
 		const {currentUser} = this.props
@@ -71,6 +72,6 @@ const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser
 })
 
-const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPosts, fetchUserFollowing }, dispatch);
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPosts, fetchUserFollowing, clearData }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchProps)(HomeScreen);
