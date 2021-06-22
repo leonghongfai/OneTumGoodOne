@@ -31,8 +31,10 @@ const HomePage = ({ navigation }) => {
 				return { id, ...data }
 			})
 			setEateries(restaurants)
+			
+			{console.log(eateries)}
 		})
-	})
+	},[navigation])
 
 	function renderSearchBar() {
 		const onChangeSearch = (query) => setSearchQuery(query);
@@ -54,9 +56,13 @@ const HomePage = ({ navigation }) => {
 		const renderItem = ({ item }) => (
 			<TouchableOpacity
 				style={styles.homePageImageBlock}
-				onPress={() => navigation.navigate("Eatery", {
+				onPress={() => 
+					
+					navigation.navigate("Eatery", {
 					eateryId: item.id,
-				})}
+				})
+
+				}
 			>
 
 				<View>

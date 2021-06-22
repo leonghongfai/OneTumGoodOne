@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Text,
     View,
@@ -15,17 +15,40 @@ import { icons, images } from '../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "./EateryScreenStyles";
 import Styles from "../LoginScreen/Styles";
+import firebase from 'firebase'
+require('firebase/firestore')
 
-const EateryScreen = ({ route }) => {
 
-    const navigation = useNavigation();
 
-    const [eatery, setEatery] = React.useState(null);
+const EateryScreen = (props) => {
+    const [eatery, setEatery] = useState(null)
+    const [info, setInfo] = useState([])
 
-    React.useEffect(() => {
-        let { item } = route.params
-        setEatery(item)
-    })
+    
+    useEffect(() => {
+        updateEatery()
+    },[props.route.params.eateryId])
+    
+
+    function updateEatery() {
+        if (props.route.params.eateryId === eatery) {
+            setEatery(eatery)
+        } else {
+            firebase.firestore()
+            .collection("eateries")
+            .doc(props.route.params.eateryId)
+            .get()
+            .then((snapshot) => {
+                if (snapshot.exists) {
+                    setInfo(snapshot.data())
+                    setEatery(snapshot.id)
+                }
+                else {
+                    console.log('does not exist')
+                }
+            })
+        } 
+    }
 
     function renderHeader() {
         return (
@@ -33,20 +56,20 @@ const EateryScreen = ({ route }) => {
 
                 <TouchableOpacity
                     style={styles.backBox}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => props.navigation.navigate("Home")}
                 >
                     <Icon name="arrow-back" size={30} />
                 </TouchableOpacity>
 
                 <View style={styles.eateryTitleBox}>
                     <View style={styles.eateryTitle}>
-                        <Text style={styles.eateryTitleText}>{eatery?.name}</Text>
+                        <Text style={styles.eateryTitleText}>{info.name}</Text>
                         <View style={styles.ratingBox}>
                             <Image
                                 source={icons.star}
                                 style={styles.ratingStar}
                             />
-                            <Text>{eatery?.rating}</Text>
+                            <Text></Text>
                         </View>
                     </View>
                 </View>
@@ -55,6 +78,8 @@ const EateryScreen = ({ route }) => {
         )
     }
 
+    
+    
     function renderPictures() {
         return (
             <Animated.ScrollView
@@ -66,26 +91,28 @@ const EateryScreen = ({ route }) => {
                 //on scroll
             >
                 {
-                    eatery?.menu.map((item, index) => (
-                        <View
-                            key={`menu-${index}`}                        
-                            style={styles.eateryPicturesBox}
-                        >
-                            <View style={styles.eateryPicturesBox1}>
-                                <Image
-                                    source={item.photo}
-                                    resizeMode="cover"
-                                    style={styles.eateryPicturesImage}
-                                />
-                            </View>
-
+                    <View                      
+                        style={styles.eateryPicturesBox}
+                    >
+                        <View style={styles.eateryPicturesBox1}>
+                            <Image
+                                source={{uri:info.image}}
+                                resizeMode="cover"
+                                style={styles.eateryPicturesImage}
+                            />
                         </View>
-                    ))
+
+                    </View>
+                
+                    
                 }
             </Animated.ScrollView>
         )
     }
+    
+    
 
+    /*
     function renderMenu() {
         return (
             <View>
@@ -128,6 +155,19 @@ const EateryScreen = ({ route }) => {
             </ScrollView>
         </SafeAreaView>
     );
+    */
+   return (
+    <SafeAreaView style={styles.container}>
+        {console.log(info)}
+        {renderHeader()}
+        <ScrollView 
+                style={styles.mainView}
+                showsVerticalScrollIndicator={false}
+            >
+                {renderPictures()}
+        </ScrollView>
+    </SafeAreaView>
+   )
 }
 
 export default EateryScreen;
