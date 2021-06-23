@@ -14,40 +14,45 @@ import { useNavigation } from '@react-navigation/native';
 import { icons, images } from '../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "./EateryScreenStyles";
-import Styles from "../LoginScreen/Styles";
 import firebase from 'firebase'
 require('firebase/firestore')
 
 
-
 const EateryScreen = (props) => {
-    const [eatery, setEatery] = useState(null)
-    const [info, setInfo] = useState([])
 
-    
+    const [eatery, setEatery] = React.useState("")
+    const [menu, setMenu] = React.useState([])
+
+
     useEffect(() => {
         updateEatery()
-    },[props.route.params.eateryId])
-    
+    }, [props.route.params.eateryId])
 
     function updateEatery() {
-        if (props.route.params.eateryId === eatery) {
-            setEatery(eatery)
-        } else {
-            firebase.firestore()
+        firebase.firestore()
             .collection("eateries")
             .doc(props.route.params.eateryId)
             .get()
             .then((snapshot) => {
                 if (snapshot.exists) {
-                    setInfo(snapshot.data())
-                    setEatery(snapshot.id)
+                    setEatery(snapshot.data())
                 }
                 else {
                     console.log('does not exist')
                 }
             })
-        } 
+
+        firebase.firestore()
+            .collection("eateries/" + props.route.params.eateryId + "/menu")
+            .get()
+            .then((snapshot) => {
+                let menuData = snapshot.docs.map(doc => {
+                    const id = doc.id
+                    const data = doc.data()
+                    return { id, ...data }
+                })
+                setMenu(menuData)
+            })
     }
 
     function renderHeader() {
@@ -63,7 +68,7 @@ const EateryScreen = (props) => {
 
                 <View style={styles.eateryTitleBox}>
                     <View style={styles.eateryTitle}>
-                        <Text style={styles.eateryTitleText}>{info.name}</Text>
+                        <Text style={styles.eateryTitleText}>{eatery.name}</Text>
                         <View style={styles.ratingBox}>
                             <Image
                                 source={icons.star}
@@ -78,8 +83,6 @@ const EateryScreen = (props) => {
         )
     }
 
-    
-    
     function renderPictures() {
         return (
             <Animated.ScrollView
@@ -88,65 +91,65 @@ const EateryScreen = (props) => {
                 scrollEventThrottle={16}
                 snapToAlignment="center"
                 showsHorizontalScrollIndicator={false}
-                //on scroll
+            //on scroll
             >
                 {
-                    <View                      
+                    <View
                         style={styles.eateryPicturesBox}
                     >
                         <View style={styles.eateryPicturesBox1}>
                             <Image
-                                source={{uri:info.image}}
+                                source={{ uri: eatery.image }}
                                 resizeMode="cover"
                                 style={styles.eateryPicturesImage}
                             />
                         </View>
 
                     </View>
-                
-                    
+
+
                 }
             </Animated.ScrollView>
         )
     }
-    
-    
 
-    /*
     function renderMenu() {
-        return (
+		const renderItem = ({ item }) => (
+            <View
+                key={item.id}
+                style={styles.menuImageBox}
+            >
+                <Image
+                    source={{ uri: item.image }}
+                    resizeMode='cover'
+                    style={styles.menuImage}
+                />
+                <View style={styles.menuItemText}>
+                    <Text style={styles.menuItemName}>{item.name}</Text>
+                    <Text style={styles.menuItemPrice}>${item.price.toFixed(2)}</Text>
+                </View>
+            </View>
+		)
+
+		return (
             <View>
                 <Text style={styles.menuTitle}>Menu</Text>
-                <ScrollView
+                <FlatList
+                    data={menu}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
-                >
-                    {
-                        eatery?.menu.map((item, index) => (
-                            <View
-                                key={`menu-${index}`}
-                                style={styles.menuImageBox}
-                            >
-                                    <Image
-                                        source={item.photo}
-                                        resizeMode='cover'
-                                        style={styles.menuImage}
-                                    />
-                                    <View style={styles.menuItemText}>
-                                        <Text style={styles.menuItemName}>{item.name}</Text>
-                                        <Text style={styles.menuItemPrice}>${item.price.toFixed(2)}</Text>
-                                    </View>
-                            </View>
-                        ))
-                    }
-                </ScrollView>
+                />
             </View>
-        )
-    }
+		)
+	}
 
     return (
         <SafeAreaView style={styles.container}>
+            {console.log(eatery)}
+            {console.log(menu)}
             {renderHeader()}
-            <ScrollView 
+            <ScrollView
                 style={styles.mainView}
                 showsVerticalScrollIndicator={false}
             >
@@ -155,19 +158,6 @@ const EateryScreen = (props) => {
             </ScrollView>
         </SafeAreaView>
     );
-    */
-   return (
-    <SafeAreaView style={styles.container}>
-        {console.log(info)}
-        {renderHeader()}
-        <ScrollView 
-                style={styles.mainView}
-                showsVerticalScrollIndicator={false}
-            >
-                {renderPictures()}
-        </ScrollView>
-    </SafeAreaView>
-   )
 }
 
 export default EateryScreen;

@@ -31,8 +31,6 @@ const HomePage = ({ navigation }) => {
 				return { id, ...data }
 			})
 			setEateries(restaurants)
-			
-			{console.log(eateries)}
 		})
 	},[navigation])
 
@@ -56,8 +54,7 @@ const HomePage = ({ navigation }) => {
 		const renderItem = ({ item }) => (
 			<TouchableOpacity
 				style={styles.homePageImageBlock}
-				onPress={() => 
-					
+				onPress={() => 					
 					navigation.navigate("Eatery", {
 					eateryId: item.id,
 				})
