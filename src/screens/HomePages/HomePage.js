@@ -32,7 +32,7 @@ const HomePage = ({ navigation }) => {
 			})
 			setEateries(restaurants)
 		})
-	},[navigation])
+	}, [navigation])
 
 	function renderSearchBar() {
 		const onChangeSearch = (query) => setSearchQuery(query);
