@@ -10,25 +10,22 @@ import {
     KeyboardAvoidingView,
     Animated
 } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { icons, images } from '../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "./EateryScreenStyles";
 import firebase from 'firebase'
 require('firebase/firestore')
+import { LogBox } from 'react-native';
 
 
 const EateryScreen = (props) => {
 
     const [eatery, setEatery] = React.useState("")
     const [menu, setMenu] = React.useState([])
-
+    const [reviews, setReviews] = React.useState([])
 
     useEffect(() => {
-        updateEatery()
-    }, [props.route.params.eateryId])
-
-    function updateEatery() {
         firebase.firestore()
             .collection("eateries")
             .doc(props.route.params.eateryId)
@@ -53,7 +50,22 @@ const EateryScreen = (props) => {
                 })
                 setMenu(menuData)
             })
-    }
+
+        firebase.firestore()
+        .collection("eateries/" + props.route.params.eateryId + "/reviews")
+        .get()
+        .then((snapshot) => {
+            let reviewsData = snapshot.docs.map(doc => {
+                const id = doc.id
+                const data = doc.data()
+                return { id, ...data }
+            })
+            setReviews(reviewsData)
+        })
+
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }, [props.route.params.eateryId])
+
 
     function renderHeader() {
         return (
@@ -74,10 +86,17 @@ const EateryScreen = (props) => {
                                 source={icons.star}
                                 style={styles.ratingStar}
                             />
-                            <Text></Text>
+                            <Text>{eatery.currentRating}</Text>
                         </View>
                     </View>
                 </View>
+
+                <TouchableOpacity
+                    style={styles.commentBox}
+                    onPress={() => props.navigation.navigate("Camera")}
+                >
+                    <Ionicons name="camera" size={30} />
+                </TouchableOpacity>
 
             </View>
         )
@@ -91,30 +110,29 @@ const EateryScreen = (props) => {
                 scrollEventThrottle={16}
                 snapToAlignment="center"
                 showsHorizontalScrollIndicator={false}
-            //on scroll
             >
                 {
-                    <View
-                        style={styles.eateryPicturesBox}
-                    >
-                        <View style={styles.eateryPicturesBox1}>
-                            <Image
-                                source={{ uri: eatery.image }}
-                                resizeMode="cover"
-                                style={styles.eateryPicturesImage}
-                            />
+                    menu?.map((item, index) => (
+                        <View
+                            key={`menu-${index}`}
+                            style={styles.eateryPicturesBox}
+                        >
+                            <View style={styles.eateryPicturesBox1}>
+                                <Image
+                                    source={{ uri: item.image }}
+                                    resizeMode="cover"
+                                    style={styles.eateryPicturesImage}
+                                />
+                            </View>
                         </View>
-
-                    </View>
-
-
+                    ))
                 }
             </Animated.ScrollView>
         )
     }
 
     function renderMenu() {
-		const renderItem = ({ item }) => (
+        const renderItem = ({ item }) => (
             <View
                 key={item.id}
                 style={styles.menuImageBox}
@@ -129,9 +147,9 @@ const EateryScreen = (props) => {
                     <Text style={styles.menuItemPrice}>${item.price.toFixed(2)}</Text>
                 </View>
             </View>
-		)
+        )
 
-		return (
+        return (
             <View>
                 <Text style={styles.menuTitle}>Menu</Text>
                 <FlatList
@@ -141,13 +159,41 @@ const EateryScreen = (props) => {
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-		)
-	}
+        )
+    }
+
+    function renderReviews() {
+        const renderItem = ({ item }) => (
+            <View
+                key={item.id}
+                style={styles.menuImageBox}
+            >
+                <Image
+                    source={{ uri: item.photo }}
+                    resizeMode='cover'
+                    style={styles.menuImage}
+                />
+                <View style={styles.menuItemText}>
+                    <Text style={styles.menuItemName}>{item.comment}</Text>
+                    <Text style={styles.menuItemPrice}>${item.rating}</Text>
+                </View>
+            </View>
+        )
+        return (
+            <View>
+                <Text style={styles.reviewsTitle}>Reviews</Text>
+                <FlatList
+                    data={reviews}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={renderItem}
+                    showsVerticalScrollIndicator={false}
+                />
+            </View>
+        )
+    }
 
     return (
         <SafeAreaView style={styles.container}>
-            {console.log(eatery)}
-            {console.log(menu)}
             {renderHeader()}
             <ScrollView
                 style={styles.mainView}
@@ -155,6 +201,7 @@ const EateryScreen = (props) => {
             >
                 {renderPictures()}
                 {renderMenu()}
+                {renderReviews()}
             </ScrollView>
         </SafeAreaView>
     );

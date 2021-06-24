@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 50,
     },
     eateryTitle: {
         height: 50,
@@ -48,6 +47,11 @@ const styles = StyleSheet.create({
         height: 15,
         width: 15,
         marginRight: 5,
+    },
+    commentBox: {
+        width: 50,
+        paddingRight: 20,
+        justifyContent: 'center',
     },
     eateryPicturesBox: {
         alignItems: 'center',
@@ -87,6 +91,11 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         paddingBottom: 5,         
+    },
+    reviewsTitle: {
+        fontSize: 25,
+        marginHorizontal: 20,
+        fontWeight: 'bold' 
     }
 })
 
