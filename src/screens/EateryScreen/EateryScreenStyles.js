@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        backgroundColor: 'white'
     },
     mainView: {
         flex: 1
@@ -96,6 +97,9 @@ const styles = StyleSheet.create({
         fontSize: 25,
         marginHorizontal: 20,
         fontWeight: 'bold' 
+    },
+    reviewsRating: {
+        backgroundColor: 'red'
     }
 })
 
