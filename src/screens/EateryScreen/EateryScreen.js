@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
     Text,
     View,
@@ -7,16 +7,16 @@ import {
     TouchableOpacity,
     ScrollView,
     FlatList,
-    KeyboardAvoidingView,
-    Animated
+    Animated,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { icons, images } from '../../../constants'
+import { icons } from '../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "./EateryScreenStyles";
 import firebase from 'firebase'
 require('firebase/firestore')
 import { LogBox } from 'react-native';
+import { Rating, AirbnbRating } from 'react-native-elements';
 
 
 const EateryScreen = (props) => {
@@ -175,10 +175,15 @@ const EateryScreen = (props) => {
                 />
                 <View style={styles.menuItemText}>
                     <Text style={styles.menuItemName}>{item.comment}</Text>
-                    <Text style={styles.menuItemPrice}>${item.rating}</Text>
+                    <Rating 
+                        imageSize={15}
+                        startingValue={item.rating}
+                        tintColor='white'
+                    />
                 </View>
             </View>
         )
+
         return (
             <View>
                 <Text style={styles.reviewsTitle}>Reviews</Text>

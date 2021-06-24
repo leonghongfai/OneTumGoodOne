@@ -4,7 +4,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
 import HomePage from "../HomePages/HomePage";
 import FollowPage from "../HomePages/FollowPage";
-import CameraScreen from "../HomePages/PicturePages/CameraScreen";
 import ProfilePage from "../HomePages/ProfilePage";
 import SettingsPage from "../HomePages/SettingsPage";
 import firebase from 'firebase'
@@ -34,8 +33,6 @@ export class HomeScreen extends Component {
 							iconName = focused ? "home" : "home-outline";
 						} else if (route.name === "Follow") {
 							iconName = focused ? "earth" : "earth-outline";
-						} else if (route.name === "Camera") {
-							iconName = focused ? "camera" : "camera-outline";
 						} else if (route.name === "Profile") {
 							iconName = focused ? "person" : "person-outline";
 						} else if (route.name === "Settings") {
@@ -55,7 +52,6 @@ export class HomeScreen extends Component {
 					component={FollowPage}
 					options={{ tabBarBadge: 3 }}
 				/>
-				<Tab.Screen name="Camera" component={CameraScreen} />
 				<Tab.Screen name="Profile" component={ProfilePage} 
 					 listeners={({ navigation }) => ({
 						tabPress: event => {
