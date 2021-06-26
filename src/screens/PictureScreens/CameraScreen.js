@@ -6,11 +6,13 @@ import { StatusBar } from 'expo-status-bar';
 import * as ImagePicker from 'expo-image-picker'
 
 export default function CameraScreen(props) {
+
+  const currentEateryId = props.route.params.eateryId;
   const [cameraPermission, setCameraPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [camera, setCamera] = useState(null);
   const [image, setImage] = useState(null);
-  const [galleryPermission, setGalleryPermission] = useState(null)
+  const [galleryPermission, setGalleryPermission] = useState(null);
 
   const takePicture = async () => {
     if (camera) {
@@ -72,7 +74,7 @@ export default function CameraScreen(props) {
       </Button>
       <Button title='Take Picture' onPress={() => takePicture()} />
       <Button title='Use Existing Picture' onPress={() => pickImage()} />
-      <Button title='Save Picture' onPress={() => props.navigation.navigate('SaveImage', {image})} />
+      <Button title='Save Picture' onPress={() => props.navigation.navigate('SaveImage', {image, eateryId: currentEateryId})} />
       {image && <Image source={{uri: image}} style={{flex: 1}}/>}
     </View>
   );

@@ -21,6 +21,7 @@ import { Rating, AirbnbRating } from 'react-native-elements';
 
 const EateryScreen = (props) => {
 
+    const currentEateryId = props.route.params.eateryId
     const [eatery, setEatery] = React.useState("")
     const [menu, setMenu] = React.useState([])
     const [reviews, setReviews] = React.useState([])
@@ -28,7 +29,7 @@ const EateryScreen = (props) => {
     useEffect(() => {
         firebase.firestore()
             .collection("eateries")
-            .doc(props.route.params.eateryId)
+            .doc(currentEateryId)
             .get()
             .then((snapshot) => {
                 if (snapshot.exists) {
@@ -40,7 +41,7 @@ const EateryScreen = (props) => {
             })
 
         firebase.firestore()
-            .collection("eateries/" + props.route.params.eateryId + "/menu")
+            .collection("eateries/" + currentEateryId + "/menu")
             .get()
             .then((snapshot) => {
                 let menuData = snapshot.docs.map(doc => {
@@ -52,7 +53,7 @@ const EateryScreen = (props) => {
             })
 
         firebase.firestore()
-        .collection("eateries/" + props.route.params.eateryId + "/reviews")
+        .collection("eateries/" + currentEateryId + "/reviews")
         .get()
         .then((snapshot) => {
             let reviewsData = snapshot.docs.map(doc => {
@@ -93,7 +94,9 @@ const EateryScreen = (props) => {
 
                 <TouchableOpacity
                     style={styles.commentBox}
-                    onPress={() => props.navigation.navigate("Camera")}
+                    onPress={() => props.navigation.navigate("Camera", {
+                        eateryId: currentEateryId,
+                    })}
                 >
                     <Ionicons name="camera" size={30} />
                 </TouchableOpacity>
@@ -179,6 +182,7 @@ const EateryScreen = (props) => {
                         imageSize={15}
                         startingValue={item.rating}
                         tintColor='white'
+                        readonly={true}
                     />
                 </View>
             </View>

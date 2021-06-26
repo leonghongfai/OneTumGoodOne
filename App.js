@@ -7,10 +7,9 @@ import LoginScreen from './src/screens/LoginScreen/LoginScreen'
 import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen';
 import HomeScreen from './src/screens/HomeScreen/HomeScreen'
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen/ForgotPasswordScreen';
-import SaveImageScreen from './src/screens/PicturePages/SaveImageScreen'
-import CameraScreen from './src/screens/PicturePages/CameraScreen'
+import SaveImageScreen from './src/screens/PictureScreens/SaveImageScreen';
+import CameraScreen from './src/screens/PictureScreens/CameraScreen'
 import EateryScreen from './src/screens/EateryScreen/EateryScreen'
-import ProfilePage from './src/screens/HomePages/ProfilePage'
 import firebase from 'firebase'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
