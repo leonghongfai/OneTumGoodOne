@@ -26,7 +26,7 @@ export default function FollowPage(props) {
     return (
         <View style={styles.container}>
             <TextInput
-                placeholder="Type Here..."
+                placeholder="Search..."
                 onChangeText={(search) => fetchUsers(search)} />
 
             <FlatList
