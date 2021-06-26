@@ -49,6 +49,11 @@ const styles = StyleSheet.create({
         width: 15,
         marginRight: 5,
     },
+    numRatingsText: {
+        fontSize: 10,
+        marginLeft: 5,
+        fontStyle: 'italic',
+    },
     commentBox: {
         width: 50,
         paddingRight: 20,

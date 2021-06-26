@@ -118,7 +118,7 @@ export default function SaveImageScreen(props) {
                     <Icon name="arrow-back" size={30} />
                 </TouchableOpacity>
 
-                <Text style={styles.currentlyReviewingText}>Write Review</Text>
+                <Text style={styles.writeReviewText}>Write Review</Text>
 
                 <TouchableOpacity
                     style={styles.postBox}
@@ -158,14 +158,15 @@ export default function SaveImageScreen(props) {
 
     function renderReviewText() {
         return (
-            <View>
+            <View style={styles.reviewBox}>
                 <Image source={{ uri: props.route.params.image }} />
                 <TextInput
                     textAlign='center'
-                    placeholder="Write review here!"
+                    placeholder="Describe your experience"
                     onChangeText={(caption) => setCaption(caption)}
+                    multiline={true}
+                    style={styles.textInput}
                 />
-                <Button title="Post" onPress={() => uploadImage()} />
             </View>
         )
     }
@@ -174,11 +175,11 @@ export default function SaveImageScreen(props) {
         <View style={styles.container}>
             {renderHeader()}
             <View style={styles.mainView}>
-                <View style={styles.halfBox}>
+                <View style={styles.topBox}>
                     {renderEateryInfo()}
                     {renderReviewRatings()}
                 </View>
-                <View style={styles.halfBox1}>
+                <View style={styles.bottomBox}>
                     {renderReviewText()}
                 </View>
             </View>

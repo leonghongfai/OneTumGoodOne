@@ -87,7 +87,8 @@ const EateryScreen = (props) => {
                                 source={icons.star}
                                 style={styles.ratingStar}
                             />
-                            <Text>{eatery.currentRating}</Text>
+						    <Text>{Number(eatery.currentRating).toFixed(2)}</Text>
+                            <Text style={styles.numRatingsText}>({eatery.numberOfRatings} reviews)</Text>
                         </View>
                     </View>
                 </View>
