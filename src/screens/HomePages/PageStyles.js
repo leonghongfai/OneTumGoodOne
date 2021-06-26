@@ -1,17 +1,20 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
-import ColorScheme from '../../../global/ColorScheme'
+import ColorScheme from '../../../global/ColorScheme';
+import { Dimensions } from "react-native";
+const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        backgroundColor: 'white',
     },
     searchBarArea: {
         flex: 5, 
         justifyContent: 'center',
-        backgroundColor: 'black',
+        paddingHorizontal: width * 0.02
     },
     homePageTopPadding: {
         flex: 1,
@@ -28,7 +31,6 @@ const styles = StyleSheet.create({
     },
     homePageBottomPadding: {
         flex: 1,
-        backgroundColor: 'white',
     },
     homePageMainContainer: {
         flex: 50,

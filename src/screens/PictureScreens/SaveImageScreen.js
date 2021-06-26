@@ -13,7 +13,6 @@ import styles from "./PictureScreenStyles"
 import Icon from 'react-native-vector-icons/Ionicons';
 import 'firebase/firestore'
 import 'firebase/storage'
-import Styles from '../LoginScreen/Styles';
 require("firebase/firestore")
 require("firebase/firebase-storage")
 

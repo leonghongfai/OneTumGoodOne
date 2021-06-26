@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     mainView: {
         flex: 1
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderColor: 'lightgray',
         borderWidth: 0.2,
+        marginHorizontal: width * 0.03,
     },
     menuImage: {
         width: 125,
