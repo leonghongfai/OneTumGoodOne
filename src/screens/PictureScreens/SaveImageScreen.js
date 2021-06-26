@@ -22,8 +22,22 @@ export default function SaveImageScreen(props) {
     const [caption, setCaption] = useState("")
     const [eatery, setEatery] = useState("")
     const [rating, setRating] = useState(3)
+    const [userName, setUserName] = useState("")
 
-    
+    useEffect(() => {
+        firebase.firestore()
+            .collection("users")
+            .doc(firebase.auth().currentUser.uid)
+            .get()
+            .then((snapshot) => {
+                if (snapshot.exists) {
+                    setUserName(snapshot.data())
+                }
+                else {
+                    console.log('does not exist')
+                }
+            })
+    }, [props.route.params.eateryId])
 
     const uploadImage = async () => {
         const uri = props.route.params.image
@@ -58,7 +72,8 @@ export default function SaveImageScreen(props) {
                 caption,
                 creation: firebase.firestore.FieldValue.serverTimestamp(),
                 rating: rating,
-                eatery: eatery.name
+                eatery: eatery.name,
+                username: userName.username,
             }).then((function () {
                 props.navigation.navigate("Profile", { uid: firebase.auth().currentUser.uid });
             }))
@@ -75,7 +90,8 @@ export default function SaveImageScreen(props) {
             photo: downloadURL,
             comment: caption,
             creation: firebase.firestore.FieldValue.serverTimestamp(),
-            rating: rating
+            rating: rating,
+            username: userName.username,
         })
     }
 

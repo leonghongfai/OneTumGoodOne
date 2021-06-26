@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     menuTitle: {
-        fontSize: 25,
-        marginHorizontal: 20,
+        fontSize: 20,
+        marginHorizontal: width * 0.05,
         fontWeight: 'bold' 
     },
     menuImageBox: {
@@ -99,9 +99,41 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         paddingBottom: 5,         
     },
+    reviewsImageBox: {
+        flexDirection: 'row',
+        borderColor: 'lightgray',
+        borderWidth: 0.2,
+        marginHorizontal: width * 0.03,
+        alignItems: 'center',
+    },
+    reviewsImage: {
+        width: 125,
+        height: 125,
+    },
+    reviewsItemText: {
+        paddingTop: width * 0.015,
+        flex: 1,
+        alignItems: 'flex-start',
+        marginLeft: 20,
+    },
+    reviewsTopBox: {
+        flex: 2,
+        justifyContent: 'space-evenly',
+    },
+    reviewsBottomBox: {
+        flex: 4,
+
+    },
+    reviewsUserName: {
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+    reviewsText: {
+        fontSize: 12,
+    },
     reviewsTitle: {
-        fontSize: 25,
-        marginHorizontal: 20,
+        fontSize: 20,
+        marginHorizontal: width * 0.05,
         fontWeight: 'bold' 
     },
     reviewsRating: {
