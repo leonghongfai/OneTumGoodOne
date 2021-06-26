@@ -13,14 +13,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
     },
-    halfBox: {
-        flex: 1,
+    topBox: {
         alignItems: 'center',
         justifyContent: 'space-around',
+        paddingBottom: height * 0.05,
     },
-    halfBox1: {
-        flex: 1,
+    bottomBox: {
         alignItems: 'center',
+        justifyContent: 'center',
     },
     header: {
         flexDirection: 'row',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         justifyContent: 'center',
     },
-    currentlyReviewingText: {
+    writeReviewText: {
         fontSize: 17,
         paddingLeft: 20,
         flex: 1,
@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
     eateryInfoBox: {
         flexDirection: 'row',
         alignItems: 'center',
+        paddingHorizontal: width * 0.05,
+        paddingVertical: height * 0.05,
     },
     eateryInfoImage: {
         width: 100,
@@ -70,11 +72,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     ratingBox: {
-
+        justifyContent: 'center',
+        width: width,
+        paddingHorizontal: 15,
+        paddingBottom: height * 0.05,
     },
     reviewBox: {
-
-    }
+        marginHorizontal: 15,   
+        borderWidth: 0.5,
+        width: width * 0.9,
+        marginBottom: 15,
+        height: height * 0.07,
+    },
+    textInput: {
+        fontSize: 15,
+    },
 })
 
 export default styles;
