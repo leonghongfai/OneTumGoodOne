@@ -13,6 +13,7 @@ import styles from "./PictureScreenStyles"
 import Icon from 'react-native-vector-icons/Ionicons';
 import 'firebase/firestore'
 import 'firebase/storage'
+import Styles from '../LoginScreen/Styles';
 require("firebase/firestore")
 require("firebase/firebase-storage")
 
@@ -109,11 +110,23 @@ export default function SaveImageScreen(props) {
     function renderHeader() {
         return (
             <View style={styles.header}>
+
                 <TouchableOpacity
                     style={styles.backBox}
                     onPress={() => props.navigation.navigate("Eatery")}
                 >
                     <Icon name="arrow-back" size={30} />
+                </TouchableOpacity>
+
+                <Text style={styles.currentlyReviewingText}>Write Review</Text>
+
+                <TouchableOpacity
+                    style={styles.postBox}
+                    onPress={() => uploadImage()}
+                >
+                    <View style={styles.postOutline}>
+                        <Text style={styles.postText}>POST</Text>
+                    </View>
                 </TouchableOpacity>
             </View>
         )
@@ -133,10 +146,11 @@ export default function SaveImageScreen(props) {
 
     function renderReviewRatings() {
         return (
-            <View>
+            <View style={styles.ratingBox}>
                 <AirbnbRating
                     reviews={['Orbital', 'Makes', 'Me', 'Very', 'Happy!']}
                     onFinishRating={rating => setRating(rating)}
+                    size={30}
                 />
             </View>
         )
@@ -160,9 +174,13 @@ export default function SaveImageScreen(props) {
         <View style={styles.container}>
             {renderHeader()}
             <View style={styles.mainView}>
-                {renderEateryInfo()}
-                {renderReviewRatings()}
-                {renderReviewText()}
+                <View style={styles.halfBox}>
+                    {renderEateryInfo()}
+                    {renderReviewRatings()}
+                </View>
+                <View style={styles.halfBox1}>
+                    {renderReviewText()}
+                </View>
             </View>
         </View>
     )
