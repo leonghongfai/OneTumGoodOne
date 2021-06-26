@@ -170,28 +170,33 @@ const EateryScreen = (props) => {
         const renderItem = ({ item }) => (
             <View
                 key={item.id}
-                style={styles.menuImageBox}
+                style={styles.reviewsImageBox}
             >
                 <Image
                     source={{ uri: item.photo }}
                     resizeMode='cover'
-                    style={styles.menuImage}
+                    style={styles.reviewsImage}
                 />
-                <View style={styles.menuItemText}>
-                    <Text style={styles.menuItemName}>{item.comment}</Text>
-                    <Rating 
-                        imageSize={15}
-                        startingValue={item.rating}
-                        tintColor='white'
-                        readonly={true}
-                    />
+                <View style={styles.reviewsItemText}>
+                    <View style={styles.reviewsTopBox}>
+                        <Text style={styles.reviewsUserName}>{item.username}</Text>
+                        <Rating
+                            imageSize={15}
+                            startingValue={item.rating}
+                            tintColor='white'
+                            readonly={true}
+                        />
+                    </View>
+                    <View style={styles.reviewsBottomBox}>
+                        <Text style={styles.reviewsText}>{item.comment}</Text>
+                    </View>
                 </View>
             </View>
         )
 
         return (
             <View>
-                <Text style={styles.reviewsTitle}>Reviews</Text>
+                <Text style={styles.reviewsTitle}>Ratings and Reviews</Text>
                 <FlatList
                     data={reviews}
                     keyExtractor={item => item.id.toString()}
