@@ -21,7 +21,9 @@ export default function SaveImageScreen(props) {
     const currentEateryId = props.route.params.eateryId
     const [caption, setCaption] = useState("")
     const [eatery, setEatery] = useState("")
-    const [rating, setRating] = useState("")
+    const [rating, setRating] = useState(3)
+
+    
 
     const uploadImage = async () => {
         const uri = props.route.params.image
@@ -36,6 +38,8 @@ export default function SaveImageScreen(props) {
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
                 savePostData(snapshot)
+                savePostData2(snapshot)
+                updateEateryRating()
                 console.log(snapshot)
             })
         }
@@ -52,12 +56,41 @@ export default function SaveImageScreen(props) {
             .add({
                 downloadURL,
                 caption,
-                creation: firebase.firestore.FieldValue.serverTimestamp()
+                creation: firebase.firestore.FieldValue.serverTimestamp(),
+                rating: rating,
+                eatery: eatery.name
             }).then((function () {
                 props.navigation.navigate("Profile", { uid: firebase.auth().currentUser.uid });
             }))
+        
     }
 
+    const savePostData2 = (downloadURL) => {
+        firebase.firestore()
+        .collection("eateries")
+        .doc(currentEateryId)
+        .collection("reviews")
+        .doc(firebase.auth().currentUser.uid)
+        .set({
+            photo: downloadURL,
+            comment: caption,
+            creation: firebase.firestore.FieldValue.serverTimestamp(),
+            rating: rating
+        })
+    }
+
+    const updateEateryRating = () => {
+        const currentNumber = eatery.numberOfRatings
+        const ratingNow = eatery.currentRating
+        firebase.firestore()
+        .collection("eateries")
+        .doc(currentEateryId)
+        .update({
+            numberOfRatings: currentNumber + 1,
+            currentRating: ((currentNumber * ratingNow) + rating) / (currentNumber + 1)
+        })
+    }
+ 
     useEffect(() => {
         firebase.firestore()
             .collection("eateries")
