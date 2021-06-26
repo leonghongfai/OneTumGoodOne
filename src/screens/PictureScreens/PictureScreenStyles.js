@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
     mainView: {
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     header: {
         flexDirection: 'row',

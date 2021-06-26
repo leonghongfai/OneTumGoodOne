@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-    View, 
+import {
+    View,
     Text,
     TextInput,
     TouchableOpacity,
     Image,
-    Button, 
+    Button,
 } from 'react-native'
 import firebase from 'firebase'
 import { Rating, AirbnbRating } from 'react-native-elements';
@@ -46,16 +46,16 @@ export default function SaveImageScreen(props) {
     }
     const savePostData = (downloadURL) => {
         firebase.firestore()
-        .collection('posts')
-        .doc(firebase.auth().currentUser.uid)
-        .collection("userPosts")
-        .add({
-            downloadURL,
-            caption,
-            creation: firebase.firestore.FieldValue.serverTimestamp()
-        }).then((function () {
-            props.navigation.navigate("Profile", {uid: firebase.auth().currentUser.uid});
-        }))
+            .collection('posts')
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userPosts")
+            .add({
+                downloadURL,
+                caption,
+                creation: firebase.firestore.FieldValue.serverTimestamp()
+            }).then((function () {
+                props.navigation.navigate("Profile", { uid: firebase.auth().currentUser.uid });
+            }))
     }
 
     useEffect(() => {
@@ -88,23 +88,23 @@ export default function SaveImageScreen(props) {
     function renderEateryInfo() {
         return (
             <View style={styles.eateryInfoBox}>
-            <Image
-                source={{ uri: eatery.image }}
-                resizeMode='cover'
-                style={styles.eateryInfoImage}
-            />
-            <Text style={styles.eateryInfoText}>{eatery.name}</Text>
-        </View>
+                <Image
+                    source={{ uri: eatery.image }}
+                    resizeMode='cover'
+                    style={styles.eateryInfoImage}
+                />
+                <Text style={styles.eateryInfoText}>{eatery.name}</Text>
+            </View>
         )
     }
 
     function renderReviewRatings() {
         return (
             <View>
-                <AirbnbRating                                        
+                <AirbnbRating
                     reviews={['Orbital', 'Makes', 'Me', 'Very', 'Happy!']}
                     onFinishRating={rating => setRating(rating)}
-                    />
+                />
             </View>
         )
     }
@@ -112,7 +112,7 @@ export default function SaveImageScreen(props) {
     function renderReviewText() {
         return (
             <View>
-                <Image source={{uri: props.route.params.image}} />
+                <Image source={{ uri: props.route.params.image }} />
                 <TextInput
                     textAlign='center'
                     placeholder="Write review here!"
@@ -123,7 +123,7 @@ export default function SaveImageScreen(props) {
         )
     }
 
-    return(
+    return (
         <View style={styles.container}>
             {renderHeader()}
             <View style={styles.mainView}>
