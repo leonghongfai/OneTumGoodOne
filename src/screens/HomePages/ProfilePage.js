@@ -28,26 +28,7 @@ const ProfilePage = (props) => {
 	const onRefresh = React.useCallback(() => {
 	  setRefreshing(true);
 	  wait(2000).then(() => setRefreshing(false));
-    const { currentUser, posts } = props
-
-    if (props.route.params.uid === firebase.auth().currentUser.uid) {
-      setUser(currentUser)
-      setUserPosts(posts)
-    } else {
-      firebase.firestore()
-        .collection("users")
-        .doc(props.route.params.uid)
-        .get()
-        .then((snapshot) => {
-            if (snapshot.exists) {
-                setUser(snapshot.data());
-                console.log(user)
-            }
-            else {
-                console.log('does not exist')
-            }
-        })
-      firebase.firestore()
+    firebase.firestore()
       .collection("posts")
       .doc(props.route.params.uid)
       .collection("userPosts")
@@ -61,15 +42,6 @@ const ProfilePage = (props) => {
           })
           setUserPosts(posts)
       })
-    }
-
-    if (props.following.indexOf(props.route.params.uid) > -1) {
-      setFollowing(true)
-    } else {
-      setFollowing(false)
-    }
-
-
 	}, []);
 
   useEffect(() => {
