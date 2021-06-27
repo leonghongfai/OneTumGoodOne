@@ -6,6 +6,7 @@ import {
   FlatList,
   StyleSheet,
   Button,
+  RefreshControl
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
@@ -19,6 +20,57 @@ const ProfilePage = (props) => {
   const [userPosts, setUserPosts] = useState([]);
   const [user, setUser] = useState(null);
   const [following, setFollowing] = useState(false)
+	const [refreshing, setRefreshing] = React.useState(false);
+
+  const wait = (timeout) => {
+		return new Promise(resolve => setTimeout(resolve, timeout));
+	}
+	const onRefresh = React.useCallback(() => {
+	  setRefreshing(true);
+	  wait(2000).then(() => setRefreshing(false));
+    const { currentUser, posts } = props
+
+    if (props.route.params.uid === firebase.auth().currentUser.uid) {
+      setUser(currentUser)
+      setUserPosts(posts)
+    } else {
+      firebase.firestore()
+        .collection("users")
+        .doc(props.route.params.uid)
+        .get()
+        .then((snapshot) => {
+            if (snapshot.exists) {
+                setUser(snapshot.data());
+                console.log(user)
+            }
+            else {
+                console.log('does not exist')
+            }
+        })
+      firebase.firestore()
+      .collection("posts")
+      .doc(props.route.params.uid)
+      .collection("userPosts")
+      .orderBy("creation", "asc")
+      .get()
+      .then((snapshot) => {
+          let posts = snapshot.docs.map(doc => {
+              const data = doc.data();
+              const id = doc.id;
+              return { id, ...data }
+          })
+          setUserPosts(posts)
+      })
+    }
+
+    if (props.following.indexOf(props.route.params.uid) > -1) {
+      setFollowing(true)
+    } else {
+      setFollowing(false)
+    }
+
+
+	}, []);
 
   useEffect(() => {
     const { currentUser, posts } = props
@@ -119,6 +171,11 @@ const ProfilePage = (props) => {
           numColumns={3}
           horizontal={false}
           data={userPosts}
+          refreshControl={
+						<RefreshControl
+						  refreshing={refreshing}
+						  onRefresh={onRefresh}
+						/>}
           renderItem={({item}) => (
             <View style={styles.containerImage}> 
             <Image
