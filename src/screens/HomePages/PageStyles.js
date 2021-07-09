@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     homePageMainContainer: {
         flex: 50,
         backgroundColor: 'white',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         paddingLeft: 20,
         paddingRight: 20,
     },
