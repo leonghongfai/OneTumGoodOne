@@ -23,6 +23,7 @@ export default function SaveImageScreen(props) {
     const [eatery, setEatery] = useState("")
     const [rating, setRating] = useState(3)
     const [userName, setUserName] = useState("")
+    const [oldRating, setOldRating] = useState(null)
 
     useEffect(() => {
         firebase.firestore()
@@ -53,8 +54,7 @@ export default function SaveImageScreen(props) {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
                 savePostData(snapshot)
                 savePostData2(snapshot)
-                updateEateryRating()
-                console.log(snapshot)
+                updateReview()
             })
         }
         const taskError = snapshot => {
@@ -62,12 +62,34 @@ export default function SaveImageScreen(props) {
         }
         task.on("state_changed", taskProgress, taskError, taskCompleted)
     }
+    
+    const updateReview = () => {
+        firebase
+            .firestore()
+            .collection('eateries')
+            .doc(currentEateryId)
+            .collection("reviews")
+            .doc(firebase.auth().currentUser.uid)
+            .get()
+            .then((snapshot) => {
+                if (snapshot.exists) {
+                    setOldRating(snapshot.data().rating)
+                    console.log(true)
+                    changeEateryRating()
+                }
+                else {
+                    updateEateryRating()
+                }
+            })
+    }
+
     const savePostData = (downloadURL) => {
         firebase.firestore()
             .collection('posts')
             .doc(firebase.auth().currentUser.uid)
             .collection("userPosts")
-            .add({
+            .doc(currentEateryId)
+            .set({
                 downloadURL,
                 caption,
                 creation: firebase.firestore.FieldValue.serverTimestamp(),
@@ -95,18 +117,30 @@ export default function SaveImageScreen(props) {
         })
     }
 
-    const updateEateryRating = () => {
+    const changeEateryRating = () => {
         const currentNumber = eatery.numberOfRatings
+        console.log(currentNumber)
         const ratingNow = eatery.currentRating
         firebase.firestore()
         .collection("eateries")
         .doc(currentEateryId)
         .update({
-            numberOfRatings: currentNumber + 1,
-            currentRating: ((currentNumber * ratingNow) + rating) / (currentNumber + 1)
+            currentRating: ((currentNumber * ratingNow) - oldRating + rating) / (currentNumber)
         })
     }
- 
+
+    const updateEateryRating = () => {
+            const currentNumber = eatery.numberOfRatings
+            const ratingNow = eatery.currentRating
+            firebase.firestore()
+            .collection("eateries")
+            .doc(currentEateryId)
+            .update({
+                numberOfRatings: currentNumber + 1,
+                currentRating: ((currentNumber * ratingNow) + rating) / (currentNumber + 1)
+            })
+    }
+
     useEffect(() => {
         firebase.firestore()
             .collection("eateries")
