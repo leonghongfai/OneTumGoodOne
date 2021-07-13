@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
 import firebase from 'firebase'
 require('firebase/firestore')
 import { connect } from 'react-redux'
+import { TouchableOpacity } from "react-native";
 
 const ProfilePage = (props) => {
   const [userPosts, setUserPosts] = useState([]);
@@ -25,6 +26,7 @@ const ProfilePage = (props) => {
   const wait = (timeout) => {
 		return new Promise(resolve => setTimeout(resolve, timeout));
 	}
+
 	const onRefresh = React.useCallback(() => {
 	  setRefreshing(true);
 	  wait(2000).then(() => setRefreshing(false));
@@ -149,12 +151,18 @@ const ProfilePage = (props) => {
 						  onRefresh={onRefresh}
 						/>}
           renderItem={({item}) => (
-            <View style={styles.containerImage}> 
-            <Image
-              style={styles.image}
-              source={{uri: item.downloadURL}}
-            />
-            </View>
+            <TouchableOpacity 
+              style={styles.containerImage} 
+              onPress={() => props.navigation.navigate("DisplayPost", 
+              {
+                user: props.route.params.uid,
+                item: item
+              })} >
+              <Image
+                style={styles.image}
+                source={{uri: item.downloadURL}}
+              />
+            </TouchableOpacity>
           )}
         />
       </View>
