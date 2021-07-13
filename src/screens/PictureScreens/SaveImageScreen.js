@@ -38,6 +38,25 @@ export default function SaveImageScreen(props) {
                     console.log('does not exist')
                 }
             })
+
+        firebase
+        .firestore()
+        .collection('eateries')
+        .doc(currentEateryId)
+        .collection("reviews")
+        .doc(firebase.auth().currentUser.uid)
+        .get()
+        .then((snapshot) => {
+            if (snapshot.exists) {
+                setOldRating(snapshot.data().rating)
+                console.log("hello")
+                console.log(snapshot.data().comment)
+                console.log(snapshot.data().rating)
+            }
+            else {
+                setOldRating(0)
+            }
+        })
     }, [props.route.params.eateryId])
 
     const uploadImage = async () => {
@@ -52,9 +71,9 @@ export default function SaveImageScreen(props) {
         }
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
+                updateReview()
                 savePostData(snapshot)
                 savePostData2(snapshot)
-                updateReview()
             })
         }
         const taskError = snapshot => {
@@ -64,24 +83,16 @@ export default function SaveImageScreen(props) {
     }
     
     const updateReview = () => {
-        firebase
-            .firestore()
-            .collection('eateries')
-            .doc(currentEateryId)
-            .collection("reviews")
-            .doc(firebase.auth().currentUser.uid)
-            .get()
-            .then((snapshot) => {
-                if (snapshot.exists) {
-                    setOldRating(snapshot.data().rating)
-                    console.log(true)
-                    changeEateryRating()
-                }
-                else {
-                    updateEateryRating()
-                }
-            })
+        if (oldRating !== 0) {
+            console.log("hello")
+            console.log(oldRating)
+            changeEateryRating()
+        }
+        else {
+            updateEateryRating()
+        }
     }
+
 
     const savePostData = (downloadURL) => {
         firebase.firestore()
@@ -119,8 +130,10 @@ export default function SaveImageScreen(props) {
 
     const changeEateryRating = () => {
         const currentNumber = eatery.numberOfRatings
-        console.log(currentNumber)
         const ratingNow = eatery.currentRating
+        console.log(currentNumber)
+        console.log(ratingNow)
+        console.log(rating)
         firebase.firestore()
         .collection("eateries")
         .doc(currentEateryId)
