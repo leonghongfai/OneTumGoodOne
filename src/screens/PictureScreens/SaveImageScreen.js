@@ -49,9 +49,6 @@ export default function SaveImageScreen(props) {
         .then((snapshot) => {
             if (snapshot.exists) {
                 setOldRating(snapshot.data().rating)
-                console.log("hello")
-                console.log(snapshot.data().comment)
-                console.log(snapshot.data().rating)
             }
             else {
                 setOldRating(0)
@@ -84,8 +81,6 @@ export default function SaveImageScreen(props) {
     
     const updateReview = () => {
         if (oldRating !== 0) {
-            console.log("hello")
-            console.log(oldRating)
             changeEateryRating()
         }
         else {
@@ -131,9 +126,6 @@ export default function SaveImageScreen(props) {
     const changeEateryRating = () => {
         const currentNumber = eatery.numberOfRatings
         const ratingNow = eatery.currentRating
-        console.log(currentNumber)
-        console.log(ratingNow)
-        console.log(rating)
         firebase.firestore()
         .collection("eateries")
         .doc(currentEateryId)
