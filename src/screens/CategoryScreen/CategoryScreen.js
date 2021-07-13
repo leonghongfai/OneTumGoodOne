@@ -10,9 +10,9 @@ import {
     Animated,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { icons } from '../../../constants'
+import { icons, images } from '../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
-import styles from "./EateryScreenStyles";
+import styles from "./CategoryScreenStyles";
 import firebase from 'firebase'
 require('firebase/firestore')
 import { LogBox } from 'react-native';
@@ -21,57 +21,13 @@ import { Rating, AirbnbRating } from 'react-native-elements';
 
 const CategoryScreen = (props) => {
 
-    const currentEateryId = props.route.params.eateryId
-    const [eatery, setEatery] = React.useState("")
-    const [menu, setMenu] = React.useState([])
-    const [reviews, setReviews] = React.useState([])
-
-    useEffect(() => {
-        firebase.firestore()
-            .collection("eateries")
-            .doc(currentEateryId)
-            .get()
-            .then((snapshot) => {
-                if (snapshot.exists) {
-                    setEatery(snapshot.data())
-                }
-                else {
-                    console.log('does not exist')
-                }
-            })
-
-        firebase.firestore()
-            .collection("eateries/" + currentEateryId + "/menu")
-            .get()
-            .then((snapshot) => {
-                let menuData = snapshot.docs.map(doc => {
-                    const id = doc.id
-                    const data = doc.data()
-                    return { id, ...data }
-                })
-                setMenu(menuData)
-            })
-
-        firebase.firestore()
-        .collection("eateries/" + currentEateryId + "/reviews")
-        .get()
-        .then((snapshot) => {
-            let reviewsData = snapshot.docs.map(doc => {
-                const id = doc.id
-                const data = doc.data()
-                return { id, ...data }
-            })
-            setReviews(reviewsData)
-        })
-
-        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-    }, [props.route.params.eateryId])
-
+    const category = props.route.params.category
+    const categoryId = props.route.params.categoryId
+    const eateryData = props.route.params.eateryData
 
     function renderHeader() {
         return (
             <View style={styles.header}>
-
                 <TouchableOpacity
                     style={styles.backBox}
                     onPress={() => props.navigation.navigate("Home")}
@@ -79,63 +35,37 @@ const CategoryScreen = (props) => {
                     <Icon name="arrow-back" size={30} />
                 </TouchableOpacity>
 
-                <View style={styles.eateryTitleBox}>
-                    <View style={styles.eateryTitle}>
-                        <Text style={styles.eateryTitleText}>{eatery.name}</Text>
-                        <View style={styles.ratingBox}>
-                            <Image
-                                source={icons.star}
-                                style={styles.ratingStar}
-                            />
-						    <Text>{Number(eatery.currentRating).toFixed(2)}</Text>
-                            <Text style={styles.numRatingsText}>({eatery.numberOfRatings} reviews)</Text>
-                        </View>
+                <View style={styles.textAndFilter}>
+                    <Text style={styles.categoryTitle}>{category}</Text>
+                    <View style={styles.sortByBox}>
+                        <Text style={styles.filterText}>Sort By:</Text>
+                        <TouchableOpacity
+                            style={styles.filterButton}
+                            onPress={() => console.log("Filter pressed!")}
+                        >
+
+                            <Icon name="filter" size={15} />
+                        </TouchableOpacity>
                     </View>
                 </View>
-
-                <TouchableOpacity
-                    style={styles.commentBox}
-                    onPress={() => props.navigation.navigate("Camera", {
-                        eateryId: currentEateryId,
-                    })}
-                >
-                    <Ionicons name="camera" size={30} />
-                </TouchableOpacity>
-
             </View>
         )
     }
 
-    function renderPictures() {
-        return (
-            <Animated.ScrollView
-                horizontal={true}
-                pagingEnabled={true}
-                scrollEventThrottle={16}
-                snapToAlignment="center"
-                showsHorizontalScrollIndicator={false}
-            >
-                {
-                    menu?.map((item, index) => (
-                        <View
-                            key={`menu-${index}`}
-                            style={styles.eateryPicturesBox}
-                        >
-                            <View style={styles.eateryPicturesBox1}>
-                                <Image
-                                    source={{ uri: item.image }}
-                                    resizeMode="cover"
-                                    style={styles.eateryPicturesImage}
-                                />
-                            </View>
-                        </View>
-                    ))
-                }
-            </Animated.ScrollView>
-        )
-    }
+    function renderEateries() {
+        let eateriesToShow = []
 
-    function renderMenu() {
+        for (let i = 0; i < eateryData.length; i++) {
+            let arr = eateryData[i].categories
+            if (arr.includes(categoryId)) {
+                eateriesToShow.push(eateryData[i])
+            }
+        }
+
+        eateriesToShow.sort(function (a, b) {
+            return b.currentRating - a.currentRating
+        })
+
         const renderItem = ({ item }) => (
             <View
                 key={item.id}
@@ -146,62 +76,16 @@ const CategoryScreen = (props) => {
                     resizeMode='cover'
                     style={styles.menuImage}
                 />
-                <View style={styles.menuItemText}>
-                    <Text style={styles.menuItemName}>{item.name}</Text>
-                    <Text style={styles.menuItemPrice}>${item.price.toFixed(2)}</Text>
-                </View>
             </View>
         )
 
         return (
             <View>
-                <Text style={styles.menuTitle}>Menu</Text>
                 <FlatList
-                    data={menu}
+                    data={eateriesToShow}
                     keyExtractor={item => item.id.toString()}
                     renderItem={renderItem}
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
-        )
-    }
-
-    function renderReviews() {
-        const renderItem = ({ item }) => (
-            <View
-                key={item.id}
-                style={styles.reviewsImageBox}
-            >
-                <Image
-                    source={{ uri: item.photo }}
-                    resizeMode='cover'
-                    style={styles.reviewsImage}
-                />
-                <View style={styles.reviewsItemText}>
-                    <View style={styles.reviewsTopBox}>
-                        <Text style={styles.reviewsUserName}>{item.username}</Text>
-                        <Rating
-                            imageSize={15}
-                            startingValue={item.rating}
-                            tintColor='white'
-                            readonly={true}
-                        />
-                    </View>
-                    <View style={styles.reviewsBottomBox}>
-                        <Text style={styles.reviewsText}>{item.comment}</Text>
-                    </View>
-                </View>
-            </View>
-        )
-
-        return (
-            <View>
-                <Text style={styles.reviewsTitle}>Ratings and Reviews</Text>
-                <FlatList
-                    data={reviews}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={renderItem}
-                    showsVerticalScrollIndicator={false}
+                    showsVerticalScrollIndicator={true}
                 />
             </View>
         )
@@ -210,14 +94,8 @@ const CategoryScreen = (props) => {
     return (
         <SafeAreaView style={styles.container}>
             {renderHeader()}
-            <ScrollView
-                style={styles.mainView}
-                showsVerticalScrollIndicator={false}
-            >
-                {renderPictures()}
-                {renderMenu()}
-                {renderReviews()}
-            </ScrollView>
+            <View style={styles.headerSeparator} />
+            {renderEateries()}
         </SafeAreaView>
     );
 }

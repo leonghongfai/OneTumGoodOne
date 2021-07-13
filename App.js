@@ -10,6 +10,7 @@ import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen/ForgotPassw
 import SaveImageScreen from './src/screens/PictureScreens/SaveImageScreen';
 import CameraScreen from './src/screens/PictureScreens/CameraScreen'
 import EateryScreen from './src/screens/EateryScreen/EateryScreen'
+import CategoryScreen from './src/screens/CategoryScreen/CategoryScreen'
 import DisplayPost from './src/screens/DisplayPost';
 import firebase from 'firebase'
 import { Provider } from 'react-redux'
@@ -78,6 +79,7 @@ export class App extends Component {
             <Stack.Screen name="Camera" component={CameraScreen} />
             <Stack.Screen name="SaveImage" component={SaveImageScreen} />
             <Stack.Screen name="Eatery" component={EateryScreen} />
+            <Stack.Screen name="Category" component={CategoryScreen} />
             <Stack.Screen name="DisplayPost" component={DisplayPost} />
           </Stack.Navigator>
         </NavigationContainer>
@@ -95,6 +97,7 @@ export class App extends Component {
             <Stack.Screen name="Camera" component={CameraScreen} />
             <Stack.Screen name="SaveImage" component={SaveImageScreen} />
             <Stack.Screen name="Eatery" component={EateryScreen} />
+            <Stack.Screen name="Category" component={CategoryScreen} />
             <Stack.Screen name="DisplayPost" component={DisplayPost} />
           </Stack.Navigator>
         </NavigationContainer>

@@ -204,6 +204,7 @@ const HomePage = ({ navigation }) => {
 
 	function renderSearchBar() {
 		const onChangeSearch = (query) => setSearchQuery(query);
+		
 		return (
 			<View style={styles.searchBarArea}>
 				<Searchbar
@@ -226,37 +227,37 @@ const HomePage = ({ navigation }) => {
 				icon: icons.noodle,
 			},
 			{
-				id: 2,
+				id: 6,
 				name: "Bubble Tea",
 				icon: icons.bubble_tea,
 			},
 			{
-				id: 3,
+				id: 10,
 				name: "Dessert",
 				icon: icons.dessert,
 			},
 			{
-				id: 4,
+				id: 12,
 				name: "Fast Food",
 				icon: icons.fast_food,
 			},
 			{
-				id: 5,
+				id: 13,
 				name: "Halal",
 				icon: icons.halal,
 			},
 			{
-				id: 6,
+				id: 23,
 				name: "Pasta",
 				icon: icons.pasta,
 			},
 			{
-				id: 7,
+				id: 28,
 				name: "Seafood",
 				icon: icons.seafood,
 			},
 			{
-				id: 8,
+				id: 36,
 				name: "Western",
 				icon: icons.western,
 			},
@@ -266,9 +267,11 @@ const HomePage = ({ navigation }) => {
 			return (
 				<TouchableOpacity
 					style={styles.homePageCategoriesBox}
-					onPress={() =>
-						console.log(item.name)
-					}
+                    onPress={() => navigation.navigate("Category", {
+						category: item.name,
+						categoryId: item.id,
+						eateryData: eateries,
+                    })}
 				>
 					<View style={styles.homePageCategoriesInsideBox}>
 						<Image
@@ -306,6 +309,7 @@ const HomePage = ({ navigation }) => {
 				onPress={() =>
 					navigation.navigate("Eatery", {
 						eateryId: item.id,
+						eateryData: eateries,
 					})
 
 				}
@@ -470,6 +474,7 @@ const HomePage = ({ navigation }) => {
 			<View style={styles.homePageTopBar}>
 				{renderSearchBar()}
 			</View>
+			<View style={styles.homePageSeparator}/>
 			<ScrollView style={styles.homePageMainContainer}>
 				{renderCategories()}
 				{renderRecommendations1()}

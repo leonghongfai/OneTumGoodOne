@@ -18,18 +18,16 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     searchBarArea: {
-        flex: 5, 
         justifyContent: 'center',
-        paddingHorizontal: width * 0.02
+        paddingHorizontal: width * 0.05,
     },
     homePageTopBar: {
         height: height * 0.07,
         backgroundColor: 'white',
+        paddingTop: height * 0.01,
     },
-    homePageLocationBar: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+    homePageSeparator: {
+        height: height * 0.02,
     },
     homePageMiddlePadding: {    
         flex: 1,
