@@ -14,7 +14,7 @@ import { icons, images } from '../../../constants'
 import firebase from 'firebase'
 require('firebase/firestore')
 import styles from "./PageStyles";
-
+import { Touchable } from "react-native";
 
 const HomePage = ({ navigation }) => {
 
@@ -218,6 +218,87 @@ const HomePage = ({ navigation }) => {
 		)
 	}
 
+	function renderCategories() {
+		const categories = [
+			{
+				id: 1,
+				name: "Asian",
+				icon: icons.noodle,
+			},
+			{
+				id: 2,
+				name: "Bubble Tea",
+				icon: icons.bubble_tea,
+			},
+			{
+				id: 3,
+				name: "Dessert",
+				icon: icons.dessert,
+			},
+			{
+				id: 4,
+				name: "Fast Food",
+				icon: icons.fast_food,
+			},
+			{
+				id: 5,
+				name: "Halal",
+				icon: icons.halal,
+			},
+			{
+				id: 6,
+				name: "Pasta",
+				icon: icons.pasta,
+			},
+			{
+				id: 7,
+				name: "Seafood",
+				icon: icons.seafood,
+			},
+			{
+				id: 8,
+				name: "Western",
+				icon: icons.western,
+			},
+		]
+
+		const renderItem = ({ item }) => {
+			return (
+				<TouchableOpacity
+					style={styles.homePageCategoriesBox}
+					onPress={() =>
+						console.log(item.name)
+					}
+				>
+					<View style={styles.homePageCategoriesInsideBox}>
+						<Image
+							source={item.icon}
+							resizeMode='contain'
+							style={styles.homePageCategoriesImage}
+						/>
+					</View>
+					<Text style={styles.homePageCategoriesItemText}>
+						{item.name}
+					</Text>
+				</TouchableOpacity>
+			)
+		}
+
+		return (
+			<View>
+				<Text style={styles.homePageCategoriesText}>Categories</Text>
+				<FlatList
+					data={categories}
+					horizontal
+					showsHorizontalScrollIndicator={false}
+					keyExtractor={item => `${item.id}`}
+					renderItem={renderItem}
+					style={styles.homePageCategoriesList}
+				/>
+			</View>
+		)
+	}
+
 	function renderRecommendations1() {
 		const renderItem = ({ item }) => (
 			<TouchableOpacity
@@ -229,7 +310,6 @@ const HomePage = ({ navigation }) => {
 
 				}
 			>
-
 				<View>
 					<Image
 						source={{ uri: item.image }}
@@ -246,19 +326,39 @@ const HomePage = ({ navigation }) => {
 				</View>
 
 				<Text>{item.name}</Text>
+
+				<View style={styles.homePagePriceBox}>
+					{
+						[1, 2, 3].map((priceRating) => (
+							<Text
+								key={priceRating}
+								style={{
+									color: (priceRating <= item.priceRating) ?
+									'black' : 'gainsboro'
+								}}
+							>$</Text>
+						))
+					}
+				</View>
 			</TouchableOpacity>
 		)
 
 		return (
-			<View style={styles.homePageSmallContainer}>
-				<Text style={styles.homePageTitleText}>Around you</Text>
-				<FlatList
-					data={eateries}
-					keyExtractor={(item) => item.id.toString()}
-					renderItem={renderItem}
-					horizontal={true}
-					showsHorizontalScrollIndicator={false}
-				/>
+			<View>
+				<View style={styles.homePageSmallContainer}>
+					<Text style={styles.homePageTitleText}>Around you</Text>
+					<View>
+						<FlatList
+							data={eateries}
+							keyExtractor={(item) => item.id.toString()}
+							renderItem={renderItem}
+							horizontal={true}
+							showsHorizontalScrollIndicator={false}
+						/>
+					</View>
+				</View>
+				<View style={styles.homePageSmallContainerPadding}>
+				</View>
 			</View>
 		)
 	}
@@ -295,15 +395,21 @@ const HomePage = ({ navigation }) => {
 		)
 
 		return (
-			<View style={styles.homePageSmallContainer}>
-				<Text style={styles.homePageTitleText}>You might like</Text>
-				<FlatList
-					data={eateries}
-					keyExtractor={(item) => item.id.toString()}
-					renderItem={renderItem}
-					horizontal={true}
-					showsHorizontalScrollIndicator={false}
-				/>
+			<View>
+				<View style={styles.homePageSmallContainer}>
+					<Text style={styles.homePageTitleText}>Around you</Text>
+					<View>
+						<FlatList
+							data={eateries}
+							keyExtractor={(item) => item.id.toString()}
+							renderItem={renderItem}
+							horizontal={true}
+							showsHorizontalScrollIndicator={false}
+						/>
+					</View>
+				</View>
+				<View style={styles.homePageSmallContainerPadding}>
+				</View>
 			</View>
 		)
 	}
@@ -340,28 +446,36 @@ const HomePage = ({ navigation }) => {
 		)
 
 		return (
-			<View style={styles.homePageSmallContainer}>
-				<Text style={styles.homePageTitleText}>Promotions today</Text>
-				<FlatList
-					data={eateries}
-					keyExtractor={(item) => item.id.toString()}
-					renderItem={renderItem}
-					horizontal={true}
-					showsHorizontalScrollIndicator={false}
-				/>
+			<View>
+				<View style={styles.homePageSmallContainer}>
+					<Text style={styles.homePageTitleText}>Around you</Text>
+					<View>
+						<FlatList
+							data={eateries}
+							keyExtractor={(item) => item.id.toString()}
+							renderItem={renderItem}
+							horizontal={true}
+							showsHorizontalScrollIndicator={false}
+						/>
+					</View>
+				</View>
+				<View style={styles.homePageSmallContainerPadding}>
+				</View>
 			</View>
 		)
 	}
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<View style={styles.homePageTopPadding} />
-			{renderSearchBar()}
-			<View style={styles.homePageMainContainer}>
+			<View style={styles.homePageTopBar}>
+				{renderSearchBar()}
+			</View>
+			<ScrollView style={styles.homePageMainContainer}>
+				{renderCategories()}
 				{renderRecommendations1()}
 				{renderRecommendations2()}
 				{renderRecommendations3()}
-			</View>
+			</ScrollView>
 			<View style={styles.homePageBottomPadding} />
 		</SafeAreaView>
 	);
