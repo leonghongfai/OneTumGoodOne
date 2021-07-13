@@ -23,6 +23,15 @@ export const basket = require("../assets/icons/shopping-basket.png");
 export const star = require("../assets/icons/star.png");
 export const sushi = require("../assets/icons/sushi.png");
 export const user = require("../assets/icons/user.png");
+export const bubble_tea= require("../assets/icons/bubble-tea.png");
+export const dessert= require("../assets/icons/dessert.png");
+export const fast_food= require("../assets/icons/fast-food.png");
+export const halal= require("../assets/icons/halal.png");
+export const pasta= require("../assets/icons/pasta.png");
+export const seafood= require("../assets/icons/seafood.png");
+export const western= require("../assets/icons/western.png");
+
+
 
 export default {
     back,
@@ -50,4 +59,11 @@ export default {
     star,
     sushi,
     user,
+    bubble_tea,
+    dessert,
+    fast_food,
+    halal,
+    pasta,
+    seafood,
+    western,
 }

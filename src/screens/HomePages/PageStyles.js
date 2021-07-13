@@ -11,13 +11,19 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         backgroundColor: 'white',
     },
+    homePageContainer: {
+        justifyContent: 'center',
+        flex: 1,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        backgroundColor: 'white',
+    },
     searchBarArea: {
         flex: 5, 
         justifyContent: 'center',
         paddingHorizontal: width * 0.02
     },
-    homePageTopPadding: {
-        flex: 1,
+    homePageTopBar: {
+        height: height * 0.07,
         backgroundColor: 'white',
     },
     homePageLocationBar: {
@@ -33,19 +39,60 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     homePageMainContainer: {
-        flex: 50,
         backgroundColor: 'white',
-        justifyContent: 'center',
         paddingLeft: 20,
         paddingRight: 20,
     },
     homePageSmallContainer: {
-        height: 228,
+        height: height * 0.38,
+        justifyContent: 'center',
+        paddingVertical: height * 0.03,
+    },
+    homePageSmallContainerPadding: {
+        height: height * 0.001,
+        backgroundColor: 'black',
+    },
+    homePageCategoriesContainer: {
+
+    },
+    homePageCategoriesText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'left',
+    },
+    homePageCategoriesList: {
+        paddingVertical: 0,
+    },
+    homePageCategoriesBox: {
+        padding: 5,
+        paddingVertical: 10,
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 10,
+    },
+    homePageCategoriesInsideBox: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'aliceblue',
+    },
+    homePageCategoriesImage: {
+        width: 30,
+        height: 30,
+    },
+    homePageCategoriesItemText: {
+        fontSize: 9,
+        marginTop: height * 0.01,
+        color: 'black',
     },
     homePageTitleText: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'left',
+        marginBottom: 20,
     },
     homePageImageBlock: {
         width: 150,
@@ -73,6 +120,12 @@ const styles = StyleSheet.create({
         height: 15,
         width: 15,
         marginRight: 5,
+    },
+    homePagePriceBox: {
+        flexDirection: 'row',
+    },
+    homePagePrice: {
+        
     },
 })
 
