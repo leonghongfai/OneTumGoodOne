@@ -12,8 +12,8 @@ import {
 import { Rating } from 'react-native-elements';
 import { useState, useEffect, useRef } from "react";
 import firebase from 'firebase'
+import styles from "./DisplayPostScreenStyles";
 require('firebase/firestore')
-
 
 const DisplayPost = (props) => {
     const user = props.route.params.user
@@ -81,21 +81,4 @@ const DisplayPost = (props) => {
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-        backgroundColor: 'white',
-        flex: 1,
-    },
-    image: {
-        aspectRatio: 1/1,
-    },
-    containerGallery: {
-        flex: 1,
-    },
-    info: {
-        paddingTop: 20,
-        paddingBottom: 10,
-    }
-})
 export default DisplayPost

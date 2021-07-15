@@ -209,7 +209,7 @@ const HomePage = ({ navigation }) => {
 
 	function renderSearchBar() {
 		const onChangeSearch = (query) => setSearchQuery(query);
-		
+
 		return (
 			<View style={styles.searchBarArea}>
 				<Searchbar
@@ -272,11 +272,11 @@ const HomePage = ({ navigation }) => {
 			return (
 				<TouchableOpacity
 					style={styles.homePageCategoriesBox}
-                    onPress={() => navigation.navigate("Category", {
+					onPress={() => navigation.navigate("Category", {
 						category: item.name,
 						categoryId: item.id,
 						eateryData: eateries,
-                    })}
+					})}
 				>
 					<View style={styles.homePageCategoriesInsideBox}>
 						<Image
@@ -341,7 +341,7 @@ const HomePage = ({ navigation }) => {
 								key={priceRating}
 								style={{
 									color: (priceRating <= item.priceRating) ?
-									'black' : 'gainsboro'
+										'black' : 'gainsboro'
 								}}
 							>$</Text>
 						))
@@ -351,8 +351,8 @@ const HomePage = ({ navigation }) => {
 		)
 
 		eateries1.sort(function (a, b) {
-            return b.currentRating - a.currentRating
-        })
+			return b.currentRating - a.currentRating
+		})
 
 		return (
 			<View>
@@ -406,8 +406,8 @@ const HomePage = ({ navigation }) => {
 		)
 
 		eateries2.sort(function (a, b) {
-            return b.numberOfRatings - a.numberOfRatings
-        })
+			return b.numberOfRatings - a.numberOfRatings
+		})
 
 		return (
 			<View>
@@ -461,8 +461,8 @@ const HomePage = ({ navigation }) => {
 		)
 
 		eateries3.sort(function (a, b) {
-            return b.latestReview - a.latestReview
-        })
+			return b.latestReview - a.latestReview
+		})
 
 		return (
 			<View>
@@ -489,8 +489,13 @@ const HomePage = ({ navigation }) => {
 			<View style={styles.homePageTopBar}>
 				{renderSearchBar()}
 			</View>
-			<View style={styles.homePageSeparator}/>
-			<ScrollView style={styles.homePageMainContainer}>
+			<View style={styles.homePageSeparator} />
+			<ScrollView style={styles.homePageMainContainer}
+				refreshControl={
+					<RefreshControl
+						refreshing={refreshing}
+						onRefresh={onRefresh}
+					/>}>
 				{renderCategories()}
 				{renderRecommendations1()}
 				{renderRecommendations2()}

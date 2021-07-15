@@ -11,7 +11,7 @@ import SaveImageScreen from './src/screens/PictureScreens/SaveImageScreen';
 import CameraScreen from './src/screens/PictureScreens/CameraScreen'
 import EateryScreen from './src/screens/EateryScreen/EateryScreen'
 import CategoryScreen from './src/screens/CategoryScreen/CategoryScreen'
-import DisplayPost from './src/screens/DisplayPost';
+import DisplayPost from './src/screens/DisplayPostScreen/DisplayPostScreen';
 import firebase from 'firebase'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
