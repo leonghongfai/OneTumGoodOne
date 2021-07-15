@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Text,
     View,
@@ -25,6 +25,14 @@ const CategoryScreen = (props) => {
     const categoryId = props.route.params.categoryId
     const eateryData = props.route.params.eateryData
 
+    let eateriesToShow = []
+
+    function sortByRating() {
+        eateriesToShow.sort(function (b, a) {
+            return b.currentRating - a.currentRating
+        })
+    }
+
     function renderHeader() {
         return (
             <View style={styles.header}>
@@ -39,12 +47,28 @@ const CategoryScreen = (props) => {
                     <Text style={styles.categoryTitle}>{category}</Text>
                     <View style={styles.sortByBox}>
                         <Text style={styles.filterText}>Sort By:</Text>
+
                         <TouchableOpacity
                             style={styles.filterButton}
-                            onPress={() => console.log("Filter pressed!")}
+                            onPress={() => {
+                                console.log("Filter by rating pressed!")
+                                sortByRating()
+                                console.log(eateriesToShow)
+                            }}
                         >
-
-                            <Icon name="filter" size={15} />
+                            <Text>Ratings</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.filterButton}
+                            onPress={() => console.log("Filter by price pressed!")}
+                        >
+                            <Text>Price Range</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.filterButton}
+                            onPress={() => console.log("Filter by popularity pressed!")}
+                        >
+                            <Text>Popularity</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -53,18 +77,12 @@ const CategoryScreen = (props) => {
     }
 
     function renderEateries() {
-        let eateriesToShow = []
-
         for (let i = 0; i < eateryData.length; i++) {
             let arr = eateryData[i].categories
             if (arr.includes(categoryId)) {
                 eateriesToShow.push(eateryData[i])
             }
         }
-
-        eateriesToShow.sort(function (a, b) {
-            return b.currentRating - a.currentRating
-        })
 
         const renderItem = ({ item }) => (
             <View
@@ -96,6 +114,7 @@ const CategoryScreen = (props) => {
             {renderHeader()}
             <View style={styles.headerSeparator} />
             {renderEateries()}
+            {console.log(eateriesToShow)}
         </SafeAreaView>
     );
 }

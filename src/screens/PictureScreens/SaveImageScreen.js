@@ -71,6 +71,7 @@ export default function SaveImageScreen(props) {
                 updateReview()
                 savePostData(snapshot)
                 savePostData2(snapshot)
+                savePostData3(snapshot)
             })
         }
         const taskError = snapshot => {
@@ -120,6 +121,15 @@ export default function SaveImageScreen(props) {
             creation: firebase.firestore.FieldValue.serverTimestamp(),
             rating: rating,
             username: userName.username,
+        })
+    }
+
+    const savePostData3 = (downloadURL) => {
+        firebase.firestore()
+        .collection("eateries")
+        .doc(currentEateryId)
+        .update({
+            latestReview: firebase.firestore.FieldValue.serverTimestamp(),
         })
     }
 

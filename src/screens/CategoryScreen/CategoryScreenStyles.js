@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     mainView: {
-        flex: 1
+        flex: 1,
     },
     headerSeparator: {
         height: height * 0.001,
@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     sortByBox: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        height: height * 0.04,
+        alignItems: 'center',
     },
     filterButton: {
         justifyContent: 'space-around',
@@ -47,6 +49,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 10,
         borderColor: 'gray',
+        height: height * 0.04,
+        marginRight: 10,
     },
     filterText: {
         marginRight: 5,
