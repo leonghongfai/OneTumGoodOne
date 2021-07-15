@@ -64,7 +64,7 @@ const DisplayPost = (props) => {
                     style={styles.image}
                     source={{uri: item.downloadURL}}
                     />
-                    <Text>{item.caption}</Text>
+                    <Text>{item.caption}</Text> 
                     <Rating
                         size={15}
                         readonly = {true}

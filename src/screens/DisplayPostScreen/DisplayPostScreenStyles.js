@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingBottom: 10,
         fontWeight: 'bold',
-    }
+    },
 })
 
 export default styles;
