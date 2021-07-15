@@ -125,7 +125,7 @@ const ProfilePage = (props) => {
               <Button 
                 title="Following"
                 onPress={() => onUnfollow()}
-                />
+                />            
               )
             : (
               <Button 
