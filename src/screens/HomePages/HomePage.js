@@ -53,6 +53,7 @@ const HomePage = ({ navigation }) => {
 					return { id, ...data }
 				})
 				setEateries(restaurants)
+				console.log(restaurants)
 			})
 	}, [navigation])
 

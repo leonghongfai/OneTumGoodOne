@@ -24,13 +24,40 @@ const CategoryScreen = (props) => {
     const category = props.route.params.category
     const categoryId = props.route.params.categoryId
     const eateryData = props.route.params.eateryData
+    const [myList, setMyList] = useState([])
+    const [isFiltered, setIsFiltered] = useState(false)
 
     let eateriesToShow = []
+   
+    for (let i = 0; i < eateryData.length; i++) {
+        let arr = eateryData[i].categories
+        if (arr.includes(categoryId)) {
+            eateriesToShow.push(eateryData[i])
+        }
+    }
 
     function sortByRating() {
-        eateriesToShow.sort(function (b, a) {
+        eateriesToShow.sort(function (a, b) {
             return b.currentRating - a.currentRating
         })
+        setMyList([...eateriesToShow])
+        setIsFiltered(true)
+    }
+
+    function sortByPriceRange() {
+        eateriesToShow.sort(function (a, b) {
+            return b.priceRating - a.priceRating
+        })
+        setMyList([...eateriesToShow])
+        setIsFiltered(true)
+    }
+
+    function sortByPopularity() {
+        eateriesToShow.sort(function (a, b) {
+            return a.numberOfRatings - b.numberOfRatings
+        })
+        setMyList([...eateriesToShow])
+        setIsFiltered(true)
     }
 
     function renderHeader() {
@@ -51,22 +78,24 @@ const CategoryScreen = (props) => {
                         <TouchableOpacity
                             style={styles.filterButton}
                             onPress={() => {
-                                console.log("Filter by rating pressed!")
                                 sortByRating()
-                                console.log(eateriesToShow)
                             }}
                         >
                             <Text>Ratings</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.filterButton}
-                            onPress={() => console.log("Filter by price pressed!")}
+                            onPress={() => {
+                                sortByPriceRange()
+                            }}                        
                         >
                             <Text>Price Range</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.filterButton}
-                            onPress={() => console.log("Filter by popularity pressed!")}
+                            onPress={() => {
+                                sortByPopularity()
+                            }}                        
                         >
                             <Text>Popularity</Text>
                         </TouchableOpacity>
@@ -76,14 +105,8 @@ const CategoryScreen = (props) => {
         )
     }
 
-    function renderEateries() {
-        for (let i = 0; i < eateryData.length; i++) {
-            let arr = eateryData[i].categories
-            if (arr.includes(categoryId)) {
-                eateriesToShow.push(eateryData[i])
-            }
-        }
 
+    function renderEateries() {
         const renderItem = ({ item }) => (
             <View
                 key={item.id}
@@ -96,17 +119,30 @@ const CategoryScreen = (props) => {
                 />
             </View>
         )
-
-        return (
-            <View>
-                <FlatList
-                    data={eateriesToShow}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={renderItem}
-                    showsVerticalScrollIndicator={true}
-                />
-            </View>
-        )
+       
+        if (!isFiltered) {
+            return (
+                <View>
+                    <FlatList
+                        data={eateriesToShow}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={renderItem}
+                        showsVerticalScrollIndicator={true}
+                    />
+                </View>
+            )
+        } else {
+            return (
+                <View>
+                    <FlatList
+                        data={myList}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={renderItem}
+                        showsVerticalScrollIndicator={true}
+                    />
+                </View>
+            )
+        }
     }
 
     return (
@@ -114,7 +150,6 @@ const CategoryScreen = (props) => {
             {renderHeader()}
             <View style={styles.headerSeparator} />
             {renderEateries()}
-            {console.log(eateriesToShow)}
         </SafeAreaView>
     );
 }
