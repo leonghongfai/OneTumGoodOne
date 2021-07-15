@@ -25,6 +25,7 @@ const HomePage = ({ navigation }) => {
 	const wait = (timeout) => {
 		return new Promise(resolve => setTimeout(resolve, timeout));
 	}
+
 	const onRefresh = React.useCallback(() => {
 		setRefreshing(true);
 		wait(2000).then(() => setRefreshing(false));
@@ -54,6 +55,10 @@ const HomePage = ({ navigation }) => {
 				setEateries(restaurants)
 			})
 	}, [navigation])
+
+	var eateries1 = [...eateries]
+	var eateries2 = [...eateries]
+	var eateries3 = [...eateries]
 
 	const categoryData = [
 		{
@@ -309,9 +314,7 @@ const HomePage = ({ navigation }) => {
 				onPress={() =>
 					navigation.navigate("Eatery", {
 						eateryId: item.id,
-						eateryData: eateries,
 					})
-
 				}
 			>
 				<View>
@@ -347,13 +350,17 @@ const HomePage = ({ navigation }) => {
 			</TouchableOpacity>
 		)
 
+		eateries1.sort(function (a, b) {
+            return b.currentRating - a.currentRating
+        })
+
 		return (
 			<View>
 				<View style={styles.homePageSmallContainer}>
-					<Text style={styles.homePageTitleText}>Around you</Text>
+					<Text style={styles.homePageTitleText}>Highest Rated</Text>
 					<View>
 						<FlatList
-							data={eateries}
+							data={eateries1}
 							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
@@ -398,13 +405,17 @@ const HomePage = ({ navigation }) => {
 			</TouchableOpacity>
 		)
 
+		eateries2.sort(function (a, b) {
+            return b.numberOfRatings - a.numberOfRatings
+        })
+
 		return (
 			<View>
 				<View style={styles.homePageSmallContainer}>
-					<Text style={styles.homePageTitleText}>Around you</Text>
+					<Text style={styles.homePageTitleText}>Popular</Text>
 					<View>
 						<FlatList
-							data={eateries}
+							data={eateries2}
 							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
@@ -449,13 +460,17 @@ const HomePage = ({ navigation }) => {
 			</TouchableOpacity>
 		)
 
+		eateries3.sort(function (a, b) {
+            return b.latestReview - a.latestReview
+        })
+
 		return (
 			<View>
 				<View style={styles.homePageSmallContainer}>
-					<Text style={styles.homePageTitleText}>Around you</Text>
+					<Text style={styles.homePageTitleText}>Recently Reviewed</Text>
 					<View>
 						<FlatList
-							data={eateries}
+							data={eateries3}
 							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
