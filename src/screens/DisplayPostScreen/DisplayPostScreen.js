@@ -36,24 +36,32 @@ const DisplayPost = (props) => {
                 return { id, ...data }
             })
             setUserPosts(posts)
+            scrollToItem()
         })
-        scrollToItem()
-        console.log("run")
-    },[props.route.params.item])
+        console.log("runrun")
+    },[props.route.params.item, userPosts.length, index])
 
     const scrollToItem = () => {
-        for (let i = 0; i < userPosts.length; i++) {
-            if (item.downloadURL === userPosts[i].downloadURL) {
-                setIndex(i)
+        if (userPosts.length !== 0) {
+            for (let i = 0; i < userPosts.length; i++) {
+                if (item.id === userPosts[i].id) {
+                    setIndex(i)
+                }
             }
+            ref_input2.current.scrollToIndex({animated: true, index: index});
         }
-        //ref_input2.current.scrollToIndex({animated: true, index: index});
+        
     }
 
     return (
         <View style={styles.container}>
-            {console.log(index)}
             <FlatList
+             onScrollToIndexFailed={info => {
+                const wait = new Promise(resolve => setTimeout(resolve, 500));
+                wait.then(() => {
+                  ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
+                });
+              }}
             ref = {ref_input2}
             horizontal={false}
             data={userPosts}
