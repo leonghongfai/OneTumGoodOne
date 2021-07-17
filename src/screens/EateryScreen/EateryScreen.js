@@ -22,7 +22,6 @@ import { Rating } from 'react-native-elements';
 const EateryScreen = (props) => {
 
     const currentEateryId = props.route.params.eateryId
-    const currentEateryData = props.route.params.eateryData
     const [eatery, setEatery] = React.useState("")
     const [menu, setMenu] = React.useState([])
     const [reviews, setReviews] = React.useState([])
