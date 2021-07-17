@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
-import styles from './PageStyles';
 import firebase from 'firebase';
 require('firebase/firestore');
 import Feed from "./Feed";
-
+import styles from "./FollowPageStyles"
 
 export default function FollowPage(props) {
     const [users, setUsers] = useState([])
@@ -23,15 +22,15 @@ export default function FollowPage(props) {
                 setUsers(users);
             })
     }
+
     return (
         <View style={styles.container}>
             <TextInput
                 placeholder="Search..."
-                onChangeText={(search) => fetchUsers(search)} />
+                onChangeText={(search) => fetchUsers(search)}
+            />
 
             <FlatList
-                numColumns={1}
-                horizontal={false}
                 data={users}
                 renderItem={({ item }) => (
                     <TouchableOpacity
@@ -42,7 +41,6 @@ export default function FollowPage(props) {
                 )}
             />
             <Feed />
-
         </View>
     )
 }

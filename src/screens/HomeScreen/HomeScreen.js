@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ColorScheme from "../../../global/ColorScheme";
-import HomePage from "../HomePages/HomePage";
-import FollowPage from "../HomePages/FollowPage";
-import ProfilePage from "../HomePages/ProfilePage";
-import SettingsPage from "../HomePages/SettingsPage";
+import HomePage from "../HomePages/HomePageScreen/HomePage";
+import FollowPage from "../HomePages/FollowPageScreen/FollowPage";
+import ProfilePage from "../HomePages/ProfilePageScreen/ProfilePage";
+import SettingsPage from "../HomePages/SettingsPageScreen/SettingsPage";
 import firebase from 'firebase'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

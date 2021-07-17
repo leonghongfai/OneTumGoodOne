@@ -10,10 +10,10 @@ import {
 	RefreshControl
 } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { icons, images } from '../../../constants'
+import { icons, images } from '../../../../constants'
 import firebase from 'firebase'
 require('firebase/firestore')
-import styles from "./PageStyles";
+import styles from "./HomePageStyles";
 import { Touchable } from "react-native";
 
 const HomePage = ({ navigation }) => {

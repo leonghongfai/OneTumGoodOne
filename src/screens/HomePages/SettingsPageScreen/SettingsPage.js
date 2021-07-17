@@ -11,11 +11,12 @@ import {
   NavigationContainer,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import ColorScheme from "../../../global/ColorScheme";
+import ColorScheme from "../../../../global/ColorScheme"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useState } from "react";
 import { render } from "react-dom";
-import * as Auth from '../../../api/Authentication'
+import * as Auth from '../../../../api/Authentication'
+import styles from "./SettingsPageStyles"
 
 const SettingsPage = (props) => {
   const handleLogOut = () => {

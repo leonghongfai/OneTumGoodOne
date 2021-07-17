@@ -9,13 +9,14 @@ import {
   RefreshControl
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import ColorScheme from "../../../global/ColorScheme";
+import ColorScheme from "../../../../global/ColorScheme";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useState, useEffect } from "react";
 import firebase from 'firebase'
 require('firebase/firestore')
 import { connect } from 'react-redux'
 import { TouchableOpacity } from "react-native";
+import styles from "./ProfilePageStyles"
 
 const ProfilePage = (props) => {
   const [userPosts, setUserPosts] = useState([]);
@@ -170,25 +171,6 @@ const ProfilePage = (props) => {
   );
 };
 
-const styles= StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 40,
-  },
-  containerInfo: {
-    margin: 20,
-  },
-  containerGallery: {
-    flex: 1,
-  },
-  image: {
-    flex:1,
-    aspectRatio: 1/1,
-  },
-  containerImage: {
-    flex: 1/3
-  },
-})
 
 const mapStateToProps = (store) => ({
   currentUser: store.userState.currentUser,
