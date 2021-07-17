@@ -16,7 +16,7 @@ import styles from "./EateryScreenStyles";
 import firebase from 'firebase'
 require('firebase/firestore')
 import { LogBox } from 'react-native';
-import { Rating, AirbnbRating } from 'react-native-elements';
+import { Rating } from 'react-native-elements';
 
 
 const EateryScreen = (props) => {

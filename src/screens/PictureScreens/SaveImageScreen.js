@@ -5,10 +5,9 @@ import {
     TextInput,
     TouchableOpacity,
     Image,
-    Button,
 } from 'react-native'
 import firebase from 'firebase'
-import { Rating, AirbnbRating } from 'react-native-elements';
+import { AirbnbRating } from 'react-native-elements';
 import styles from "./PictureScreenStyles"
 import Icon from 'react-native-vector-icons/Ionicons';
 import 'firebase/firestore'

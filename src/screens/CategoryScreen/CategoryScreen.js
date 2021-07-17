@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
     Text,
     View,
     SafeAreaView,
     Image,
     TouchableOpacity,
-    ScrollView,
     FlatList,
-    Animated,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { icons, images } from '../../../constants'
+import { icons } from '../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "./CategoryScreenStyles";
-import firebase from 'firebase'
 require('firebase/firestore')
-import { LogBox } from 'react-native';
-import { Rating, AirbnbRating } from 'react-native-elements';
-import { ForceTouchGestureHandler } from "react-native-gesture-handler";
-
 
 const CategoryScreen = (props) => {
 

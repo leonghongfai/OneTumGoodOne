@@ -1,8 +1,6 @@
-import React from 'react';
-import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
+import { Platform, StyleSheet, StatusBar } from 'react-native';
 import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
-import ColorScheme from '../../../global/ColorScheme';
 
 const styles = StyleSheet.create({
     container: {
