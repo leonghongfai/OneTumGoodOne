@@ -87,7 +87,7 @@ const EateryScreen = (props) => {
                                 source={icons.star}
                                 style={styles.ratingStar}
                             />
-						    <Text>{Number(eatery.currentRating).toFixed(2)}</Text>
+						    <Text style={styles.ratingNumber}>{Number(eatery.currentRating).toFixed(2)}</Text>
                             <Text style={styles.numRatingsText}>({eatery.numberOfRatings} reviews)</Text>
                         </View>
                     </View>
@@ -155,10 +155,12 @@ const EateryScreen = (props) => {
 
         return (
             <View>
-                <Text style={styles.menuTitle}>Menu</Text>
+                <View style={styles.menuTitleBox}>
+                    <Text style={styles.menuTitle}>Menu</Text>
+                </View>
                 <FlatList
                     data={menu}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => item.id}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
                 />
@@ -202,6 +204,7 @@ const EateryScreen = (props) => {
                     keyExtractor={item => item.id.toString()}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
+                    style={styles.ratingsAndReviews}
                 />
             </View>
         )
