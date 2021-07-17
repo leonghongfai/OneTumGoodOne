@@ -6,6 +6,23 @@ const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        marginBottom: 20
+    },
+    containerInfo: {
+        margin: 20,
+    },
+    containerGallery: {
+        flex: 1,
+    },
+    image: {
+        flex: 1,
+        aspectRatio: 1 / 1,
+    },
+    containerImage: {
+        flex: 1 / 3
+    },
+    container: {
         justifyContent: 'center',
         flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
@@ -29,7 +46,7 @@ const styles = StyleSheet.create({
     homePageSeparator: {
         height: height * 0.02,
     },
-    homePageMiddlePadding: {    
+    homePageMiddlePadding: {
         flex: 1,
         backgroundColor: 'white',
     },
@@ -98,7 +115,7 @@ const styles = StyleSheet.create({
         borderRadius: 30,
     },
     homePageRating: {
-        position: 'absolute', 
+        position: 'absolute',
         bottom: 0,
         height: 30,
         width: 70,
@@ -119,7 +136,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     homePagePrice: {
-        
+
     },
 })
 

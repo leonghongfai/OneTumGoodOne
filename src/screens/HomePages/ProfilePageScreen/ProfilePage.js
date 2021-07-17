@@ -4,13 +4,9 @@ import {
   View,
   Image,
   FlatList,
-  StyleSheet,
   Button,
   RefreshControl
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import ColorScheme from "../../../../global/ColorScheme";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useState, useEffect } from "react";
 import firebase from 'firebase'
 require('firebase/firestore')
