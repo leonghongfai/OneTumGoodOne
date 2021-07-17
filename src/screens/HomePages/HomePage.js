@@ -53,7 +53,6 @@ const HomePage = ({ navigation }) => {
 					return { id, ...data }
 				})
 				setEateries(restaurants)
-				console.log(restaurants)
 			})
 	}, [navigation])
 
@@ -342,7 +341,7 @@ const HomePage = ({ navigation }) => {
 								key={priceRating}
 								style={{
 									color: (priceRating <= item.priceRating) ?
-										'black' : 'gainsboro'
+										'black' : 'white'
 								}}
 							>$</Text>
 						))
@@ -368,8 +367,6 @@ const HomePage = ({ navigation }) => {
 							showsHorizontalScrollIndicator={false}
 						/>
 					</View>
-				</View>
-				<View style={styles.homePageSmallContainerPadding}>
 				</View>
 			</View>
 		)
@@ -424,8 +421,6 @@ const HomePage = ({ navigation }) => {
 						/>
 					</View>
 				</View>
-				<View style={styles.homePageSmallContainerPadding}>
-				</View>
 			</View>
 		)
 	}
@@ -478,8 +473,6 @@ const HomePage = ({ navigation }) => {
 							showsHorizontalScrollIndicator={false}
 						/>
 					</View>
-				</View>
-				<View style={styles.homePageSmallContainerPadding}>
 				</View>
 			</View>
 		)

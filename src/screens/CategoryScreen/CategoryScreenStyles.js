@@ -55,16 +55,65 @@ const styles = StyleSheet.create({
     filterText: {
         marginRight: 5,
     },
-    menuImageBox: {
+    mainList: {
+        paddingTop: height * 0.005,
+    },
+    eateryImageBox: {
         flexDirection: 'row',
-        borderColor: 'lightgray',
-        borderWidth: 0.2,
         marginHorizontal: width * 0.03,
         flex: 1,
+        marginVertical: height * 0.01,
     },
-    menuImage: {
+    eateryImage: {
         width: 125,
         height: 125,
+    },
+    eateryItemText: {
+        flex: 1,
+        marginLeft: 20,
+        justifyContent: 'space-evenly',
+    },
+    eateryItemName: {
+        fontSize: 13,
+        fontWeight: 'bold',
+    },
+    ratingAndPrice: {
+        flexDirection: 'row',
+    },
+    ratingBox: {
+        backgroundColor: 'white',
+        alignItems: 'center',
+        flexDirection: 'row',
+        paddingRight: 7,
+    },
+    ratingStar: {
+        height: 13,
+        width: 13,
+        marginRight: 5,
+    },
+    ratingNumber: {
+        fontSize: 13,
+    },
+    numberOfRatings: {
+        color: 'gray',
+        fontSize: 13,
+    },
+    separator: {
+        justifyContent: 'center', 
+        alignItems: 'center',
+    },
+    priceRatingBox: {
+        flexDirection: 'row',
+        paddingLeft: 7,
+    },
+    categoryBox: {
+        flexDirection: 'row',
+    },
+    categoryTitles: {
+        flexDirection: 'row',
+    },
+    categoryTitlesText: {
+        fontSize: 10,
     },
 })
 

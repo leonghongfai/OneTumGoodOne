@@ -42,13 +42,9 @@ const styles = StyleSheet.create({
         paddingRight: 20,
     },
     homePageSmallContainer: {
-        height: height * 0.38,
+        height: height * 0.33,
         justifyContent: 'center',
         paddingVertical: height * 0.03,
-    },
-    homePageSmallContainerPadding: {
-        height: height * 0.001,
-        backgroundColor: 'black',
     },
     homePageCategoriesContainer: {
 
