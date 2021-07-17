@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     eateryTitleText: {
-        fontSize: 15,
+        fontSize: 13,
         marginHorizontal: 20,
         fontWeight: 'bold',    
     },
@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
         height: 15,
         width: 15,
         marginRight: 5,
+    },
+    ratingNumber: {
+        fontSize: 13,
     },
     numRatingsText: {
         fontSize: 10,
@@ -67,20 +70,22 @@ const styles = StyleSheet.create({
         width: width,
         height: "100%",
     },
+    menuTitleBox: {
+        paddingTop: height * 0.01,
+    },
     menuTitle: {
-        fontSize: 20,
+        fontSize: 17,
         marginHorizontal: width * 0.05,
-        fontWeight: 'bold' 
+        fontWeight: 'bold',
     },
     menuImageBox: {
         flexDirection: 'row',
-        borderColor: 'lightgray',
-        borderWidth: 0.2,
         marginHorizontal: width * 0.03,
+        paddingVertical: height * 0.01,
     },
     menuImage: {
-        width: 125,
-        height: 125,
+        width: 100,
+        height: 100,
     },
     menuItemText: {
         flex: 1,
@@ -89,24 +94,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     menuItemName: {
-        fontSize: 15,
+        fontSize: 13,
         paddingBottom: 5,
     },
     menuItemPrice: {
-        fontSize: 15,
+        fontSize: 13,
         fontWeight: 'bold',
         paddingBottom: 5,         
     },
     reviewsImageBox: {
         flexDirection: 'row',
-        borderColor: 'lightgray',
-        borderWidth: 0.2,
         marginHorizontal: width * 0.03,
         alignItems: 'center',
+        paddingVertical: height * 0.01,
     },
     reviewsImage: {
-        width: 125,
-        height: 125,
+        width: 100,
+        height: 100,
     },
     reviewsItemText: {
         paddingTop: width * 0.015,
@@ -123,19 +127,19 @@ const styles = StyleSheet.create({
 
     },
     reviewsUserName: {
-        fontSize: 15,
+        fontSize: 13,
         fontWeight: 'bold',
     },
     reviewsText: {
-        fontSize: 12,
+        fontSize: 11,
     },
     reviewsTitle: {
-        fontSize: 20,
+        fontSize: 17,
         marginHorizontal: width * 0.05,
-        fontWeight: 'bold' 
+        fontWeight: 'bold',
     },
-    reviewsRating: {
-        backgroundColor: 'red'
+    ratingsAndReviews: {
+        paddingBottom: height * 0.03,
     }
 })
 
