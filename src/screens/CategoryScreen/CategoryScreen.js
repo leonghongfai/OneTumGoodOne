@@ -314,7 +314,7 @@ const CategoryScreen = (props) => {
                                         style={styles.categoryTitles}
                                         key={categoryId}
                                     >
-                                        <Text style={styles.categoryTitlesText}> {categoryData.[categoryId - 1].name} </Text>
+                                        <Text style={styles.categoryTitlesText}> {categoryData[categoryId - 1].name} </Text>
                                         <View style={styles.separator}>
                                             <Icon name="ellipse" size={3} />
                                         </View>
