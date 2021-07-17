@@ -5,7 +5,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from './src/screens/LoginScreen/LoginScreen'
 import RegisterScreen from './src/screens/RegisterScreen/RegisterScreen';
-import HomeScreen from './src/screens/HomeScreen/HomeScreen'
+import HomeScreen from './src/screens/HomeScreen/HomeScreen';
+import SearchScreen from './src/screens/HomePages/HomePageScreen/SearchScreen'
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen/ForgotPasswordScreen';
 import SaveImageScreen from './src/screens/PictureScreens/SaveImageScreen';
 import CameraScreen from './src/screens/PictureScreens/CameraScreen'
@@ -75,6 +76,7 @@ export class App extends Component {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Search" component={SearchScreen} />
             <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
             <Stack.Screen name="Camera" component={CameraScreen} />
             <Stack.Screen name="SaveImage" component={SaveImageScreen} />
@@ -93,6 +95,7 @@ export class App extends Component {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Search" component={SearchScreen} />
             <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
             <Stack.Screen name="Camera" component={CameraScreen} />
             <Stack.Screen name="SaveImage" component={SaveImageScreen} />

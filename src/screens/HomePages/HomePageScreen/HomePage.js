@@ -9,15 +9,14 @@ import {
 	FlatList,
 	RefreshControl
 } from "react-native";
-import { Searchbar } from "react-native-paper";
 import { icons } from '../../../../constants'
+import Icon from 'react-native-vector-icons/Ionicons';
 import firebase from 'firebase'
 require('firebase/firestore')
 import styles from "./HomePageStyles";
 
 const HomePage = ({ navigation }) => {
 
-	const [searchQuery, setSearchQuery] = React.useState("");
 	const [eateries, setEateries] = React.useState([]);
 	const [refreshing, setRefreshing] = React.useState(false);
 
@@ -207,18 +206,25 @@ const HomePage = ({ navigation }) => {
 	]
 
 	function renderSearchBar() {
-		const onChangeSearch = (query) => setSearchQuery(query);
-
 		return (
 			<View style={styles.searchBarArea}>
-				<Searchbar
-					placeholder="Search"
-					onChangeText={onChangeSearch}
-					value={searchQuery}
-					inputStyle={{ backgroundColor: "white" }}
-					containerStyle={{ backgroundColor: "white", borderWidth: 20 }}
-				/>
-				<View style={styles.homePageMiddlePadding} />
+				<TouchableOpacity
+					style={styles.searchBarBox}
+					onPress={() => navigation.navigate("Search", {
+						eateryData: eateries,
+					})}
+				>
+					<View style={styles.searchIconBox}>
+						<Icon
+							name="search"
+							size={15}
+							color='darkgray'
+						/>
+					</View>
+					<Text style={styles.searchPlaceholder}>
+						What are you craving?
+					</Text>
+				</TouchableOpacity>
 			</View>
 		)
 	}

@@ -16,12 +16,85 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         backgroundColor: 'white',
     },
+    searchMainContainer: {
+        flex: 1,
+    },
     searchBarArea: {
         justifyContent: 'center',
         paddingHorizontal: width * 0.05,
+        alignItems: 'center',
+        flex: 1,
+    },
+    searchBarArea2: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    searchBarArea3: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: height * 0.03,
+    },
+    backBox: {
+        justifyContent: 'center',
+        marginLeft: width * 0.05,
+    },
+    searchBarBox: {
+        width: width * 0.9,
+        height: height * 0.05,
+        borderWidth: 0.5,
+        borderColor: 'black',
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    searchBarBox2: {
+        width: width * 0.75,
+        height: height * 0.04,
+        borderWidth: 0.5,
+        borderColor: 'black',
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: width * 0.05,
+    },
+    searchIconBox: {
+        paddingHorizontal: width * 0.03,
+    },
+    searchIconBox2: {
+        paddingHorizontal: width * 0.03,
+    },
+    searchPlaceholder: {
+        fontSize: 15,
+        color: 'dimgray',
+    },
+    searchQueryText: {
+        fontSize: 15,
+        color: 'black',
+    },
+    mainCategoriesText: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        paddingHorizontal: width * 0.03,
+    },
+    searchResultsBox: {
+        height: height * 0.07,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottomWidth: 0.2,
+    },
+    searchResultsText: {
+        marginLeft: width * 0.05,
+    },
+    iconRightPadding: {
+        marginRight: width * 0.05,
     },
     homePageTopBar: {
         height: height * 0.07,
+        backgroundColor: 'white',
+        paddingTop: height * 0.01,
+    },
+    searchScreenTopBar: {
         backgroundColor: 'white',
         paddingTop: height * 0.01,
     },
@@ -34,6 +107,8 @@ const styles = StyleSheet.create({
     },
     homePageBottomPadding: {
         flex: 1,
+    },
+    searchScreenBottomPadding:{
     },
     homePageMainContainer: {
         backgroundColor: 'white',
@@ -55,6 +130,9 @@ const styles = StyleSheet.create({
     },
     homePageCategoriesList: {
         paddingVertical: 0,
+    },
+    searchScreenCategoriesList: {
+        //height: height * 0.53,
     },
     homePageCategoriesBox: {
         padding: 5,
