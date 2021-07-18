@@ -20,6 +20,8 @@ const DisplayPost = (props) => {
     const item = props.route.params.item
     const [index, setIndex] = useState(0)
     const [userPosts, setUserPosts] = useState([]);
+    const [eatery, setEatery] = useState("")
+
     const ref_input2 = useRef();
 
     useEffect(() => {
@@ -53,8 +55,68 @@ const DisplayPost = (props) => {
         
     }
 
+    const deletePost = (item) => {
+        firebase.firestore().collection("posts").doc(user)
+        .collection("userPosts").doc(item.id)
+        .delete().then(() => {
+            console.log("userPosts document successfully deleted!");
+            
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+        deletePost2(item)
+    }
+
+    const deletePost2 = (item) => {
+        firebase.firestore().collection("eateries").doc(item.id)
+        .collection("reviews").doc(user)
+        .delete().then(() => {
+            console.log("Document successfully deleted!");
+            
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+        editRatings(item)
+    }
+
+    const editRatings = (item) => {
+        let temp = []
+        firebase.firestore().collection("eateries").doc(item.id)
+        .get().then((snapshot) => {
+            if (snapshot.exists) {
+                setEatery(snapshot.data())
+                temp = snapshot.data()
+                editRatings2(item, temp)
+            }
+            else {
+                console.log('does not exist')
+            }
+        })
+        
+    }
+
+    const editRatings2 = (item, temp) => {
+        const currentNumRatings = temp.numberOfRatings
+        const currentRating = temp.currentRating
+        const userRating = item.rating
+        firebase.firestore().collection("eateries").doc(item.id)
+        .update({
+            numberOfRatings: currentNumRatings - 1,
+            currentRating: ((currentRating * currentNumRatings) - userRating) / (currentNumRatings - 1)
+        }).then(() => {
+            console.log("Document successfully updated!");
+            //props.navigation.navigate("Profile", { uid: user })
+        })
+        .catch((error) => {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+
+    }
+
     return (
         <View style={styles.container}>
+
             <FlatList
              onScrollToIndexFailed={info => {
                 const wait = new Promise(resolve => setTimeout(resolve, 500));
@@ -80,6 +142,15 @@ const DisplayPost = (props) => {
                         tintColor='white'
                     />
                     <Text style={{fontSize:10}}>{item.creation.toDate().toString()}</Text>
+                    <Text
+                        onPress={(() => 
+                            deletePost(item)
+                            )}>
+                        Delete Post</Text>
+                        
+                    <Text>
+                        Edit Post
+                    </Text>
                 </View>
                 
                 
