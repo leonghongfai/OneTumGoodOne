@@ -115,7 +115,6 @@ export default function EditPostScreen(props)  {
             rating: rating
         }).then(() => {
             console.log("User doc successfully updated!");
-            
         })
         .catch((error) => {
             // The document probably doesn't exist.
@@ -124,7 +123,7 @@ export default function EditPostScreen(props)  {
         editRatings2(info)
     }
 
-    const editRatings2 = (item) => {
+    const editRatings2 = (info) => {
         const currentNumRatings = eatery.numberOfRatings
         const currentRating = eatery.currentRating
         const userRating = info.rating
@@ -135,6 +134,22 @@ export default function EditPostScreen(props)  {
         }).then(() => {
             console.log("Eatery doc successfully updated!");
             props.navigation.navigate("Profile", { uid: firebase.auth().currentUser.uid })
+        })
+        .catch((error) => {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+        editRatings3(info)
+    }
+
+    const editRatings3 = (info) => {
+        firebase.firestore().collection("eateries").doc(info.id)
+        .collection("reviews").doc(firebase.auth().currentUser.uid)
+        .update({
+            comment: caption,
+            rating: rating
+        }).then(() => {
+            console.log("eatery review doc successfully updated!");
         })
         .catch((error) => {
             // The document probably doesn't exist.
