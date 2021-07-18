@@ -21,6 +21,15 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         fontWeight: 'bold',
     },
+    header: {
+        flexDirection: 'row',
+        paddingBottom: 5,
+    },
+    backBox: {
+        width: 50,
+        paddingLeft: 20,
+        justifyContent: 'center',
+    },
 })
 
 export default styles;

@@ -7,8 +7,12 @@ import {
   StyleSheet,
   Button,
   RefreshControl,
-  StatusBar
+  StatusBar,
+  TouchableOpacity,
 } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { icons } from '../../../constants'
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Rating } from 'react-native-elements';
 import { useState, useEffect, useRef } from "react";
 import firebase from 'firebase'
@@ -133,9 +137,22 @@ const DisplayPost = (props) => {
         
     }
 
+    function renderHeader() {
+        return (
+            <View style={styles.header}>
+                <TouchableOpacity
+                    style={styles.backBox}
+                    onPress={() => props.navigation.navigate("Home")}
+                >
+                    <Icon name="arrow-back" size={30} />
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
-
+            {renderHeader()}
             <FlatList
              onScrollToIndexFailed={info => {
                 const wait = new Promise(resolve => setTimeout(resolve, 500));
