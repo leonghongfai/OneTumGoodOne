@@ -114,6 +114,25 @@ const DisplayPost = (props) => {
 
     }
 
+    const renderOptions = () => {
+        if (user === firebase.auth().currentUser.uid) {
+            return (
+                <View>
+                    <Text
+                    onPress={(() => 
+                        deletePost(item)
+                        )}>
+                    Delete Post</Text>
+                    
+                    <Text>
+                        Edit Post
+                    </Text>
+                </View>
+            )
+        }
+        
+    }
+
     return (
         <View style={styles.container}>
 
@@ -142,15 +161,7 @@ const DisplayPost = (props) => {
                         tintColor='white'
                     />
                     <Text style={{fontSize:10}}>{item.creation.toDate().toString()}</Text>
-                    <Text
-                        onPress={(() => 
-                            deletePost(item)
-                            )}>
-                        Delete Post</Text>
-                        
-                    <Text>
-                        Edit Post
-                    </Text>
+                    {renderOptions()}
                 </View>
                 
                 
