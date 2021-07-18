@@ -17,6 +17,7 @@ import { Rating } from 'react-native-elements';
 import { useState, useEffect, useRef } from "react";
 import firebase from 'firebase'
 import styles from "./DisplayPostScreenStyles";
+import EditPostScreen from "./EditPostScreen";
 require('firebase/firestore')
 
 const DisplayPost = (props) => {
@@ -118,17 +119,25 @@ const DisplayPost = (props) => {
 
     }
 
+    const editPost = (item) => {
+        props.navigation.navigate('EditPost', {info: item})
+    }
+
     const renderOptions = () => {
         if (user === firebase.auth().currentUser.uid) {
             return (
                 <View>
                     <Text
+                    style={{marginBottom: 20}}
                     onPress={(() => 
                         deletePost(item)
                         )}>
                     Delete Post</Text>
                     
-                    <Text>
+                    <Text
+                        onPress={(() => {
+                            editPost(item)
+                        })}>
                         Edit Post
                     </Text>
                 </View>
