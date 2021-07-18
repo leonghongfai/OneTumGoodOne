@@ -105,13 +105,32 @@ const DisplayPost = (props) => {
             currentRating: ((currentRating * currentNumRatings) - userRating) / (currentNumRatings - 1)
         }).then(() => {
             console.log("Document successfully updated!");
-            //props.navigation.navigate("Profile", { uid: user })
+            props.navigation.navigate("Profile", { uid: user })
         })
         .catch((error) => {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
         });
 
+    }
+
+    const renderOptions = () => {
+        if (user === firebase.auth().currentUser.uid) {
+            return (
+                <View>
+                    <Text
+                    onPress={(() => 
+                        deletePost(item)
+                        )}>
+                    Delete Post</Text>
+                    
+                    <Text>
+                        Edit Post
+                    </Text>
+                </View>
+            )
+        }
+        
     }
 
     return (
@@ -142,15 +161,7 @@ const DisplayPost = (props) => {
                         tintColor='white'
                     />
                     <Text style={{fontSize:10}}>{item.creation.toDate().toString()}</Text>
-                    <Text
-                        onPress={(() => 
-                            deletePost(item)
-                            )}>
-                        Delete Post</Text>
-                        
-                    <Text>
-                        Edit Post
-                    </Text>
+                    {renderOptions()}
                 </View>
                 
                 
