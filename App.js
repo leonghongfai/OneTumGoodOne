@@ -18,6 +18,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
+import EditPostScreen from './src/screens/DisplayPostScreen/EditPostScreen';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMC9BdNsV3AFN-IqRbFPweeXr0VHLE2xw",
@@ -83,6 +84,7 @@ export class App extends Component {
             <Stack.Screen name="Eatery" component={EateryScreen} />
             <Stack.Screen name="Category" component={CategoryScreen} />
             <Stack.Screen name="DisplayPost" component={DisplayPost} />
+            <Stack.Screen name="EditPost" component={EditPostScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       );
@@ -102,6 +104,7 @@ export class App extends Component {
             <Stack.Screen name="Eatery" component={EateryScreen} />
             <Stack.Screen name="Category" component={CategoryScreen} />
             <Stack.Screen name="DisplayPost" component={DisplayPost} />
+            <Stack.Screen name="EditPost" component={EditPostScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
