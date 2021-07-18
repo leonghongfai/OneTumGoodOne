@@ -181,7 +181,6 @@ const SearchScreen = (props) => {
         }}
     })
 
-
     function renderScreen() {       
         
         const onChangeSearch = (query) => {
@@ -197,6 +196,17 @@ const SearchScreen = (props) => {
                     return itemData.includes(queryData)
                 })
 
+                newResults.sort((a, b) => {
+                    let length = a.name.length < b.name.length ? a.name.length : b.name.length
+            
+                    for (let i = 0; i < length; i++) {
+                        if (a.name.charAt(i) < b.name.charAt(i)) {
+                            return -1
+                        } else if (a.name.charAt(i) > b.name.charAt(i)) {
+                            return 1
+                    }}
+                })
+                
                 setSearchResults(newResults)
 
             } else {
@@ -295,16 +305,14 @@ const SearchScreen = (props) => {
                                     color='darkgray'
                                 />
                             </View>
-
                             <TextInput
                                 style={styles.searchQueryText}
-                                placeholder={"Search eateries"}
+                                placeholder={"Search eateries!"}
                                 onChangeText={text => onChangeSearch(text)}
                                 value={searchQuery}
                                 onFocus={() => setIsSearch(true)}
                             >
                             </TextInput>
-
                         </View>
                     </View>
 
