@@ -125,7 +125,8 @@ export default function EditPostScreen(props)  {
         .collection("userPosts").doc(info.id)
         .update({
             caption: caption,
-            rating: rating
+            rating: rating,
+            creation: firebase.firestore.FieldValue.serverTimestamp(),
         }).then(() => {
             console.log("User doc successfully updated!");
         })
@@ -144,6 +145,7 @@ export default function EditPostScreen(props)  {
         firebase.firestore().collection("eateries").doc(info.id)
         .update({
             caption: caption,
+            latestReview: firebase.firestore.FieldValue.serverTimestamp(),
             currentRating: ((currentRating * currentNumRatings) - userRating + rating) / (currentNumRatings)
         }).then(() => {
             console.log("Eatery doc successfully updated!");
@@ -160,7 +162,8 @@ export default function EditPostScreen(props)  {
         .collection("reviews").doc(firebase.auth().currentUser.uid)
         .update({
             comment: caption,
-            rating: rating
+            rating: rating,
+            creation: firebase.firestore.FieldValue.serverTimestamp(),
         }).then(() => {
             console.log("eatery review doc successfully updated!");
         })
