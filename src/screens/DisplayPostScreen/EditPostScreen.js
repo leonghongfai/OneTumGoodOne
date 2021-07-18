@@ -20,8 +20,10 @@ export default function EditPostScreen(props)  {
     const [eatery, setEatery] = useState("")
     const [rating, setRating] = useState(3)
     const [caption, setCaption] = useState("")
+    const [oldRating, setOldRating] = useState(0)
 
     useEffect(() => {
+        console.log("runrunrun")
         firebase.firestore()
             .collection("eateries")
             .doc(info.id)
@@ -34,7 +36,18 @@ export default function EditPostScreen(props)  {
                     console.log('does not exist')
                 }
             })
-    }, [props.route.params.eateryId])
+        firebase.firestore().collection("posts").doc(firebase.auth().currentUser.uid)
+        .collection("userPosts").doc(info.id)
+        .get()
+        .then((snapshot) => {
+            if (snapshot.exists) {
+                setOldRating(snapshot.data().rating)
+            }
+            else {
+                console.log('does not exist')
+            }
+        })
+    }, [props.route.params.info])
 
     function renderHeader() {
         //console.log(info)
@@ -44,7 +57,7 @@ export default function EditPostScreen(props)  {
             >
                 <TouchableOpacity
                     style={styles.backBox}
-                    onPress={() => props.navigation.navigate("DisplayPost")}
+                    onPress={() => props.navigation.navigate("DisplayPost", {token: 1})}
                 >
                     <Icon name="arrow-back" size={30} />
                 </TouchableOpacity>
@@ -126,14 +139,14 @@ export default function EditPostScreen(props)  {
     const editRatings2 = (info) => {
         const currentNumRatings = eatery.numberOfRatings
         const currentRating = eatery.currentRating
-        const userRating = info.rating
+        const userRating = oldRating
+        console.log(userRating)
         firebase.firestore().collection("eateries").doc(info.id)
         .update({
             caption: caption,
             currentRating: ((currentRating * currentNumRatings) - userRating + rating) / (currentNumRatings)
         }).then(() => {
             console.log("Eatery doc successfully updated!");
-            props.navigation.navigate("Profile", { uid: firebase.auth().currentUser.uid })
         })
         .catch((error) => {
             // The document probably doesn't exist.
@@ -155,7 +168,9 @@ export default function EditPostScreen(props)  {
             // The document probably doesn't exist.
             console.error("Error updating document: ", error);
         });
+        props.navigation.navigate("Profile", { uid: firebase.auth().currentUser.uid })
     }
+
     return (
         <View style={styles.container}>
             {renderHeader()}

@@ -84,8 +84,8 @@ const ProfilePage = (props) => {
     } else {
       setFollowing(false)
     }
-
-  }, [props.route.params.uid, props.following])
+    console.log("run")
+  }, [props.route.params.uid, props.following, props.route.params.token])
 
   const onFollow = () => {
     firebase.firestore()
