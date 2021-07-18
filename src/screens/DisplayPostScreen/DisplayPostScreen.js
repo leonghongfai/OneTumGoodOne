@@ -105,7 +105,7 @@ const DisplayPost = (props) => {
             currentRating: ((currentRating * currentNumRatings) - userRating) / (currentNumRatings - 1)
         }).then(() => {
             console.log("Document successfully updated!");
-            //props.navigation.navigate("Profile", { uid: user })
+            props.navigation.navigate("Profile", { uid: user })
         })
         .catch((error) => {
             // The document probably doesn't exist.
