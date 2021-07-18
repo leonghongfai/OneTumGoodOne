@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     searchBarBox2: {
-        width: width * 0.75,
+        width: width * 0.7,
         height: height * 0.04,
         borderWidth: 0.5,
         borderColor: 'black',
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     searchQueryText: {
         fontSize: 15,
         color: 'black',
+        width: width * 0.7,
     },
     mainCategoriesText: {
         fontSize: 17,
