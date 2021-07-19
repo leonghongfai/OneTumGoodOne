@@ -6,136 +6,47 @@ const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        marginBottom: 20
-    },
-    containerInfo: {
-        margin: 20,
-    },
-    containerGallery: {
-        flex: 1,
-    },
-    image: {
-        flex: 1,
-        aspectRatio: 1 / 1,
-    },
-    containerImage: {
-        flex: 1 / 3
-    },
-    container: {
-        justifyContent: 'center',
-        flex: 1,
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         backgroundColor: 'white',
     },
-    homePageContainer: {
-        justifyContent: 'center',
-        flex: 1,
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-        backgroundColor: 'white',
+    topPadding: {
+        height: height * 0.015,
     },
     searchBarArea: {
         justifyContent: 'center',
-        paddingHorizontal: width * 0.05,
-    },
-    homePageTopBar: {
-        height: height * 0.07,
-        backgroundColor: 'white',
-        paddingTop: height * 0.01,
-    },
-    homePageSeparator: {
-        height: height * 0.02,
-    },
-    homePageMiddlePadding: {
-        flex: 1,
-        backgroundColor: 'white',
-    },
-    homePageBottomPadding: {
+        alignItems: 'center',
         flex: 1,
     },
-    homePageMainContainer: {
-        backgroundColor: 'white',
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-    homePageSmallContainer: {
-        height: height * 0.33,
-        justifyContent: 'center',
-        paddingVertical: height * 0.03,
-    },
-    homePageCategoriesContainer: {
-
-    },
-    homePageCategoriesText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'left',
-    },
-    homePageCategoriesList: {
-        paddingVertical: 0,
-    },
-    homePageCategoriesBox: {
-        padding: 5,
-        paddingVertical: 10,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginRight: 10,
-    },
-    homePageCategoriesInsideBox: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'aliceblue',
-    },
-    homePageCategoriesImage: {
-        width: 30,
-        height: 30,
-    },
-    homePageCategoriesItemText: {
-        fontSize: 9,
-        marginTop: height * 0.01,
-        color: 'black',
-    },
-    homePageTitleText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'left',
-        marginBottom: 20,
-    },
-    homePageImageBlock: {
-        width: 150,
-        marginRight: 5,
-    },
-    homePageImage: {
-        height: 150,
-        width: 150,
-        borderRadius: 30,
-    },
-    homePageRating: {
-        position: 'absolute',
-        bottom: 0,
-        height: 30,
-        width: 70,
-        backgroundColor: 'white',
-        borderTopRightRadius: 30,
-        borderBottomLeftRadius: 30,
-        alignItems: 'center',
-        justifyContent: 'center',
+    searchBarBox: {
+        width: width,
+        height: height * 0.05,
         flexDirection: 'row',
-        ...ColorScheme.shadow,
+        alignItems: 'center',
+        backgroundColor: 'ghostwhite',
     },
-    homePageRatingStar: {
-        height: 15,
-        width: 15,
-        marginRight: 5,
+    searchIconBox: {
+        paddingHorizontal: width * 0.03,
     },
-    homePagePriceBox: {
-        flexDirection: 'row',
+    searchPlaceholder: {
+        fontSize: 15,
+        color: 'dimgray',
     },
-    homePagePrice: {
+    mainContainer: {
+        paddingTop: height * 0.02,
+        flex: 1,
+    },
+    imageContainer: {
+        
+    },
+    username: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        paddingHorizontal: width * 0.03,
+    },
+    image: {
+        aspectRatio: 1,
+    },
+    caption: {
 
     },
 })

@@ -1,18 +1,18 @@
 import React from "react";
 import {
-  Text,
-  View,
-  Image,
-  FlatList,
-  Button,
-  RefreshControl,
+    Text,
+    View,
+    Image,
+    FlatList,
+    Button,
+    RefreshControl,
 } from "react-native";
 import { useState, useEffect } from "react";
-import firebase from 'firebase'
-require('firebase/firestore')
-import { connect } from 'react-redux'
+import firebase from "firebase";
+require("firebase/firestore");
+import { connect } from "react-redux";
 import { TouchableOpacity } from "react-native";
-import styles from "./ProfilePageStyles"
+import styles from "./ProfilePageStyles";
 
 const ProfilePage = (props) => {
   const [userPosts, setUserPosts] = useState([]);
@@ -23,9 +23,10 @@ const ProfilePage = (props) => {
   const [ uid, setUid ] = useState(null)
   const [ listFollower, setListFollower] = useState([])
 
-  const wait = (timeout) => {
-		return new Promise(resolve => setTimeout(resolve, timeout));
-	}
+
+    const wait = (timeout) => {
+        return new Promise((resolve) => setTimeout(resolve, timeout));
+    };
 
 	const onRefresh = React.useCallback(() => {
     const { currentUser, posts } = props
@@ -171,10 +172,9 @@ const ProfilePage = (props) => {
     .delete()
   }
 
-  if (user === null) {
-    return <View />
-  }
-
+    if (user === null) {
+        return <View />;
+    }
   return (
     <View style={styles.container}>
       <View style={styles.containerInfo}>
@@ -210,41 +210,37 @@ const ProfilePage = (props) => {
         :null}
       </View>
 
-      <View style={styles.containerGallery}>
-        <FlatList 
-          numColumns={3}
-          horizontal={false}
-          data={userPosts}
-          refreshControl={
-						<RefreshControl
-						  refreshing={refreshing}
-						  onRefresh={onRefresh}
-						/>}
-          renderItem={({item}) => (
-            <TouchableOpacity 
-              style={styles.containerImage} 
-              onPress={() => props.navigation.navigate("DisplayPost", 
-              {
-                user: props.route.params.uid,
-                item: item
-              })} >
-              <Image
-                style={styles.image}
-                source={{uri: item.downloadURL}}
-              />
-            </TouchableOpacity>
-          )}
-        />
-      </View>
-    </View>
-  );
+            <View style={styles.containerGallery}>
+                <FlatList
+                    numColumns={3}
+                    horizontal={false}
+                    data={userPosts}
+                    refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    }
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            style={styles.containerImage}
+                            onPress={() =>
+                                props.navigation.navigate("DisplayPost", {
+                                    user: props.route.params.uid,
+                                    item: item,
+                                })
+                            }
+                        >
+                            <Image style={styles.image} source={{ uri: item.downloadURL }} />
+                        </TouchableOpacity>
+                    )}
+                />
+            </View>
+        </View>
+    );
 };
 
-
 const mapStateToProps = (store) => ({
-  currentUser: store.userState.currentUser,
-  posts: store.userState.posts,
-  following: store.userState.following
-})
+    currentUser: store.userState.currentUser,
+    posts: store.userState.posts,
+    following: store.userState.following,
+});
 
 export default connect(mapStateToProps, null)(ProfilePage);

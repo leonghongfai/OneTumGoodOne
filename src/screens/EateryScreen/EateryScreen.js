@@ -8,6 +8,7 @@ import {
     ScrollView,
     FlatList,
     Animated,
+    LogBox,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { icons } from '../../../constants'
@@ -15,7 +16,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from "./EateryScreenStyles";
 import firebase from 'firebase'
 require('firebase/firestore')
-import { LogBox } from 'react-native';
 import { Rating } from 'react-native-elements';
 
 
