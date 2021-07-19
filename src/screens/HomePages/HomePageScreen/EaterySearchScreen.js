@@ -2,17 +2,11 @@ import React from "react";
 import {
     Text,
     View,
-    Image,
-    SafeAreaView,
     TouchableOpacity,
-    ScrollView,
     FlatList,
-    RefreshControl,
     TextInput,
 } from "react-native";
-import { icons } from '../../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
-import firebase from 'firebase'
 require('firebase/firestore')
 import styles from "./HomePageStyles";
 
@@ -310,7 +304,6 @@ const SearchScreen = (props) => {
                                 placeholder={"Search eateries!"}
                                 onChangeText={text => onChangeSearch(text)}
                                 value={searchQuery}
-                                onFocus={() => setIsSearch(true)}
                             >
                             </TextInput>
                         </View>
