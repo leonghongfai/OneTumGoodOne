@@ -104,18 +104,34 @@ const DisplayPost = (props) => {
         const currentNumRatings = temp.numberOfRatings
         const currentRating = temp.currentRating
         const userRating = item.rating
-        firebase.firestore().collection("eateries").doc(item.id)
-        .update({
-            numberOfRatings: currentNumRatings - 1,
-            currentRating: ((currentRating * currentNumRatings) - userRating) / (currentNumRatings - 1)
-        }).then(() => {
-            console.log("Document successfully updated!");
-            props.navigation.navigate("Profile", { uid: user })
-        })
-        .catch((error) => {
-            // The document probably doesn't exist.
-            console.error("Error updating document: ", error);
-        });
+        if (currentNumRatings !== 1) {
+            firebase.firestore().collection("eateries").doc(item.id)
+            .update({
+                numberOfRatings: currentNumRatings - 1,
+                currentRating: ((currentRating * currentNumRatings) - userRating) / (currentNumRatings - 1)
+            }).then(() => {
+                console.log("Document successfully updated!");
+                props.navigation.navigate("Profile", { uid: user })
+            })
+            .catch((error) => {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+            });
+        } else {
+            firebase.firestore().collection("eateries").doc(item.id)
+            .update({
+                numberOfRatings: 0,
+                currentRating: 0
+            }).then(() => {
+                console.log("Document successfully updated to zero!");
+                props.navigation.navigate("Profile", { uid: user })
+            })
+            .catch((error) => {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+            });
+        }
+
 
     }
 
@@ -123,7 +139,7 @@ const DisplayPost = (props) => {
         props.navigation.navigate('EditPost', {info: item})
     }
 
-    const renderOptions = () => {
+    const renderOptions = (item) => {
         if (user === firebase.auth().currentUser.uid) {
             return (
                 <View>
@@ -188,7 +204,7 @@ const DisplayPost = (props) => {
                         tintColor='white'
                     />
                     <Text style={{fontSize:10}}>{item.creation.toDate().toString()}</Text>
-                    {renderOptions()}
+                    {renderOptions(item)}
                 </View>
                 
                 
