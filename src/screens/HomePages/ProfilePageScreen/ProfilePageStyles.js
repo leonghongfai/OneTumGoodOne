@@ -7,6 +7,14 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: 40,
     },
+    followerContiner: {
+        flexDirection: 'row'
+    },
+
+    textContainer2: {
+        flex: 1,
+        justifyContent: 'center',
+    },
     containerInfo: {
         margin: 20,
     },
