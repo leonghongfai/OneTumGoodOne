@@ -7,14 +7,14 @@ require('firebase/firestore');
 import Feed from "./Feed";
 import styles from "./FollowPageStyles"
 
-const FollowPage = () => {
+const FollowPage = (props) => {
 
     function renderSearchBar() {
         return (
             <View style={styles.searchBarArea}>
                 <TouchableOpacity
                     style={styles.searchBarBox}
-                    onPress={() => console.log("poggers moggers")}
+                    onPress={() => props.navigation.navigate("FollowSearch")}
                 >
                     <View style={styles.searchIconBox}>
                         <Icon
