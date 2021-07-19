@@ -1,14 +1,14 @@
 import React from "react";
 import {
-  Text,
-  View,
-  Image,
-  FlatList,
-  StyleSheet,
-  Button,
-  RefreshControl,
-  StatusBar,
-  TouchableOpacity,
+    Text,
+    View,
+    Image,
+    FlatList,
+    StyleSheet,
+    Button,
+    RefreshControl,
+    StatusBar,
+    TouchableOpacity,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { icons } from '../../../constants'
@@ -31,22 +31,22 @@ const DisplayPost = (props) => {
 
     useEffect(() => {
         firebase.firestore()
-        .collection("posts")
-        .doc(user)
-        .collection("userPosts")
-        .orderBy("creation", "asc")
-        .get()
-        .then((snapshot) => {
-            let posts = snapshot.docs.map(doc => {
-                const data = doc.data();
-                const id = doc.id;
-                return { id, ...data }
+            .collection("posts")
+            .doc(user)
+            .collection("userPosts")
+            .orderBy("creation", "asc")
+            .get()
+            .then((snapshot) => {
+                let posts = snapshot.docs.map(doc => {
+                    const data = doc.data();
+                    const id = doc.id;
+                    return { id, ...data }
+                })
+                setUserPosts(posts)
+                scrollToItem()
             })
-            setUserPosts(posts)
-            scrollToItem()
-        })
         console.log("runrun")
-    },[props.route.params.item, userPosts.length, index])
+    }, [props.route.params.item, userPosts.length, index])
 
     const scrollToItem = () => {
         if (userPosts.length !== 0) {
@@ -55,49 +55,49 @@ const DisplayPost = (props) => {
                     setIndex(i)
                 }
             }
-            ref_input2.current.scrollToIndex({animated: true, index: index});
+            ref_input2.current.scrollToIndex({ animated: true, index: index });
         }
-        
+
     }
 
     const deletePost = (item) => {
         firebase.firestore().collection("posts").doc(user)
-        .collection("userPosts").doc(item.id)
-        .delete().then(() => {
-            console.log("userPosts document successfully deleted!");
-            
-        }).catch((error) => {
-            console.error("Error removing document: ", error);
-        });
+            .collection("userPosts").doc(item.id)
+            .delete().then(() => {
+                console.log("userPosts document successfully deleted!");
+
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
         deletePost2(item)
     }
 
     const deletePost2 = (item) => {
         firebase.firestore().collection("eateries").doc(item.id)
-        .collection("reviews").doc(user)
-        .delete().then(() => {
-            console.log("Document successfully deleted!");
-            
-        }).catch((error) => {
-            console.error("Error removing document: ", error);
-        });
+            .collection("reviews").doc(user)
+            .delete().then(() => {
+                console.log("Document successfully deleted!");
+
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
         editRatings(item)
     }
 
     const editRatings = (item) => {
         let temp = []
         firebase.firestore().collection("eateries").doc(item.id)
-        .get().then((snapshot) => {
-            if (snapshot.exists) {
-                setEatery(snapshot.data())
-                temp = snapshot.data()
-                editRatings2(item, temp)
-            }
-            else {
-                console.log('does not exist')
-            }
-        })
-        
+            .get().then((snapshot) => {
+                if (snapshot.exists) {
+                    setEatery(snapshot.data())
+                    temp = snapshot.data()
+                    editRatings2(item, temp)
+                }
+                else {
+                    console.log('does not exist')
+                }
+            })
+
     }
 
     const editRatings2 = (item, temp) => {
@@ -106,37 +106,37 @@ const DisplayPost = (props) => {
         const userRating = item.rating
         if (currentNumRatings !== 1) {
             firebase.firestore().collection("eateries").doc(item.id)
-            .update({
-                numberOfRatings: currentNumRatings - 1,
-                currentRating: ((currentRating * currentNumRatings) - userRating) / (currentNumRatings - 1)
-            }).then(() => {
-                console.log("Document successfully updated!");
-                props.navigation.navigate("Profile", { uid: user })
-            })
-            .catch((error) => {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-            });
+                .update({
+                    numberOfRatings: currentNumRatings - 1,
+                    currentRating: ((currentRating * currentNumRatings) - userRating) / (currentNumRatings - 1)
+                }).then(() => {
+                    console.log("Document successfully updated!");
+                    props.navigation.navigate("Profile", { uid: user })
+                })
+                .catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
         } else {
             firebase.firestore().collection("eateries").doc(item.id)
-            .update({
-                numberOfRatings: 0,
-                currentRating: 0
-            }).then(() => {
-                console.log("Document successfully updated to zero!");
-                props.navigation.navigate("Profile", { uid: user })
-            })
-            .catch((error) => {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-            });
+                .update({
+                    numberOfRatings: 0,
+                    currentRating: 0
+                }).then(() => {
+                    console.log("Document successfully updated to zero!");
+                    props.navigation.navigate("Profile", { uid: user })
+                })
+                .catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
         }
 
 
     }
 
     const editPost = (item) => {
-        props.navigation.navigate('EditPost', {info: item})
+        props.navigation.navigate('EditPost', { info: item })
     }
 
     const renderOptions = (item) => {
@@ -144,12 +144,12 @@ const DisplayPost = (props) => {
             return (
                 <View>
                     <Text
-                    style={{marginBottom: 20}}
-                    onPress={(() => 
-                        deletePost(item)
+                        style={{ marginBottom: 20 }}
+                        onPress={(() =>
+                            deletePost(item)
                         )}>
-                    Delete Post</Text>
-                    
+                        Delete Post</Text>
+
                     <Text
                         onPress={(() => {
                             editPost(item)
@@ -159,7 +159,7 @@ const DisplayPost = (props) => {
                 </View>
             )
         }
-        
+
     }
 
     function renderHeader() {
@@ -179,37 +179,36 @@ const DisplayPost = (props) => {
         <View style={styles.container}>
             {renderHeader()}
             <FlatList
-             onScrollToIndexFailed={info => {
-                const wait = new Promise(resolve => setTimeout(resolve, 500));
-                wait.then(() => {
-                  ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
-                });
-              }}
-            ref = {ref_input2}
-            horizontal={false}
-            data={userPosts}
-            renderItem={({item}) => (
-                <View style={styles.containerGallery}>
-                    <Text style={styles.info}>{item.username}</Text>
-                    <Image
-                    style={styles.image}
-                    source={{uri: item.downloadURL}}
-                    />
-                    <Text>{item.eatery}</Text>
-                    <Text>{item.caption}</Text> 
-                    <Rating
-                        size={15}
-                        readonly = {true}
-                        startingValue={item.rating}
-                        tintColor='white'
-                    />
-                    <Text style={{fontSize:10}}>{item.creation.toDate().toString()}</Text>
-                    {renderOptions(item)}
-                </View>
-                
-                
-            )}
+                onScrollToIndexFailed={info => {
+                    const wait = new Promise(resolve => setTimeout(resolve, 500));
+                    wait.then(() => {
+                        ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
+                    });
+                }}
+                ref={ref_input2}
+                horizontal={false}
+                data={userPosts}
+                renderItem={({ item }) => (
+                    <View style={styles.containerGallery}>
+                        <Text style={styles.info}>{item.username}</Text>
+                        <Image
+                            style={styles.image}
+                            source={{ uri: item.downloadURL }}
+                        />
+                        <Text>{item.eatery}</Text>
+                        <Text>{item.caption}</Text>
+                        <Rating
+                            size={15}
+                            readonly={true}
+                            startingValue={item.rating}
+                            tintColor='white'
+                        />
+                        <Text style={{ fontSize: 10 }}>{item.creation.toDate().toString()}</Text>
+                        {renderOptions(item)}
+                    </View>
+                )}
             />
+            <View style={styles.bottomPadding} />
         </View>
     )
 }
