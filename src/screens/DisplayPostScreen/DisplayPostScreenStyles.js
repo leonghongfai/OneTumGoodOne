@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flex: 1,
     },
+    bottomPadding: {
+        paddingBottom: height * 0.054,
+    },
     image: {
         aspectRatio: 1/1,
     },

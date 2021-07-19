@@ -16,6 +16,7 @@ const SearchScreen = (props) => {
     const [users, setUsers] = React.useState([])
     const [searchQuery, setSearchQuery] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
+    const [isSearch, setIsSearch] = React.useState(false);
 
     React.useEffect(() => {
         firebase.firestore()
@@ -30,10 +31,10 @@ const SearchScreen = (props) => {
                 setUsers(users);
             })
     }, [])
-    
+
     users.sort((a, b) => {
         let length = a.username.length < b.username.length ? a.username.length : b.username.length
-        let first = a.username.toLowerCase()       
+        let first = a.username.toLowerCase()
         let second = b.username.toLowerCase()
 
         for (let i = 0; i < length; i++) {
@@ -46,47 +47,109 @@ const SearchScreen = (props) => {
     })
 
     function renderScreen() {
+
         const onChangeSearch = (query) => {
 
             setSearchQuery(query)
 
-            const newResults = users.filter(item => {
-                const itemData = item.username.toLowerCase()
-                const queryData = query.toLowerCase()
-                return itemData.includes(queryData)
-            })
-            
-            setSearchResults(newResults)
+            if (query) {
+
+                setIsSearch(true)
+
+                const newResults = users.filter(item => {
+                    const itemData = item.username.toLowerCase()
+                    const queryData = query.toLowerCase()
+                    return itemData.includes(queryData)
+                })
+
+                setSearchResults(newResults)
+
+            } else {
+
+                setIsSearch(false)
+
+            }
         }
 
-        return (
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.searchQueryText}
-                    placeholder="Search users"
-                    onChangeText={text => onChangeSearch(text)}
-                    value={searchQuery}
-                />
-
-                <FlatList
-                    data={searchResults}
-                    renderItem={({ item }) => (
+        if (isSearch) {
+            return (
+                <View>
+                    <View style={styles.searchBarArea2}>
                         <TouchableOpacity
-                            onPress={() => props.navigation.navigate("Profile", { uid: item.id })}>
-                            <Text>{item.username}</Text>
+                            style={styles.backBox}
+                            onPress={() => props.navigation.navigate("Home")}
+                        >
+                            <Icon name="arrow-back" size={25} />
                         </TouchableOpacity>
 
-                    )}
-                />
-            </View>
+                        <View style={styles.searchBarBox2}>
+                            <TextInput
+                                style={styles.searchQueryText}
+                                placeholder="Search users"
+                                onChangeText={text => onChangeSearch(text)}
+                                value={searchQuery}
+                            />
+                        </View>
+                    </View>
 
-        )
+                    <FlatList
+                        data={searchResults}
+                        style={styles.userResults}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity
+                                onPress={() => {
+                                    props.navigation.navigate("Profile", {
+                                        uid: item.id
+                                    })
+                                }}
+                            >
+                                <View style={styles.searchResultsBox}>
+                                    <Text style={styles.searchResultsText}>
+                                        {item.username}
+                                    </Text>
+                                    <View style={styles.iconRightPadding}>
+                                        <Icon name="navigate-outline" />
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+
+                        )}
+                    />
+                </View>
+
+            )
+        } else {
+            return (
+                <View>
+                    <View style={styles.searchBarArea2}>
+                        <TouchableOpacity
+                            style={styles.backBox}
+                            onPress={() => props.navigation.navigate("Home")}
+                        >
+                            <Icon name="arrow-back" size={25} />
+                        </TouchableOpacity>
+
+                        <View style={styles.searchBarBox2}>
+                            <TextInput
+                                style={styles.searchQueryText}
+                                placeholder="Search users"
+                                onChangeText={text => onChangeSearch(text)}
+                                value={searchQuery}
+                            />
+                        </View>
+                    </View>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <Text>Poggers Moggers</Text>
+                    </View>
+                </View>
+            )
+        }
     }
-    
+
     return (
         <View style={styles.container}>
-            <View style={styles.searchScreenTopBar} />
-                {renderScreen()}
+            <View style={styles.topPadding} />
+            {renderScreen()}
             <View style={styles.searchScreenBottomPadding} />
         </View>
     );
