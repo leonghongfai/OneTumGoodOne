@@ -144,8 +144,6 @@ export default function EditPostScreen(props)  {
         console.log(userRating)
         firebase.firestore().collection("eateries").doc(info.id)
         .update({
-            caption: caption,
-            latestReview: firebase.firestore.FieldValue.serverTimestamp(),
             currentRating: ((currentRating * currentNumRatings) - userRating + rating) / (currentNumRatings)
         }).then(() => {
             console.log("Eatery doc successfully updated!");
