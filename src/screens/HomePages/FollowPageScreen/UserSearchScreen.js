@@ -7,12 +7,13 @@ import {
     TextInput,
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
+import firebase from "firebase";
 require('firebase/firestore')
 import styles from "./FollowPageStyles";
 
 const SearchScreen = (props) => {
 
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = React.useState([])
     const [searchQuery, setSearchQuery] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
 
