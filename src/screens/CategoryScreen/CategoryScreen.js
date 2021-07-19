@@ -7,18 +7,17 @@ import {
     TouchableOpacity,
     FlatList,
 } from "react-native";
-import { icons } from '../../../constants'
-import Icon from 'react-native-vector-icons/Ionicons';
+import { icons } from "../../../constants";
+import Icon from "react-native-vector-icons/Ionicons";
 import styles from "./CategoryScreenStyles";
-require('firebase/firestore')
+require("firebase/firestore");
 
 const CategoryScreen = (props) => {
-
-    const category = props.route.params.category
-    const categoryId = props.route.params.categoryId
-    const eateryData = props.route.params.eateryData
-    const [myList, setMyList] = useState([])
-    const [isFiltered, setIsFiltered] = useState(false)
+    const category = props.route.params.category;
+    const categoryId = props.route.params.categoryId;
+    const eateryData = props.route.params.eateryData;
+    const [myList, setMyList] = useState([]);
+    const [isFiltered, setIsFiltered] = useState(false);
 
     const categoryData = [
         {
@@ -165,39 +164,39 @@ const CategoryScreen = (props) => {
             id: 36,
             name: "Western",
         },
-    ]
+    ];
 
-    let eateriesToShow = []
+    let eateriesToShow = [];
 
     for (let i = 0; i < eateryData.length; i++) {
-        let arr = eateryData[i].categories
+        let arr = eateryData[i].categories;
         if (arr.includes(categoryId)) {
-            eateriesToShow.push(eateryData[i])
+            eateriesToShow.push(eateryData[i]);
         }
     }
 
     function sortByRating() {
         eateriesToShow.sort(function (a, b) {
-            return b.currentRating - a.currentRating
-        })
-        setMyList([...eateriesToShow])
-        setIsFiltered(true)
+            return b.currentRating - a.currentRating;
+        });
+        setMyList([...eateriesToShow]);
+        setIsFiltered(true);
     }
 
     function sortByPriceRange() {
         eateriesToShow.sort(function (a, b) {
-            return a.priceRating - b.priceRating
-        })
-        setMyList([...eateriesToShow])
-        setIsFiltered(true)
+            return a.priceRating - b.priceRating;
+        });
+        setMyList([...eateriesToShow]);
+        setIsFiltered(true);
     }
 
     function sortByPopularity() {
         eateriesToShow.sort(function (a, b) {
-            return b.numberOfRatings - a.numberOfRatings
-        })
-        setMyList([...eateriesToShow])
-        setIsFiltered(true)
+            return b.numberOfRatings - a.numberOfRatings;
+        });
+        setMyList([...eateriesToShow]);
+        setIsFiltered(true);
     }
 
     function renderHeader() {
@@ -218,7 +217,7 @@ const CategoryScreen = (props) => {
                         <TouchableOpacity
                             style={styles.filterButton}
                             onPress={() => {
-                                sortByRating()
+                                sortByRating();
                             }}
                         >
                             <Text>Ratings</Text>
@@ -226,7 +225,7 @@ const CategoryScreen = (props) => {
                         <TouchableOpacity
                             style={styles.filterButton}
                             onPress={() => {
-                                sortByPriceRange()
+                                sortByPriceRange();
                             }}
                         >
                             <Text>Price Range</Text>
@@ -234,7 +233,7 @@ const CategoryScreen = (props) => {
                         <TouchableOpacity
                             style={styles.filterButton}
                             onPress={() => {
-                                sortByPopularity()
+                                sortByPopularity();
                             }}
                         >
                             <Text>Popularity</Text>
@@ -242,7 +241,7 @@ const CategoryScreen = (props) => {
                     </View>
                 </View>
             </View>
-        )
+        );
     }
 
     function renderEateries() {
@@ -250,16 +249,15 @@ const CategoryScreen = (props) => {
             <TouchableOpacity
                 key={item.id}
                 style={styles.eateryImageBox}
-				onPress={() =>
+                onPress={() =>
                     props.navigation.navigate("Eatery", {
-						eateryId: item.id,
-					})
-
-				}            
+                        eateryId: item.id,
+                    })
+                }
             >
                 <Image
                     source={{ uri: item.image }}
-                    resizeMode='cover'
+                    resizeMode="cover"
                     style={styles.eateryImage}
                 />
                 <View style={styles.eateryItemText}>
@@ -267,12 +265,14 @@ const CategoryScreen = (props) => {
 
                     <View style={styles.ratingAndPrice}>
                         <View style={styles.ratingBox}>
-                            <Image
-                                source={icons.star}
-                                style={styles.ratingStar}
-                            />
-                            <Text style={styles.ratingNumber}>{item.currentRating.toFixed(1)}</Text>
-                            <Text style={styles.numberOfRatings}> ({item.numberOfRatings})</Text>
+                            <Image source={icons.star} style={styles.ratingStar} />
+                            <Text style={styles.ratingNumber}>
+                                {item.currentRating.toFixed(1)}
+                            </Text>
+                            <Text style={styles.numberOfRatings}>
+                                {" "}
+                                ({item.numberOfRatings})
+                            </Text>
                         </View>
 
                         <View style={styles.separator}>
@@ -280,18 +280,17 @@ const CategoryScreen = (props) => {
                         </View>
 
                         <View style={styles.priceRatingBox}>
-                            {
-                                [1, 2, 3].map((priceRating) => (
-                                    <Text
-                                        key={priceRating}
-                                        style={{
-                                            fontSize: 13,
-                                            color: (priceRating <= item.priceRating) ?
-                                                'black' : 'white'
-                                        }}
-                                    >$</Text>
-                                ))
-                            }
+                            {[1, 2, 3].map((priceRating) => (
+                                <Text
+                                    key={priceRating}
+                                    style={{
+                                        fontSize: 13,
+                                        color: priceRating <= item.priceRating ? "black" : "white",
+                                    }}
+                                >
+                                    $
+                                </Text>
+                            ))}
                         </View>
                     </View>
 
@@ -299,50 +298,48 @@ const CategoryScreen = (props) => {
                         <View style={styles.separator}>
                             <Icon name="ellipse" size={3} />
                         </View>
-                        {
-                            item.categories.map((categoryId) => {
-                                return (
-                                    <View
-                                        style={styles.categoryTitles}
-                                        key={categoryId}
-                                    >
-                                        <Text style={styles.categoryTitlesText}> {categoryData[categoryId - 1].name} </Text>
-                                        <View style={styles.separator}>
-                                            <Icon name="ellipse" size={3} />
-                                        </View>
+                        {item.categories.map((categoryId) => {
+                            return (
+                                <View style={styles.categoryTitles} key={categoryId}>
+                                    <Text style={styles.categoryTitlesText}>
+                                        {" "}
+                                        {categoryData[categoryId - 1].name}{" "}
+                                    </Text>
+                                    <View style={styles.separator}>
+                                        <Icon name="ellipse" size={3} />
                                     </View>
-                                )
-                            })
-                        }
+                                </View>
+                            );
+                        })}
                     </View>
                 </View>
             </TouchableOpacity>
-        )
+        );
 
         if (!isFiltered) {
             return (
                 <View>
                     <FlatList
                         data={eateriesToShow}
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={(item) => item.id.toString()}
                         renderItem={renderItem}
                         showsVerticalScrollIndicator={true}
                         style={styles.mainList}
                     />
                 </View>
-            )
+            );
         } else {
             return (
                 <View>
                     <FlatList
                         data={myList}
-                        keyExtractor={item => item.id.toString()}
+                        keyExtractor={(item) => item.id.toString()}
                         renderItem={renderItem}
                         showsVerticalScrollIndicator={true}
                         style={styles.mainList}
                     />
                 </View>
-            )
+            );
         }
     }
 
@@ -353,6 +350,6 @@ const CategoryScreen = (props) => {
             {renderEateries()}
         </SafeAreaView>
     );
-}
+};
 
 export default CategoryScreen;

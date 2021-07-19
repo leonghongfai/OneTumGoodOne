@@ -1,46 +1,43 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, FlatList, ScrollView, TouchableOpacity } from 'react-native'
+import { icons } from '../../../../constants'
+import Icon from 'react-native-vector-icons/Ionicons';
 import firebase from 'firebase';
 require('firebase/firestore');
 import Feed from "./Feed";
 import styles from "./FollowPageStyles"
 
-export default function FollowPage(props) {
-    const [users, setUsers] = useState([])
+const FollowPage = () => {
 
-    const fetchUsers = (search) => {
-        firebase.firestore()
-            .collection('users')
-            .where('username', '>=', search)
-            .get()
-            .then((snapshot) => {
-                let users = snapshot.docs.map(doc => {
-                    const data = doc.data();
-                    const id = doc.id;
-                    return { id, ...data }
-                });
-                setUsers(users);
-            })
+    function renderSearchBar() {
+        return (
+            <View style={styles.searchBarArea}>
+                <TouchableOpacity
+                    style={styles.searchBarBox}
+                    onPress={() => console.log("poggers moggers")}
+                >
+                    <View style={styles.searchIconBox}>
+                        <Icon
+                            name="search"
+                            size={15}
+                            color='darkgray'
+                        />
+                    </View>
+                    <Text style={styles.searchPlaceholder}>
+                        Search users
+                    </Text>
+                </TouchableOpacity>
+            </View >
+        )
     }
 
     return (
-        <View style={styles.container}>
-            <TextInput
-                placeholder="Search..."
-                onChangeText={(search) => fetchUsers(search)}
-            />
-
-            <FlatList
-                data={users}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        onPress={() => props.navigation.navigate("Profile", {uid: item.id})}>
-                        <Text>{item.username}</Text>
-                    </TouchableOpacity>
-
-                )}
-            />
-            <Feed />
-        </View>
+        <ScrollView style={styles.container}>
+            <View style={styles.topPadding}/>
+                {renderSearchBar()}
+                <Feed/>
+        </ScrollView>
     )
 }
+
+export default FollowPage;

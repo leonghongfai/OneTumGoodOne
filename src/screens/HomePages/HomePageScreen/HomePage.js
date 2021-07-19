@@ -210,7 +210,7 @@ const HomePage = ({ navigation }) => {
 			<View style={styles.searchBarArea}>
 				<TouchableOpacity
 					style={styles.searchBarBox}
-					onPress={() => navigation.navigate("Search", {
+					onPress={() => navigation.navigate("EaterySearch", {
 						eateryData: eateries,
 					})}
 				>
@@ -346,7 +346,7 @@ const HomePage = ({ navigation }) => {
 								key={priceRating}
 								style={{
 									color: (priceRating <= item.priceRating) ?
-										'black' : 'white'
+										'black' : 'gainsboro'
 								}}
 							>$</Text>
 						))
@@ -385,10 +385,8 @@ const HomePage = ({ navigation }) => {
 					navigation.navigate("Eatery", {
 						eateryId: item.id,
 					})
-
 				}
 			>
-
 				<View>
 					<Image
 						source={{ uri: item.image }}
@@ -405,6 +403,19 @@ const HomePage = ({ navigation }) => {
 				</View>
 
 				<Text>{item.name}</Text>
+				<View style={styles.homePagePriceBox}>
+					{
+						[1, 2, 3].map((priceRating) => (
+							<Text
+								key={priceRating}
+								style={{
+									color: (priceRating <= item.priceRating) ?
+										'black' : 'gainsboro'
+								}}
+							>$</Text>
+						))
+					}
+				</View>
 			</TouchableOpacity>
 		)
 
@@ -458,6 +469,19 @@ const HomePage = ({ navigation }) => {
 				</View>
 
 				<Text>{item.name}</Text>
+				<View style={styles.homePagePriceBox}>
+					{
+						[1, 2, 3].map((priceRating) => (
+							<Text
+								key={priceRating}
+								style={{
+									color: (priceRating <= item.priceRating) ?
+										'black' : 'gainsboro'
+								}}
+							>$</Text>
+						))
+					}
+				</View>
 			</TouchableOpacity>
 		)
 
