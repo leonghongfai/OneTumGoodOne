@@ -166,11 +166,13 @@ const SearchScreen = (props) => {
 
     eateryData.sort((a, b) => {
         let length = a.name.length < b.name.length ? a.name.length : b.name.length
+        let first = a.name.toLowerCase()
+        let second = b.name.toLowerCase()
 
         for (let i = 0; i < length; i++) {
-            if (a.name.charAt(i) < b.name.charAt(i)) {
+            if (first.charAt(i) < second.charAt(i)) {
                 return -1
-            } else if (a.name.charAt(i) > b.name.charAt(i)) {
+            } else if (first.charAt(i) > second.charAt(i)) {
                 return 1
         }}
     })
@@ -190,21 +192,12 @@ const SearchScreen = (props) => {
                     return itemData.includes(queryData)
                 })
 
-                newResults.sort((a, b) => {
-                    let length = a.name.length < b.name.length ? a.name.length : b.name.length
-            
-                    for (let i = 0; i < length; i++) {
-                        if (a.name.charAt(i) < b.name.charAt(i)) {
-                            return -1
-                        } else if (a.name.charAt(i) > b.name.charAt(i)) {
-                            return 1
-                    }}
-                })
-                
                 setSearchResults(newResults)
 
             } else {
+
                 setIsSearch(false)
+
             }
         }
 

@@ -30,6 +30,20 @@ const SearchScreen = (props) => {
                 setUsers(users);
             })
     }, [])
+    
+    users.sort((a, b) => {
+        let length = a.username.length < b.username.length ? a.username.length : b.username.length
+        let first = a.username.toLowerCase()       
+        let second = b.username.toLowerCase()
+
+        for (let i = 0; i < length; i++) {
+            if (first.charAt(i) < second.charAt(i)) {
+                return -1
+            } else if (first.charAt(i) > second.charAt(i)) {
+                return 1
+            }
+        }
+    })
 
     function renderScreen() {
         const onChangeSearch = (query) => {
@@ -41,19 +55,7 @@ const SearchScreen = (props) => {
                 const queryData = query.toLowerCase()
                 return itemData.includes(queryData)
             })
-
-            newResults.sort((a, b) => {
-                let length = a.username.length < b.username.length ? a.username.length : b.username.length
-
-                for (let i = 0; i < length; i++) {
-                    if (a.username.charAt(i) < b.username.charAt(i)) {
-                        return -1
-                    } else if (a.username.charAt(i) > b.username.charAt(i)) {
-                        return 1
-                    }
-                }
-            })
-
+            
             setSearchResults(newResults)
         }
 
