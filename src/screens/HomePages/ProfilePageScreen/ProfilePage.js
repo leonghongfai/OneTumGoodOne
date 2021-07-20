@@ -15,200 +15,200 @@ import { TouchableOpacity } from "react-native";
 import styles from "./ProfilePageStyles";
 
 const ProfilePage = (props) => {
-  const [userPosts, setUserPosts] = useState([]);
-  const [user, setUser] = useState(null);
-  const [following, setFollowing] = useState(false)
-	const [refreshing, setRefreshing] = React.useState(false);
-  const [listFollowing, setListFollowing] = useState([])
-  const [ uid, setUid ] = useState(null)
-  const [ listFollower, setListFollower] = useState([])
+    const [userPosts, setUserPosts] = useState([]);
+    const [user, setUser] = useState(null);
+    const [following, setFollowing] = useState(false)
+    const [refreshing, setRefreshing] = React.useState(false);
+    const [listFollowing, setListFollowing] = useState([])
+    const [uid, setUid] = useState(null)
+    const [listFollower, setListFollower] = useState([])
 
 
     const wait = (timeout) => {
         return new Promise((resolve) => setTimeout(resolve, timeout));
     };
 
-	const onRefresh = React.useCallback(() => {
-    const { currentUser, posts } = props
-    setUid(props.route.params.uid)
-    if (props.route.params.uid === firebase.auth().currentUser.uid) {
-      setUser(currentUser)
-      //console.log(currentUser)
-      setUserPosts(posts)
-    } else {
-      firebase.firestore()
-        .collection("users")
-        .doc(props.route.params.uid)
-        .get()
-        .then((snapshot) => {
-            if (snapshot.exists) {
-                setUser(snapshot.data());
-                //console.log(snapshot.data())
-            }
-            else {
-                console.log('does not exist')
-            }
-        })
-      firebase.firestore()
-      .collection("posts")
-      .doc(props.route.params.uid)
-      .collection("userPosts")
-      .orderBy("creation", "asc")
-      .get()
-      .then((snapshot) => {
-          let posts = snapshot.docs.map(doc => {
-              const data = doc.data();
-              const id = doc.id;
-              return { id, ...data }
-          })
-          setUserPosts(posts)
-      })
+    const onRefresh = React.useCallback(() => {
+        const { currentUser, posts } = props
+        setUid(props.route.params.uid)
+        if (props.route.params.uid === firebase.auth().currentUser.uid) {
+            setUser(currentUser)
+            //console.log(currentUser)
+            setUserPosts(posts)
+        } else {
+            firebase.firestore()
+                .collection("users")
+                .doc(props.route.params.uid)
+                .get()
+                .then((snapshot) => {
+                    if (snapshot.exists) {
+                        setUser(snapshot.data());
+                        //console.log(snapshot.data())
+                    }
+                    else {
+                        console.log('does not exist')
+                    }
+                })
+            firebase.firestore()
+                .collection("posts")
+                .doc(props.route.params.uid)
+                .collection("userPosts")
+                .orderBy("creation", "asc")
+                .get()
+                .then((snapshot) => {
+                    let posts = snapshot.docs.map(doc => {
+                        const data = doc.data();
+                        const id = doc.id;
+                        return { id, ...data }
+                    })
+                    setUserPosts(posts)
+                })
+        }
+
+        if (props.following.indexOf(props.route.params.uid) > -1) {
+            setFollowing(true)
+        } else {
+            setFollowing(false)
+        }
+        getFollowing()
+    }, []);
+
+    React.useEffect(() => {
+        const { currentUser, posts } = props
+        setUid(props.route.params.uid)
+        if (props.route.params.uid === firebase.auth().currentUser.uid) {
+            setUser(currentUser)
+            //console.log(currentUser)
+            setUserPosts(posts)
+        } else {
+            firebase.firestore()
+                .collection("users")
+                .doc(props.route.params.uid)
+                .get()
+                .then((snapshot) => {
+                    if (snapshot.exists) {
+                        setUser(snapshot.data());
+                        //console.log(snapshot.data())
+                    }
+                    else {
+                        console.log('does not exist')
+                    }
+                })
+            firebase.firestore()
+                .collection("posts")
+                .doc(props.route.params.uid)
+                .collection("userPosts")
+                .orderBy("creation", "asc")
+                .get()
+                .then((snapshot) => {
+                    let posts = snapshot.docs.map(doc => {
+                        const data = doc.data();
+                        const id = doc.id;
+                        return { id, ...data }
+                    })
+                    setUserPosts(posts)
+                })
+        }
+
+        if (props.following.indexOf(props.route.params.uid) > -1) {
+            setFollowing(true)
+        } else {
+            setFollowing(false)
+        }
+        getFollowing()
+        getFollower()
+    }, [props.route.params.uid, props.following, props.route.params.token, uid])
+
+    const getFollower = () => {
+        firebase.firestore().collection("users")
+            .doc(props.route.params.uid).collection("follower")
+            .get()
+            .then((snapshot) => {
+                let follower = snapshot.docs.map(doc => {
+                    const id = doc.id;
+                    return id
+                })
+                setListFollower(follower)
+            })
     }
 
-    if (props.following.indexOf(props.route.params.uid) > -1) {
-      setFollowing(true)
-    } else {
-      setFollowing(false)
-    }
-    getFollowing()
-	}, []);
-
-  useEffect(() => {
-    const { currentUser, posts } = props
-    setUid(props.route.params.uid)
-    if (props.route.params.uid === firebase.auth().currentUser.uid) {
-      setUser(currentUser)
-      //console.log(currentUser)
-      setUserPosts(posts)
-    } else {
-      firebase.firestore()
-        .collection("users")
-        .doc(props.route.params.uid)
-        .get()
-        .then((snapshot) => {
-            if (snapshot.exists) {
-                setUser(snapshot.data());
-                //console.log(snapshot.data())
-            }
-            else {
-                console.log('does not exist')
-            }
-        })
-      firebase.firestore()
-      .collection("posts")
-      .doc(props.route.params.uid)
-      .collection("userPosts")
-      .orderBy("creation", "asc")
-      .get()
-      .then((snapshot) => {
-          let posts = snapshot.docs.map(doc => {
-              const data = doc.data();
-              const id = doc.id;
-              return { id, ...data }
-          })
-          setUserPosts(posts)
-      })
+    const getFollowing = () => {
+        firebase.firestore().collection("following").doc(props.route.params.uid)
+            .collection("userFollowing").get()
+            .then((snapshot) => {
+                let following1 = snapshot.docs.map(doc => {
+                    const id = doc.id;
+                    return id
+                })
+                setListFollowing(following1)
+            })
     }
 
-    if (props.following.indexOf(props.route.params.uid) > -1) {
-      setFollowing(true)
-    } else {
-      setFollowing(false)
+    const onFollow = () => {
+        firebase.firestore()
+            .collection("following")
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userFollowing")
+            .doc(props.route.params.uid)
+            .set({})
+
+        firebase.firestore().collection("users").doc(props.route.params.uid)
+            .collection("follower").doc(firebase.auth().currentUser.displayName)
+            .set({
+                username: firebase.auth().currentUser.displayName
+            })
     }
-    getFollowing()
-    getFollower()
-  }, [props.route.params.uid, props.following, props.route.params.token, uid])
 
-  const getFollower = () => {
-    firebase.firestore().collection("users")
-      .doc(props.route.params.uid).collection("follower")
-      .get()
-      .then((snapshot) => {
-        let follower = snapshot.docs.map(doc => {
-            const id = doc.id;
-            return id
-        })
-        setListFollower(follower)
-      })
-  }
+    const onUnfollow = () => {
+        firebase.firestore()
+            .collection("following")
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userFollowing")
+            .doc(props.route.params.uid)
+            .delete()
 
-  const getFollowing = () => {
-    firebase.firestore().collection("following").doc(props.route.params.uid)
-    .collection("userFollowing").get()
-    .then((snapshot) => {
-      let following1 = snapshot.docs.map(doc => {
-          const id = doc.id;
-          return id
-      })
-      setListFollowing(following1)
-    })
-  }
-  
-  const onFollow = () => {
-    firebase.firestore()
-    .collection("following")
-    .doc(firebase.auth().currentUser.uid)
-    .collection("userFollowing")
-    .doc(props.route.params.uid)
-    .set({})
-
-    firebase.firestore().collection("users").doc(props.route.params.uid)
-    .collection("follower").doc(firebase.auth().currentUser.displayName)
-    .set({
-      username: firebase.auth().currentUser.displayName
-    })
-  }
-
-  const onUnfollow = () => {
-    firebase.firestore()
-    .collection("following")
-    .doc(firebase.auth().currentUser.uid)
-    .collection("userFollowing")
-    .doc(props.route.params.uid)
-    .delete()
-
-    firebase.firestore().collection("users").doc(props.route.params.uid)
-    .collection("follower").doc(firebase.auth().currentUser.displayName)
-    .delete()
-  }
+        firebase.firestore().collection("users").doc(props.route.params.uid)
+            .collection("follower").doc(firebase.auth().currentUser.displayName)
+            .delete()
+    }
 
     if (user === null) {
         return <View />;
     }
-  return (
-    <View style={styles.container}>
-      <View style={styles.containerInfo}>
-        <Text>{user.username}</Text>
-        <Text>{user.email}</Text>
-        <View style={styles.followerContainer}>
-          <View>
-            <Text>Following: {listFollowing.length}</Text>
-          </View>
-          <View>
-            <Text>Follwers: {listFollower.length}</Text>
-          </View>
-        </View>
-        {props.route.params.uid !== firebase.auth().currentUser.uid
-        ? (
-          <View>
-            {following? (
-              <Button 
-                title="Following"
-                onPress={() => onUnfollow()}
-                />            
-              )
-            : (
-              <Button 
-                title="Follow"
-                onPress={() => onFollow()}
-              />
-            )
-            }
-              
-          </View>
-        ) 
-        :null}
-      </View>
+    return (
+        <View style={styles.container}>
+            <View style={styles.containerInfo}>
+                <Text>{user.username}</Text>
+                <Text>{user.email}</Text>
+                <View style={styles.followerContainer}>
+                    <View>
+                        <Text>Following: {listFollowing.length}</Text>
+                    </View>
+                    <View>
+                        <Text>Follwers: {listFollower.length}</Text>
+                    </View>
+                </View>
+                {props.route.params.uid !== firebase.auth().currentUser.uid
+                    ? (
+                        <View>
+                            {following ? (
+                                <Button
+                                    title="Following"
+                                    onPress={() => onUnfollow()}
+                                />
+                            )
+                                : (
+                                    <Button
+                                        title="Follow"
+                                        onPress={() => onFollow()}
+                                    />
+                                )
+                            }
+
+                        </View>
+                    )
+                    : null}
+            </View>
 
             <View style={styles.containerGallery}>
                 <FlatList

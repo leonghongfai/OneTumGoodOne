@@ -105,7 +105,6 @@ export default function SaveImageScreen(props) {
             }).then((function () {
                 props.navigation.navigate("Profile", { uid: firebase.auth().currentUser.uid });
             }))
-        
     }
 
     const savePostData2 = (downloadURL) => {

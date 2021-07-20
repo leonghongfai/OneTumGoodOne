@@ -75,6 +75,9 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: 'dimgray',
     },
+    mainContainer: {
+        paddingBottom: height * 0.1,
+    },
     imageContainer: {
         
     },
