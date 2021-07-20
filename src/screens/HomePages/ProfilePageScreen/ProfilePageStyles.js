@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     followerContiner: {
-        flexDirection: 'row'
+        flex: 1
     },
 
     textContainer2: {
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     },
     containerInfo: {
         margin: 20,
+        flexDirection: 'row'
     },
     containerGallery: {
         flex: 1,
