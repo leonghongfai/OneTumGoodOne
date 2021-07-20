@@ -53,7 +53,6 @@ const Feed = (props) => {
     );
 };
 
-
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser,
     following: store.userState.following,
