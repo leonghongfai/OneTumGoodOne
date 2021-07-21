@@ -39,7 +39,8 @@ const Feed = (props) => {
                 data={posts}
                 renderItem={({ item }) => (
                     <View style={styles.imageContainer}>
-                        <Text style={styles.username}>{item.user.username}</Text>
+                        <Text style={styles.username}
+                        >{item.user.username}</Text>
 
                         <Image
                             style={styles.image}
