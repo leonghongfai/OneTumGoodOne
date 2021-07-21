@@ -67,6 +67,9 @@ const FollowPage = (props) => {
                                 style={styles.image}
                                 source={{ uri: item.downloadURL }}
                             />
+                            <Text style={styles.caption}
+                                onPress ={() => props.navigation.navigate("Eatery", {eateryId: item.id})}
+                            >{item.eatery}</Text>
                             <Text style={styles.caption}>{item.caption}</Text>
                         </View>
                     )}
