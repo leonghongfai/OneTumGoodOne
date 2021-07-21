@@ -1,23 +1,17 @@
-import React, { useState } from 'react'
-import {
-    View,
-    Text,
-    Image,
-    FlatList,
-    ScrollView,
-    TouchableOpacity,
-    LogBox,
-} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text, TextInput, FlatList, ScrollView, TouchableOpacity, LogBox, Image } from 'react-native'
+import { icons } from '../../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
+import firebase from 'firebase';
 require('firebase/firestore');
-import { connect } from 'react-redux'
+import Feed from "./Feed";
 import styles from "./FollowPageStyles"
+import { connect } from 'react-redux'
 
 const FollowPage = (props) => {
-
     const [posts, setPosts] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         let posts = [];
         if (props.usersLoaded === props.following.length) {
             for (let i = 0; i < props.following.length; i++) {
@@ -33,14 +27,8 @@ const FollowPage = (props) => {
 
             setPosts(posts)
         }
-        LogBox.ignoreAllLogs()
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     }, [props.usersLoaded])
-
-    function getDay(date) {
-        const arr = date.split(" ")
-        const day = arr[0] + " " + arr[1] + " " + arr[2] + " " + arr[3]
-        return day
-    }
 
     function renderSearchBar() {
         return (
@@ -64,37 +52,22 @@ const FollowPage = (props) => {
         )
     }
 
-    function renderFeed() {
+    const renderFeed = () => {
         return (
             <View style={styles.mainContainer}>
                 <FlatList
                     data={posts}
                     renderItem={({ item }) => (
                         <View style={styles.imageContainer}>
-                            <Text style={styles.username}>{item.user.username}</Text>
-                            <View>
-                                <Image
-                                    style={styles.image}
-                                    source={{ uri: item.downloadURL }}
-                                    resizeMode='cover'
-                                />
-                                <TouchableOpacity
-                                    style={styles.visitBox}
-                                    onPress={() =>
-                                        props.navigation.navigate("Eatery", {
-                                            eateryId: item.id,
-                                        })
-                                    }
-                                >
-                                    <Icon
-                                        name="location-outline"
-                                        size={15}
-                                        color='black'
-                                    />
-                                </TouchableOpacity>
-                            </View>
+                            <Text style={styles.username}
+                                onPress={() => props.navigation.navigate("Profile", {uid: item.user.uid})}
+                            >{item.user.username}</Text>
+    
+                            <Image
+                                style={styles.image}
+                                source={{ uri: item.downloadURL }}
+                            />
                             <Text style={styles.caption}>{item.caption}</Text>
-                            <Text style={styles.date}>{getDay(item.creation.toDate().toString())}</Text>
                         </View>
                     )}
                 />
@@ -104,10 +77,9 @@ const FollowPage = (props) => {
 
     return (
         <ScrollView style={styles.container}>
-            <View style={styles.topPadding} />
-            {console.log(posts)}
-            {renderSearchBar()}
-            {renderFeed()}
+            <View style={styles.topPadding}/>
+                {renderSearchBar()}
+                {renderFeed()}
         </ScrollView>
     )
 }
