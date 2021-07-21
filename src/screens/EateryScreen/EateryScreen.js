@@ -124,7 +124,7 @@ const EateryScreen = (props) => {
                             <View style={styles.eateryPicturesBox1}>
                                 <Image
                                     source={{ uri: item.image }}
-                                    resizeMode="cover"
+                                    resizeMode='contain'
                                     style={styles.eateryPicturesImage}
                                 />
                             </View>

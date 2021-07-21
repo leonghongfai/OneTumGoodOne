@@ -8,9 +8,8 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     followerContiner: {
-        flex: 1
+        flex: 3,
     },
-
     textContainer2: {
         flex: 1,
         justifyContent: 'center',
@@ -18,6 +17,9 @@ const styles = StyleSheet.create({
     containerInfo: {
         margin: 20,
         flexDirection: 'row'
+    },
+    username: {
+        fontWeight: 'bold',
     },
     containerGallery: {
         flex: 1,

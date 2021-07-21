@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
         width: width * 0.7,
     },
     userResults: {
+
     },
     searchPlaceholder: {
         fontSize: 15,
@@ -77,21 +78,41 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
         paddingBottom: height * 0.1,
+        paddingTop: height * 0.01,
     },
     imageContainer: {
-        
+        paddingBottom: height * 0.01,
     },
     username: {
         fontSize: 15,
         fontWeight: 'bold',
         paddingHorizontal: width * 0.03,
+        paddingVertical: height * 0.01,
     },
     image: {
-        aspectRatio: 1,
+        width: width,
+        height: width,
+    },
+    visitBox: {
+        position: 'absolute', 
+        top: height * 0.01,
+        right: height * 0.01,
+        height: 30,
+        width: 30,
+        backgroundColor: 'white',
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
     },
     caption: {
-
+        paddingHorizontal: width * 0.03,
     },
+    date: {
+        paddingHorizontal: width * 0.03,
+        fontSize: 13,
+        color: 'darkgray',
+    },  
 })
 
 export default styles;
