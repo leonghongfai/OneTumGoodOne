@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     eateryPicturesImage: {
         width: width,
-        height: "100%",
+        height: '100%',
     },
     menuTitleBox: {
         paddingTop: height * 0.01,

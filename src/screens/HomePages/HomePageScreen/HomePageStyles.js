@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
     },
     homePageBottomPadding: {
         flex: 1,
+        paddingBottom: height * 0.05,
     },
     searchScreenBottomPadding:{
     },
