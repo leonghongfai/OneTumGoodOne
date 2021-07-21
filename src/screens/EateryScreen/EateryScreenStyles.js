@@ -36,22 +36,23 @@ const styles = StyleSheet.create({
     eateryTitleText: {
         fontSize: 13,
         marginHorizontal: 20,
-        fontWeight: 'bold',    
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
     ratingBox: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     ratingStar: {
-        height: 15,
-        width: 15,
+        height: 10,
+        width: 10,
         marginRight: 5,
     },
     ratingNumber: {
-        fontSize: 13,
+        fontSize: 10,
     },
     numRatingsText: {
-        fontSize: 10,
+        fontSize: 8,
         marginLeft: 5,
         fontStyle: 'italic',
     },
