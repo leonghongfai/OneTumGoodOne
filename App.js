@@ -20,7 +20,6 @@ import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
 import EditPostScreen from './src/screens/DisplayPostScreen/EditPostScreen';
-import Feed from './src/screens/HomePages/FollowPageScreen/Feed';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCMC9BdNsV3AFN-IqRbFPweeXr0VHLE2xw",

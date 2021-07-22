@@ -4,7 +4,6 @@ import { icons } from '../../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
 import firebase from 'firebase';
 require('firebase/firestore');
-import Feed from "./Feed";
 import styles from "./FollowPageStyles"
 import { connect } from 'react-redux'
 
