@@ -175,40 +175,48 @@ const DisplayPost = (props) => {
         )
     }
 
+    function renderPosts() {
+        return (
+            <View>
+                <FlatList
+                    onScrollToIndexFailed={info => {
+                        const wait = new Promise(resolve => setTimeout(resolve, 500));
+                        wait.then(() => {
+                            ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
+                        });
+                    }}
+                    ref={ref_input2}
+                    horizontal={false}
+                    data={userPosts}
+                    renderItem={({ item }) => (
+                        <View style={styles.containerGallery}>
+                            <Text style={styles.info}>{item.username}</Text>
+                            <Image
+                                style={styles.image}
+                                source={{ uri: item.downloadURL }}
+                            />
+                            <Text>{item.eatery}</Text>
+                            <Text>{item.caption}</Text>
+                            <Rating
+                                size={15}
+                                readonly={true}
+                                startingValue={item.rating}
+                                tintColor='white'
+                            />
+                            <Text style={{ fontSize: 10 }}>{item.creation.toDate().toString()}</Text>
+                            {renderOptions(item)}
+                        </View>
+                    )}
+                />
+                <View style={styles.bottomPadding} />
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
             {renderHeader()}
-            <FlatList
-                onScrollToIndexFailed={info => {
-                    const wait = new Promise(resolve => setTimeout(resolve, 500));
-                    wait.then(() => {
-                        ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
-                    });
-                }}
-                ref={ref_input2}
-                horizontal={false}
-                data={userPosts}
-                renderItem={({ item }) => (
-                    <View style={styles.containerGallery}>
-                        <Text style={styles.info}>{item.username}</Text>
-                        <Image
-                            style={styles.image}
-                            source={{ uri: item.downloadURL }}
-                        />
-                        <Text>{item.eatery}</Text>
-                        <Text>{item.caption}</Text>
-                        <Rating
-                            size={15}
-                            readonly={true}
-                            startingValue={item.rating}
-                            tintColor='white'
-                        />
-                        <Text style={{ fontSize: 10 }}>{item.creation.toDate().toString()}</Text>
-                        {renderOptions(item)}
-                    </View>
-                )}
-            />
-            <View style={styles.bottomPadding} />
+            {renderPosts()}
         </View>
     )
 }

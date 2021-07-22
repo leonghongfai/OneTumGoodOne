@@ -1,11 +1,16 @@
-import React from 'react';
 import { Platform, StyleSheet, Text, View, StatusBar } from 'react-native';
-import ColorScheme from '../../../../global/ColorScheme';
 import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: 'white',
+    },
+    containerTopPadding: {
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        backgroundColor: 'white',
+    },
+    container2: {
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         backgroundColor: 'white',
         flex: 1,
@@ -69,6 +74,24 @@ const styles = StyleSheet.create({
         color: 'black',
         width: width * 0.7,
     },
+    popularText: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        paddingHorizontal: width * 0.03,
+    },
+    searchResultsBox: {
+        height: height * 0.07,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderBottomWidth: 0.2,
+    },
+    searchResultsText: {
+        marginLeft: width * 0.05,
+    },
+    recentList: {
+
+    },
     userResults: {
 
     },
@@ -79,6 +102,7 @@ const styles = StyleSheet.create({
     mainContainer: {
         paddingBottom: height * 0.1,
         paddingTop: height * 0.01,
+        backgroundColor: 'white',
     },
     imageContainer: {
         paddingBottom: height * 0.01,
@@ -104,6 +128,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
+    },
+    rating: {
+        flexDirection: 'row',
+        paddingHorizontal: width * 0.03,
     },
     caption: {
         paddingHorizontal: width * 0.03,

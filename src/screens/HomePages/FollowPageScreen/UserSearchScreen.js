@@ -13,7 +13,7 @@ import styles from "./FollowPageStyles";
 
 const SearchScreen = (props) => {
 
-    const [users, setUsers] = React.useState([])
+    const [users, setUsers] = React.useState([]);
     const [searchQuery, setSearchQuery] = React.useState("");
     const [searchResults, setSearchResults] = React.useState([]);
     const [isSearch, setIsSearch] = React.useState(false);
@@ -44,6 +44,13 @@ const SearchScreen = (props) => {
                 return 1
             }
         }
+    })
+
+        
+    const popularUsers = [...users.slice(0, 10)]
+
+    popularUsers.sort((a, b) => {
+        return b.numFollower - a.numFollower
     })
 
     function renderScreen() {
@@ -99,7 +106,7 @@ const SearchScreen = (props) => {
                             <TouchableOpacity
                                 onPress={() => {
                                     props.navigation.navigate("Profile", {
-                                        uid: item.id
+                                        uid: item.id,
                                     })
                                 }}
                             >
@@ -119,6 +126,21 @@ const SearchScreen = (props) => {
 
             )
         } else {
+            const renderItem = ({ item }) => {
+                return (
+                    <TouchableOpacity
+                        onPress={() => props.navigation.navigate("Profile", {
+                            uid: item.id,
+                        })}
+                    >
+                        <View style={styles.searchResultsBox}>
+                            <Text style={styles.searchResultsText}>
+                                {item.username}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                )
+            }
             return (
                 <View>
                     <View style={styles.searchBarArea2}>
@@ -138,16 +160,23 @@ const SearchScreen = (props) => {
                             />
                         </View>
                     </View>
-                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                        <Text>Poggers Moggers</Text>
-                    </View>
+
+                    <Text style={styles.popularText}>Popular Users</Text>
+
+                     <FlatList
+                        data={popularUsers}
+                        showsVerticalScrollIndicator={false}
+                        keyExtractor={item => `${item.id}`}
+                        style={styles.recentList}
+                        renderItem={renderItem}
+                    />
                 </View>
             )
         }
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container2}>
             <View style={styles.topPadding} />
             {renderScreen()}
             <View style={styles.searchScreenBottomPadding} />

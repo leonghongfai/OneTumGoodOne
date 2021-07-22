@@ -21,12 +21,12 @@ const FollowPage = (props) => {
             }
 
             posts.sort(function (x, y) {
-                return y.creation - x.creation;
+                return y.creation - x.creation
             })
 
             setPosts(posts)
         }
-        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+        LogBox.ignoreAllLogs()
     }, [props.usersLoaded])
 
     function renderSearchBar() {
@@ -51,7 +51,13 @@ const FollowPage = (props) => {
         )
     }
 
-    const renderFeed = () => {
+    function getDay(date) {
+        const arr = date.split(" ")
+        const day = arr[2] + " " + arr[1] + " " + arr[3]
+        return day
+    }
+
+    function renderFeed() {
         return (
             <View style={styles.mainContainer}>
                 <FlatList
@@ -59,17 +65,42 @@ const FollowPage = (props) => {
                     renderItem={({ item }) => (
                         <View style={styles.imageContainer}>
                             <Text style={styles.username}
-                                onPress={() => props.navigation.navigate("Profile", {uid: item.user.uid})}
+                                onPress={() => props.navigation.navigate("Profile", { uid: item.user.uid })}
                             >{item.user.username}</Text>
-    
-                            <Image
-                                style={styles.image}
-                                source={{ uri: item.downloadURL }}
-                            />
-                            <Text style={styles.caption}
-                                onPress ={() => props.navigation.navigate("Eatery", {eateryId: item.id})}
-                            >{item.eatery}</Text>
+                            <View>
+                                <Image
+                                    style={styles.image}
+                                    source={{ uri: item.downloadURL }}
+                                    resizeMode='cover'
+                                />
+                                <TouchableOpacity
+                                    style={styles.visitBox}
+                                    onPress={() =>
+                                        props.navigation.navigate("Eatery", {
+                                            eateryId: item.id,
+                                        })
+                                    }
+                                >
+                                    <Icon
+                                        name="location-outline"
+                                        size={15}
+                                        color='black'
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.rating}>
+                                {
+                                    [1, 2, 3, 4, 5].map((rating) => (
+                                        <Icon
+                                        name={rating < item.rating ? 'star' : 'star-outline'}
+                                        size={15}
+                                        color={rating < item.rating ? 'gold' : 'gold'}
+                                        />
+                                    ))
+                                }
+                            </View>
                             <Text style={styles.caption}>{item.caption}</Text>
+                            <Text style={styles.date}>{getDay(item.creation.toDate().toString())}</Text>
                         </View>
                     )}
                 />
@@ -78,11 +109,14 @@ const FollowPage = (props) => {
     }
 
     return (
-        <ScrollView style={styles.container}>
-            <View style={styles.topPadding}/>
+        <View>
+            <View style={styles.containerTopPadding} />
+            <ScrollView style={styles.container}>
+                <View style={styles.topPadding} />
                 {renderSearchBar()}
                 {renderFeed()}
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 }
 
