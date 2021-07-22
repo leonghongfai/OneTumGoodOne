@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         paddingVertical: 0,
     },
     searchScreenCategoriesList: {
-        //height: height * 0.53,
+        
     },
     homePageCategoriesBox: {
         padding: 5,

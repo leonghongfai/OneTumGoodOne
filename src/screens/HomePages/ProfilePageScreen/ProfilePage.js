@@ -114,8 +114,10 @@ const ProfilePage = (props) => {
     }, [props.route.params.uid, props.following, props.route.params.token, uid])
 
     const getFollower = () => {
-        firebase.firestore().collection("users")
-            .doc(props.route.params.uid).collection("follower")
+        firebase.firestore()
+            .collection("users")
+            .doc(props.route.params.uid)
+            .collection("follower")
             .get()
             .then((snapshot) => {
                 let follower = snapshot.docs.map(doc => {
@@ -126,7 +128,9 @@ const ProfilePage = (props) => {
             })
     }
     const getFollowing = () => {
-        firebase.firestore().collection("following").doc(props.route.params.uid)
+        firebase.firestore()
+            .collection("following")
+            .doc(props.route.params.uid)
             .collection("userFollowing").get()
             .then((snapshot) => {
                 let following1 = snapshot.docs.map(doc => {
@@ -145,10 +149,19 @@ const ProfilePage = (props) => {
             .doc(props.route.params.uid)
             .set({})
 
-        firebase.firestore().collection("users").doc(props.route.params.uid)
+        firebase.firestore()
+            .collection("users")
+            .doc(props.route.params.uid)
             .collection("follower").doc(firebase.auth().currentUser.displayName)
             .set({
                 username: firebase.auth().currentUser.displayName
+            })
+
+        firebase.firestore()
+            .collection("users")
+            .doc(props.route.params.uid)
+            .update({
+                numFollower: firebase.firestore.FieldValue.increment(1)
             })
     }
 
@@ -160,9 +173,19 @@ const ProfilePage = (props) => {
             .doc(props.route.params.uid)
             .delete()
 
-        firebase.firestore().collection("users").doc(props.route.params.uid)
-            .collection("follower").doc(firebase.auth().currentUser.displayName)
+        firebase.firestore()
+            .collection("users")
+            .doc(props.route.params.uid)
+            .collection("follower")
+            .doc(firebase.auth().currentUser.displayName)
             .delete()
+
+        firebase.firestore()
+            .collection("users")
+            .doc(props.route.params.uid)
+            .update({
+                numFollower: firebase.firestore.FieldValue.increment(-1)
+            })
     }
 
     if (user === null) {
