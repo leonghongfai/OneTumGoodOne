@@ -141,7 +141,6 @@ const DisplayPost = (props) => {
 
     const editPost = (item) => {
         for (let i = 0; i < userPosts.length; i++) {
-            console.log(userPosts[i].eatery)
             if (userPosts[i].eatery === item) {
                 setModal0Visible(false)
                 props.navigation.navigate('EditPost', { info: userPosts[i] })
