@@ -4,20 +4,15 @@ import {
     View,
     Image,
     FlatList,
-    StyleSheet,
-    Button,
-    RefreshControl,
-    StatusBar,
     TouchableOpacity,
+    Button,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { icons } from '../../../constants'
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Rating } from 'react-native-elements';
 import { useState, useEffect, useRef } from "react";
+import Modal from 'react-native-modal';
 import firebase from 'firebase'
 import styles from "./DisplayPostScreenStyles";
-import EditPostScreen from "./EditPostScreen";
+import { Touchable } from "react-native";
 require('firebase/firestore')
 
 const DisplayPost = (props) => {
@@ -26,6 +21,11 @@ const DisplayPost = (props) => {
     const [index, setIndex] = useState(0)
     const [userPosts, setUserPosts] = useState([]);
     const [eatery, setEatery] = useState("")
+    const [isModal0Visible, setModal0Visible] = useState(false);
+    const [isModal1Visible, setModal1Visible] = useState(false);
+    const [isModal2Visible, setModal2Visible] = useState(false);
+    const [eateryToEdit, setEateryToEdit] = useState("")
+    const [eateryToDelete, setEateryToDelete] = useState("")
 
     const ref_input2 = useRef();
 
@@ -45,7 +45,6 @@ const DisplayPost = (props) => {
                 setUserPosts(posts)
                 scrollToItem()
             })
-        console.log("runrun")
     }, [props.route.params.item, userPosts.length, index])
 
     const scrollToItem = () => {
@@ -61,15 +60,19 @@ const DisplayPost = (props) => {
     }
 
     const deletePost = (item) => {
-        firebase.firestore().collection("posts").doc(user)
-            .collection("userPosts").doc(item.id)
-            .delete().then(() => {
-                console.log("userPosts document successfully deleted!");
-
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
-        deletePost2(item)
+        for (let i = 0; i < userPosts.length; i++) {
+            if (userPosts[i].id === item) {
+                firebase.firestore().collection("posts").doc(user)
+                .collection("userPosts").doc(userPosts[i].id)
+                .delete().then(() => {
+                    console.log("userPosts document successfully deleted!");
+    
+                }).catch((error) => {
+                    console.error("Error removing document: ", error);
+                });
+            deletePost2(userPosts[i])
+            }
+        }
     }
 
     const deletePost2 = (item) => {
@@ -136,30 +139,11 @@ const DisplayPost = (props) => {
     }
 
     const editPost = (item) => {
-        props.navigation.navigate('EditPost', { info: item })
-    }
-
-    const renderOptions = (item) => {
-        if (user === firebase.auth().currentUser.uid) {
-            return (
-                <View>
-                    <Text
-                        style={{ marginBottom: 20 }}
-                        onPress={(() =>
-                            deletePost(item)
-                        )}>
-                        Delete Post</Text>
-
-                    <Text
-                        onPress={(() => {
-                            editPost(item)
-                        })}>
-                        Edit Post
-                    </Text>
-                </View>
-            )
+        for (let i = 0; i < userPosts.length; i++) {
+            if (userPosts[i].id === item) {
+                props.navigation.navigate('EditPost', { info: userPosts[i] })
+            }
         }
-
     }
 
     function renderHeader() {
@@ -175,42 +159,227 @@ const DisplayPost = (props) => {
         )
     }
 
+    function getDay(date) {
+        const arr = date.split(" ")
+        const day = arr[2] + " " + arr[1] + " " + arr[3]
+        return day
+    }
+
     function renderPosts() {
-        return (
-            <View>
-                <FlatList
-                    onScrollToIndexFailed={info => {
-                        const wait = new Promise(resolve => setTimeout(resolve, 500));
-                        wait.then(() => {
-                            ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
-                        });
-                    }}
-                    ref={ref_input2}
-                    horizontal={false}
-                    data={userPosts}
-                    renderItem={({ item }) => (
-                        <View style={styles.containerGallery}>
-                            <Text style={styles.info}>{item.username}</Text>
-                            <Image
-                                style={styles.image}
-                                source={{ uri: item.downloadURL }}
-                            />
-                            <Text>{item.eatery}</Text>
-                            <Text>{item.caption}</Text>
-                            <Rating
-                                size={15}
-                                readonly={true}
-                                startingValue={item.rating}
-                                tintColor='white'
-                            />
-                            <Text style={{ fontSize: 10 }}>{item.creation.toDate().toString()}</Text>
-                            {renderOptions(item)}
-                        </View>
-                    )}
-                />
-                <View style={styles.bottomPadding} />
-            </View>
-        )
+        if (user === firebase.auth().currentUser.uid) {
+            return (
+                <View>
+                    <FlatList
+                        onScrollToIndexFailed={info => {
+                            const wait = new Promise(resolve => setTimeout(resolve, 500));
+                            wait.then(() => {
+                                ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
+                            });
+                        }}
+                        ref={ref_input2}
+                        horizontal={false}
+                        data={userPosts}
+                        renderItem={({ item }) => (
+                            <View style={styles.mainContainer}>
+                                <View style={styles.textAndOptions}>
+                                    <Text style={styles.username}>{item.username}</Text>
+                                    <View style={styles.ellipsisBox}>
+                                        <Icon
+                                            name="ellipsis-vertical"
+                                            size={17}
+                                            color="black"
+                                            onPress={() => {
+                                                setModal0Visible(true)
+                                                setEateryToEdit(item.eatery)
+                                                setEateryToDelete(item.eatery)
+                                            }}
+                                        />
+                                    </View>
+
+                                    <Modal
+                                        isVisible={isModal0Visible}
+                                        backdropColor={'gray'}
+                                        backdropOpacity={0.6}
+                                        onBackdropPress={() => setModal0Visible(false)}
+                                    >
+                                        <View style={styles.modal0}>
+                                            <View style={styles.modal0Box}>
+                                                <View style={styles.editPostBox}>
+                                                    <Text 
+                                                        style={styles.editPost}
+                                                    >
+                                                        Edit Post
+                                                    </Text>
+                                                </View>
+                                                <View style={styles.editBox}>
+                                                    <TouchableOpacity 
+                                                        style={styles.editBox1}
+                                                        onPress={() => {
+                                                            editPost(eateryToEdit)
+                                                        }}
+                                                    >
+                                                        <Text style={styles.edit}>
+                                                            Edit
+                                                        </Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity 
+                                                        style={styles.editBox1}
+                                                        onPress={() => {
+                                                            setModal0Visible(false)
+                                                            setModal1Visible(true)
+                                                        }}                                                    
+                                                    >
+                                                        <Text style={styles.deleteNot}>
+                                                            Delete
+                                                        </Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </Modal>
+
+                                    <Modal
+                                        isVisible={isModal1Visible}
+                                        backdropColor={'gray'}
+                                        backdropOpacity={0.6}
+                                        onBackdropPress={() => setModal1Visible(false)}
+                                    >
+                                        <View style={styles.modal1}>
+                                            <View style={styles.modal1Box}>
+                                                <View style={styles.confirmDeletionBox}>
+                                                    <Text style={styles.confirmDeletion}>
+                                                        Confirm deletion
+                                                    </Text>
+                                                    <Text style={styles.confirmDeletionText}>
+                                                        Delete this post?
+                                                    </Text>
+                                                </View>
+                                                <View style={styles.deleteBox}>
+                                                    <TouchableOpacity 
+                                                        style={styles.deleteBox1}
+                                                        onPress={() => {
+                                                            deletePost(eateryToDelete)
+                                                        }}
+                                                    >
+                                                        <Text style={styles.delete}>
+                                                            Delete
+                                                        </Text>
+                                                    </TouchableOpacity>
+                                                    <TouchableOpacity
+                                                        style={styles.deleteBox1}
+                                                        onPress={() => setModal1Visible(false)}
+                                                    >
+                                                        <Text style={styles.deleteNot}>
+                                                            Don't Delete
+                                                        </Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </Modal>
+
+                                </View>
+                                <View>
+                                    <Image
+                                        style={styles.image}
+                                        source={{ uri: item.downloadURL }}
+                                        resizeMode='cover'
+                                    />
+                                    <TouchableOpacity
+                                        style={styles.visitBox}
+                                        onPress={() =>
+                                            props.navigation.navigate("Eatery", {
+                                                eateryId: item.id,
+                                            })
+                                        }
+                                    >
+                                        <Icon
+                                            name="location-outline"
+                                            size={15}
+                                            color='black'
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={styles.rating}>
+                                    {
+                                        [1, 2, 3, 4, 5].map((rating) => (
+                                            <Icon
+                                                name={rating < item.rating ? 'star' : 'star-outline'}
+                                                size={15}
+                                                color={rating < item.rating ? 'gold' : 'gold'}
+                                            />
+                                        ))
+                                    }
+                                </View>
+
+                                <Text style={styles.caption}>{item.caption}</Text>
+                                <Text style={styles.date}>{getDay(item.creation.toDate().toString())}</Text>
+                            </View>
+                        )}
+                    />
+                    <View style={styles.bottomPadding} />
+                </View>
+            )
+        } else {
+            return (
+                <View>
+                    <FlatList
+                        onScrollToIndexFailed={info => {
+                            const wait = new Promise(resolve => setTimeout(resolve, 500));
+                            wait.then(() => {
+                                ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
+                            });
+                        }}
+                        ref={ref_input2}
+                        horizontal={false}
+                        data={userPosts}
+                        renderItem={({ item }) => (
+                            <View style={styles.mainContainer}>
+                                <Text style={styles.username}>{item.username}</Text>
+                                <View>
+                                    <Image
+                                        style={styles.image}
+                                        source={{ uri: item.downloadURL }}
+                                        resizeMode='cover'
+                                    />
+                                    <TouchableOpacity
+                                        style={styles.visitBox}
+                                        onPress={() =>
+                                            props.navigation.navigate("Eatery", {
+                                                eateryId: item.id,
+                                            })
+                                        }
+                                    >
+                                        <Icon
+                                            name="location-outline"
+                                            size={15}
+                                            color='black'
+                                        />
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={styles.rating}>
+                                    {
+                                        [1, 2, 3, 4, 5].map((rating) => (
+                                            <Icon
+                                                name={rating < item.rating ? 'star' : 'star-outline'}
+                                                size={15}
+                                                color={rating < item.rating ? 'gold' : 'gold'}
+                                            />
+                                        ))
+                                    }
+                                </View>
+
+                                <Text>{item.caption}</Text>
+                                <Text style={styles.date}>{getDay(item.creation.toDate().toString())}</Text>
+                            </View>
+                        )}
+                    />
+                    <View style={styles.bottomPadding} />
+                </View>
+            )
+        }
     }
 
     return (

@@ -23,7 +23,6 @@ export default function EditPostScreen(props)  {
     const [oldRating, setOldRating] = useState(0)
 
     useEffect(() => {
-        console.log("runrunrun")
         firebase.firestore()
             .collection("eateries")
             .doc(info.id)
@@ -97,7 +96,7 @@ export default function EditPostScreen(props)  {
         return (
             <View style={styles.ratingBox}>
                 <AirbnbRating
-                    reviews={['Orbital', 'Makes', 'Me', 'Very', 'Happy!']}
+                    reviews={['Forgettable', 'Not bad', 'Great', 'Shiok', 'Must Try!']}
                     onFinishRating={rating => setRating(rating)}
                     size={30}
                 />
