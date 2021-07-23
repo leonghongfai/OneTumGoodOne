@@ -58,16 +58,20 @@ const DisplayPost = (props) => {
 
     const deletePost = (item) => {
         for (let i = 0; i < userPosts.length; i++) {
-            if (userPosts[i].id === item) {
-                firebase.firestore().collection("posts").doc(user)
-                .collection("userPosts").doc(userPosts[i].id)
-                .delete().then(() => {
-                    console.log("userPosts document successfully deleted!");
-    
-                }).catch((error) => {
-                    console.error("Error removing document: ", error);
-                });
-            deletePost2(userPosts[i])
+            if (userPosts[i].eatery === item) {
+                firebase.firestore()
+                    .collection("posts")
+                    .doc(user)
+                    .collection("userPosts")
+                    .doc(userPosts[i].id)
+                    .delete()
+                    .then(() => {
+                        console.log("userPosts document successfully deleted!");
+
+                    }).catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
+                deletePost2(userPosts[i])
             }
         }
     }
@@ -137,7 +141,9 @@ const DisplayPost = (props) => {
 
     const editPost = (item) => {
         for (let i = 0; i < userPosts.length; i++) {
-            if (userPosts[i].id === item) {
+            console.log(userPosts[i].eatery)
+            if (userPosts[i].eatery === item) {
+                setModal0Visible(false)
                 props.navigation.navigate('EditPost', { info: userPosts[i] })
             }
         }
@@ -196,22 +202,23 @@ const DisplayPost = (props) => {
                                     <Modal
                                         isVisible={isModal0Visible}
                                         backdropColor={'gray'}
-                                        backdropOpacity={0.6}
+                                        backdropOpacity={0.2}
                                         onBackdropPress={() => setModal0Visible(false)}
                                     >
                                         <View style={styles.modal0}>
                                             <View style={styles.modal0Box}>
                                                 <View style={styles.editPostBox}>
-                                                    <Text 
+                                                    <Text
                                                         style={styles.editPost}
                                                     >
                                                         Edit Post
                                                     </Text>
                                                 </View>
                                                 <View style={styles.editBox}>
-                                                    <TouchableOpacity 
+                                                    <TouchableOpacity
                                                         style={styles.editBox1}
                                                         onPress={() => {
+                                                            console.log("pressed!")
                                                             editPost(eateryToEdit)
                                                         }}
                                                     >
@@ -219,12 +226,12 @@ const DisplayPost = (props) => {
                                                             Edit
                                                         </Text>
                                                     </TouchableOpacity>
-                                                    <TouchableOpacity 
+                                                    <TouchableOpacity
                                                         style={styles.editBox1}
                                                         onPress={() => {
                                                             setModal0Visible(false)
                                                             setModal1Visible(true)
-                                                        }}                                                    
+                                                        }}
                                                     >
                                                         <Text style={styles.deleteNot}>
                                                             Delete
@@ -252,7 +259,7 @@ const DisplayPost = (props) => {
                                                     </Text>
                                                 </View>
                                                 <View style={styles.deleteBox}>
-                                                    <TouchableOpacity 
+                                                    <TouchableOpacity
                                                         style={styles.deleteBox1}
                                                         onPress={() => {
                                                             deletePost(eateryToDelete)
