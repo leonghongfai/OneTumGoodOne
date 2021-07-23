@@ -30,13 +30,6 @@ const ProfilePage = (props) => {
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         wait(2000).then(() => setRefreshing(false));
-        const { currentUser, posts } = props
-        setUid(props.route.params.uid)
-        if (props.route.params.uid === firebase.auth().currentUser.uid) {
-            setUser(currentUser)
-            //console.log(currentUser)
-            setUserPosts(posts)
-        } else {
             firebase.firestore()
                 .collection("users")
                 .doc(props.route.params.uid)
@@ -64,7 +57,14 @@ const ProfilePage = (props) => {
                     })
                     setUserPosts(posts)
                 })
+
+        if (props.following.indexOf(props.route.params.uid) > -1) {
+            setFollowing(true)
+        } else {
+            setFollowing(false)
         }
+        getFollowing()
+        getFollower()
     }, []);
 
     useEffect(() => {
