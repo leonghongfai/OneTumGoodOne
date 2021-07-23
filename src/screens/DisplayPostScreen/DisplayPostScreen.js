@@ -5,27 +5,24 @@ import {
     Image,
     FlatList,
     TouchableOpacity,
-    Button,
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useState, useEffect, useRef } from "react";
 import Modal from 'react-native-modal';
 import firebase from 'firebase'
 import styles from "./DisplayPostScreenStyles";
-import { Touchable } from "react-native";
 require('firebase/firestore')
 
 const DisplayPost = (props) => {
-    const user = props.route.params.user
-    const item = props.route.params.item
-    const [index, setIndex] = useState(0)
+    const user = props.route.params.user;
+    const item = props.route.params.item;
+    const [index, setIndex] = useState(0);
     const [userPosts, setUserPosts] = useState([]);
-    const [eatery, setEatery] = useState("")
+    const [eatery, setEatery] = useState("");
     const [isModal0Visible, setModal0Visible] = useState(false);
     const [isModal1Visible, setModal1Visible] = useState(false);
-    const [isModal2Visible, setModal2Visible] = useState(false);
-    const [eateryToEdit, setEateryToEdit] = useState("")
-    const [eateryToDelete, setEateryToDelete] = useState("")
+    const [eateryToEdit, setEateryToEdit] = useState("");
+    const [eateryToDelete, setEateryToDelete] = useState("");
 
     const ref_input2 = useRef();
 
@@ -305,9 +302,9 @@ const DisplayPost = (props) => {
                                     {
                                         [1, 2, 3, 4, 5].map((rating) => (
                                             <Icon
-                                                name={rating < item.rating ? 'star' : 'star-outline'}
+                                                name={rating <= item.rating ? 'star' : 'star-outline'}
                                                 size={15}
-                                                color={rating < item.rating ? 'gold' : 'gold'}
+                                                color={rating <= item.rating ? 'gold' : 'gold'}
                                             />
                                         ))
                                     }
@@ -363,9 +360,9 @@ const DisplayPost = (props) => {
                                     {
                                         [1, 2, 3, 4, 5].map((rating) => (
                                             <Icon
-                                                name={rating < item.rating ? 'star' : 'star-outline'}
+                                                name={rating <= item.rating ? 'star' : 'star-outline'}
                                                 size={15}
-                                                color={rating < item.rating ? 'gold' : 'gold'}
+                                                color={rating <= item.rating ? 'gold' : 'gold'}
                                             />
                                         ))
                                     }

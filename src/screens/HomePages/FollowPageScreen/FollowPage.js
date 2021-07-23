@@ -92,9 +92,9 @@ const FollowPage = (props) => {
                                 {
                                     [1, 2, 3, 4, 5].map((rating) => (
                                         <Icon
-                                        name={rating < item.rating ? 'star' : 'star-outline'}
+                                        name={rating <= item.rating ? 'star' : 'star-outline'}
                                         size={15}
-                                        color={rating < item.rating ? 'gold' : 'gold'}
+                                        color={rating <= item.rating ? 'gold' : 'gold'}
                                         />
                                     ))
                                 }
