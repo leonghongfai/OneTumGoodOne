@@ -45,8 +45,7 @@ const SearchScreen = (props) => {
             }
         }
     })
-
-        
+    
     const popularUsers = [...users.slice(0, 10)]
 
     popularUsers.sort((a, b) => {

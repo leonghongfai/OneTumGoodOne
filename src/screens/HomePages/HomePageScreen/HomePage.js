@@ -359,13 +359,15 @@ const HomePage = ({ navigation }) => {
 			return b.currentRating - a.currentRating
 		})
 
+		const eateriesA = eateries1.slice(0, 10)
+		
 		return (
 			<View>
 				<View style={styles.homePageSmallContainer}>
 					<Text style={styles.homePageTitleText}>Highest Rated</Text>
 					<View>
 						<FlatList
-							data={eateries1}
+							data={eateriesA}
 							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
@@ -423,13 +425,15 @@ const HomePage = ({ navigation }) => {
 			return b.numberOfRatings - a.numberOfRatings
 		})
 
+		const eateriesB = eateries2.slice(0, 10)
+
 		return (
 			<View>
 				<View style={styles.homePageSmallContainer}>
 					<Text style={styles.homePageTitleText}>Popular</Text>
 					<View>
 						<FlatList
-							data={eateries2}
+							data={eateriesB}
 							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
@@ -489,13 +493,15 @@ const HomePage = ({ navigation }) => {
 			return b.latestReview - a.latestReview
 		})
 
+		const eateriesC = eateries3.slice(0, 10)
+
 		return (
 			<View>
 				<View style={styles.homePageSmallContainer}>
 					<Text style={styles.homePageTitleText}>Recently Reviewed</Text>
 					<View>
 						<FlatList
-							data={eateries3}
+							data={eateriesC}
 							keyExtractor={(item) => item.id.toString()}
 							renderItem={renderItem}
 							horizontal={true}
