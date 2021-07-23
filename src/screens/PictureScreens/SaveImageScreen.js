@@ -210,7 +210,7 @@ export default function SaveImageScreen(props) {
         return (
             <View style={styles.ratingBox}>
                 <AirbnbRating
-                    reviews={['Orbital', 'Makes', 'Me', 'Very', 'Happy!']}
+                    reviews={['Forgettable', 'Not bad', 'Great', 'Shiok', 'Must Try!']}
                     onFinishRating={rating => setRating(rating)}
                     size={30}
                 />

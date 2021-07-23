@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: width * 0.03,
         fontSize: 13,
         color: 'darkgray',
-    },  
+    },
 })
 
 export default styles;
