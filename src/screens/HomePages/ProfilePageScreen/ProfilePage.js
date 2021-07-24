@@ -182,7 +182,7 @@ const ProfilePage = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.containerInfo}>
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 2, justifyContent: 'center', }}>
                     <Text style={styles.username}>{user.username}</Text>
                 </View>
                 <View style={styles.followerContiner}>

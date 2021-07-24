@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     username: {
+        fontSize: 15,
         fontWeight: 'bold',
     },
     containerGallery: {
