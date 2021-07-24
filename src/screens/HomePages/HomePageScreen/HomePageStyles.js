@@ -190,9 +190,15 @@ const styles = StyleSheet.create({
         ...ColorScheme.shadow,
     },
     homePageRatingStar: {
-        height: 15,
-        width: 15,
+        height: 12,
+        width: 12,
         marginRight: 5,
+    },
+    homePageCurrentRating: {
+        fontSize: 12,
+    },
+    itemName: {
+        fontSize: 12,
     },
     homePagePriceBox: {
         flexDirection: 'row',
