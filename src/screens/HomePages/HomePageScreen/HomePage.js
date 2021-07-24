@@ -333,18 +333,18 @@ const HomePage = ({ navigation }) => {
 							source={icons.star}
 							style={styles.homePageRatingStar}
 						/>
-						<Text>{item.currentRating.toFixed(1)}</Text>
+						<Text style={styles.homePageCurrentRating}>{item.currentRating.toFixed(1)}</Text>
 					</View>
 				</View>
 
-				<Text>{item.name}</Text>
-
+				<Text style={styles.itemName}>{item.name}</Text>
 				<View style={styles.homePagePriceBox}>
 					{
 						[1, 2, 3].map((priceRating) => (
 							<Text
 								key={priceRating}
 								style={{
+									fontSize: 12,
 									color: (priceRating <= item.priceRating) ?
 										'black' : 'gainsboro'
 								}}
@@ -400,17 +400,18 @@ const HomePage = ({ navigation }) => {
 							source={icons.star}
 							style={styles.homePageRatingStar}
 						/>
-						<Text>{item.currentRating.toFixed(1)}</Text>
+						<Text style={styles.homePageCurrentRating}>{item.currentRating.toFixed(1)}</Text>
 					</View>
 				</View>
 
-				<Text>{item.name}</Text>
+				<Text style={styles.itemName}>{item.name}</Text>
 				<View style={styles.homePagePriceBox}>
 					{
 						[1, 2, 3].map((priceRating) => (
 							<Text
 								key={priceRating}
 								style={{
+									fontSize: 12,
 									color: (priceRating <= item.priceRating) ?
 										'black' : 'gainsboro'
 								}}
@@ -468,17 +469,18 @@ const HomePage = ({ navigation }) => {
 							source={icons.star}
 							style={styles.homePageRatingStar}
 						/>
-						<Text>{item.currentRating.toFixed(1)}</Text>
+						<Text style={styles.homePageCurrentRating}>{item.currentRating.toFixed(1)}</Text>
 					</View>
 				</View>
 
-				<Text>{item.name}</Text>
+				<Text style={styles.itemName}>{item.name}</Text>
 				<View style={styles.homePagePriceBox}>
 					{
 						[1, 2, 3].map((priceRating) => (
 							<Text
 								key={priceRating}
 								style={{
+									fontSize: 12,
 									color: (priceRating <= item.priceRating) ?
 										'black' : 'gainsboro'
 								}}
