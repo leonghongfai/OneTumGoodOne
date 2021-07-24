@@ -100,9 +100,12 @@ const styles = StyleSheet.create({
         color: 'dimgray',
     },
     mainContainer: {
-        paddingBottom: height * 0.1,
+        paddingBottom: height * 0.01,
         paddingTop: height * 0.01,
         backgroundColor: 'white',
+    },
+    flatList: {
+        paddingBottom: height * 0.1,
     },
     imageContainer: {
         paddingBottom: height * 0.01,

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TextInput, FlatList, ScrollView, TouchableOpacity, LogBox, Image } from 'react-native'
-import { icons } from '../../../../constants'
+import { View, Text, FlatList, ScrollView, TouchableOpacity, LogBox, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
-import firebase from 'firebase';
 require('firebase/firestore');
 import styles from "./FollowPageStyles"
 import { connect } from 'react-redux'
@@ -62,6 +60,7 @@ const FollowPage = (props) => {
             <View style={styles.mainContainer}>
                 <FlatList
                     data={posts}
+                    contentContainerStyle={styles.flatList}
                     renderItem={({ item }) => (
                         <View style={styles.imageContainer}>
                             <Text style={styles.username}
@@ -92,9 +91,9 @@ const FollowPage = (props) => {
                                 {
                                     [1, 2, 3, 4, 5].map((rating) => (
                                         <Icon
-                                        name={rating <= item.rating ? 'star' : 'star-outline'}
-                                        size={15}
-                                        color={rating <= item.rating ? 'gold' : 'gold'}
+                                            name={rating <= item.rating ? 'star' : 'star-outline'}
+                                            size={15}
+                                            color={rating <= item.rating ? 'gold' : 'gold'}
                                         />
                                     ))
                                 }

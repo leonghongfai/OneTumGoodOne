@@ -8,13 +8,18 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         backgroundColor: 'white',
-        flex: 1,
     },
     bottomPadding: {
         paddingBottom: height * 0.054,
     },
+    flatList: {
+        paddingBottom: height * 0.2,
+    },
+    flatList2: {
+        paddingBottom: height * 0.2,
+    },
     mainContainer: {
-        paddingBottom: height * 0.1,
+        paddingBottom: height * 0.01,
         paddingTop: height * 0.01,
         backgroundColor: 'white',
     },

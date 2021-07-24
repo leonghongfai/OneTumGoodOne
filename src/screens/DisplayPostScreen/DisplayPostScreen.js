@@ -181,6 +181,7 @@ const DisplayPost = (props) => {
                         ref={ref_input2}
                         horizontal={false}
                         data={userPosts}
+                        contentContainerStyle={styles.flatList}
                         renderItem={({ item }) => (
                             <View style={styles.mainContainer}>
                                 <View style={styles.textAndOptions}>
@@ -334,6 +335,7 @@ const DisplayPost = (props) => {
                                 ref_input2.current?.scrollToIndex({ index: info.index, animated: true });
                             });
                         }}
+                        contentContainerStyle={styles.flatList2}
                         ref={ref_input2}
                         horizontal={false}
                         data={userPosts}
