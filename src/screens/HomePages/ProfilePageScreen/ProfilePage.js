@@ -5,7 +5,8 @@ import {
     Image,
     FlatList,
     RefreshControl,
-    Button
+    Button,
+    LogBox,
 } from "react-native";
 import { useState, useEffect } from "react";
 import firebase from "firebase";
@@ -36,19 +37,19 @@ const ProfilePage = (props) => {
             setUser(currentUser)
             //console.log(currentUser)
             firebase.firestore()
-            .collection("posts")
-            .doc(props.route.params.uid)
-            .collection("userPosts")
-            .orderBy("creation", "asc")
-            .get()
-            .then((snapshot) => {
-                let posts = snapshot.docs.map(doc => {
-                    const data = doc.data();
-                    const id = doc.id;
-                    return { id, ...data }
+                .collection("posts")
+                .doc(props.route.params.uid)
+                .collection("userPosts")
+                .orderBy("creation", "asc")
+                .get()
+                .then((snapshot) => {
+                    let posts = snapshot.docs.map(doc => {
+                        const data = doc.data();
+                        const id = doc.id;
+                        return { id, ...data }
+                    })
+                    setUserPosts(posts)
                 })
-                setUserPosts(posts)
-            })
         }
     }, []);
 
@@ -96,6 +97,7 @@ const ProfilePage = (props) => {
         }
         getFollowing()
         getFollower()
+        LogBox.ignoreAllLogs()
     }, [props.route.params.uid, props.following, props.route.params.token, uid])
 
     const getFollower = () => {
@@ -171,6 +173,10 @@ const ProfilePage = (props) => {
             .update({
                 numFollower: firebase.firestore.FieldValue.increment(-1)
             })
+    }
+
+    if (user === null) {
+        return <View />
     }
 
     return (

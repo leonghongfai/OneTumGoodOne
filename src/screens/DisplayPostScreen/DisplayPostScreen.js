@@ -5,6 +5,7 @@ import {
     Image,
     FlatList,
     TouchableOpacity,
+    LogBox,
 } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useState, useEffect, useRef } from "react";
@@ -42,6 +43,7 @@ const DisplayPost = (props) => {
                 setUserPosts(posts)
                 scrollToItem()
             })
+        LogBox.ignoreAllLogs()
     }, [props.route.params.item, userPosts.length, index])
 
     const scrollToItem = () => {
