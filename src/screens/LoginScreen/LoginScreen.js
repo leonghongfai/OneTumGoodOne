@@ -78,12 +78,6 @@ const LoginScreen = (props) => {
                         onPress= {() => props.navigation.navigate('Register')}
                         >Register!</Text></Text>
                     </View>
-                    <View style={Styles.noAccount}>
-                        <Text style={Styles.noAccountWording}>Forgot your password? <Text 
-                        style= {Styles.registerWording}
-                        onPress= {() => props.navigation.navigate('ForgotPassword')}
-                        >Reset Here!</Text></Text>
-                    </View>
                 </KeyboardAvoidingView>    
             </ScrollView> 
         </View>

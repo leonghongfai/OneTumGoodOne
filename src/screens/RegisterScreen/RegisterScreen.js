@@ -22,10 +22,13 @@ let RegisterScreen = (props) => {
             email: email,
             password: pass,
         },
-        (user) => props.navigation.reset({
+        (user) => {
+            props.navigation.reset({
             index: 0,
             routes: [{ name: 'Home' }],
           }),
+          alert("Account Created Successfully!")
+        },
         (error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
