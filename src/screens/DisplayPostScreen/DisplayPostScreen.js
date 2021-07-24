@@ -189,7 +189,7 @@ const DisplayPost = (props) => {
                                 <View style={styles.textAndOptions}>
                                     <View style={styles.nameAndEatery}>
                                         <Text style={styles.username}>{item.username}</Text>
-                                        <Text 
+                                        <Text
                                             style={styles.eateryName}
                                             onPress={() =>
                                                 props.navigation.navigate("Eatery", {
@@ -342,26 +342,22 @@ const DisplayPost = (props) => {
                         renderItem={({ item }) => (
                             <View style={styles.mainContainer}>
                                 <Text style={styles.username}>{item.username}</Text>
+                                <Text
+                                    style={styles.eateryName}
+                                    onPress={() =>
+                                        props.navigation.navigate("Eatery", {
+                                            eateryId: item.id,
+                                        })
+                                    }
+                                >
+                                    @ {item.eatery}
+                                </Text>
                                 <View>
                                     <Image
                                         style={styles.image}
                                         source={{ uri: item.downloadURL }}
                                         resizeMode='cover'
                                     />
-                                    <TouchableOpacity
-                                        style={styles.visitBox}
-                                        onPress={() =>
-                                            props.navigation.navigate("Eatery", {
-                                                eateryId: item.id,
-                                            })
-                                        }
-                                    >
-                                        <Icon
-                                            name="location-outline"
-                                            size={15}
-                                            color='black'
-                                        />
-                                    </TouchableOpacity>
                                 </View>
 
                                 <View style={styles.rating}>
@@ -376,7 +372,7 @@ const DisplayPost = (props) => {
                                     }
                                 </View>
 
-                                <Text>{item.caption}</Text>
+                                <Text style={styles.caption}>{item.caption}</Text>
                                 <Text style={styles.date}>{getDay(item.creation.toDate().toString())}</Text>
                             </View>
                         )}
