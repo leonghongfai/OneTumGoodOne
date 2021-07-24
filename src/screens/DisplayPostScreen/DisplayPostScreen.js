@@ -187,11 +187,23 @@ const DisplayPost = (props) => {
                         renderItem={({ item }) => (
                             <View style={styles.mainContainer}>
                                 <View style={styles.textAndOptions}>
-                                    <Text style={styles.username}>{item.username}</Text>
+                                    <View style={styles.nameAndEatery}>
+                                        <Text style={styles.username}>{item.username}</Text>
+                                        <Text 
+                                            style={styles.eateryName}
+                                            onPress={() =>
+                                                props.navigation.navigate("Eatery", {
+                                                    eateryId: item.id,
+                                                })
+                                            }
+                                        >
+                                            @ {item.eatery}
+                                        </Text>
+                                    </View>
                                     <View style={styles.ellipsisBox}>
                                         <Icon
                                             name="ellipsis-vertical"
-                                            size={17}
+                                            size={15}
                                             color="black"
                                             onPress={() => {
                                                 setModal0Visible(true)
@@ -291,20 +303,6 @@ const DisplayPost = (props) => {
                                         source={{ uri: item.downloadURL }}
                                         resizeMode='cover'
                                     />
-                                    <TouchableOpacity
-                                        style={styles.visitBox}
-                                        onPress={() =>
-                                            props.navigation.navigate("Eatery", {
-                                                eateryId: item.id,
-                                            })
-                                        }
-                                    >
-                                        <Icon
-                                            name="location-outline"
-                                            size={15}
-                                            color='black'
-                                        />
-                                    </TouchableOpacity>
                                 </View>
 
                                 <View style={styles.rating}>

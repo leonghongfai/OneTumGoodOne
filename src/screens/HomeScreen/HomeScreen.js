@@ -47,11 +47,7 @@ export class HomeScreen extends Component {
 				}}
 			>
 				<Tab.Screen name="Home" component={HomePage} />
-				<Tab.Screen
-					name="Follow"
-					component={FollowPage}
-					options={{ tabBarBadge: 3 }}
-				/>
+				<Tab.Screen name="Follow" component={FollowPage}/>
 				<Tab.Screen name="Profile" component={ProfilePage} 
 					 listeners={({ navigation }) => ({
 						tabPress: event => {

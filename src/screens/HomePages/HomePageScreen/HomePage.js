@@ -532,7 +532,6 @@ const HomePage = ({ navigation }) => {
 				{renderRecommendations2()}
 				{renderRecommendations3()}
 			</ScrollView>
-			<View style={styles.homePageBottomPadding} />
 		</SafeAreaView>
 	);
 };

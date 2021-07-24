@@ -65,27 +65,25 @@ const FollowPage = (props) => {
                         <View style={styles.imageContainer}>
                             <Text style={styles.username}
                                 onPress={() => props.navigation.navigate("Profile", { uid: item.user.uid })}
-                            >{item.user.username}</Text>
+                            >
+                                {item.user.username}
+                            </Text>
+                            <Text 
+                                style={styles.eateryName}
+                                onPress={() =>
+                                    props.navigation.navigate("Eatery", {
+                                        eateryId: item.id,
+                                    })
+                                }
+                            >
+                                @ {item.eatery}
+                            </Text>
                             <View>
                                 <Image
                                     style={styles.image}
                                     source={{ uri: item.downloadURL }}
                                     resizeMode='cover'
                                 />
-                                <TouchableOpacity
-                                    style={styles.visitBox}
-                                    onPress={() =>
-                                        props.navigation.navigate("Eatery", {
-                                            eateryId: item.id,
-                                        })
-                                    }
-                                >
-                                    <Icon
-                                        name="location-outline"
-                                        size={15}
-                                        color='black'
-                                    />
-                                </TouchableOpacity>
                             </View>
                             <View style={styles.rating}>
                                 {
