@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "orbital",
+    "name": "OneTumGudWan",
     "slug": "orbital",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.onetumgudwan.orbital"
     },
     "web": {
       "favicon": "./assets/icons/favicon.png"

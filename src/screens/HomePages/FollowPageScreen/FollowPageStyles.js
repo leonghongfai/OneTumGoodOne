@@ -114,7 +114,12 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         paddingHorizontal: width * 0.03,
-        paddingVertical: height * 0.01,
+        paddingTop: height * 0.01,
+    },
+    eateryName: {
+        fontSize: 12,
+        paddingHorizontal: width * 0.03,
+        paddingBottom: height * 0.01,
     },
     image: {
         width: width,

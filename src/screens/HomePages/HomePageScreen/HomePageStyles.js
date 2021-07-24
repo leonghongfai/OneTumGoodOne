@@ -106,10 +106,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
     },
-    homePageBottomPadding: {
-        flex: 1,
-        paddingBottom: height * 0.05,
-    },
+
     searchScreenBottomPadding:{
     },
     homePageMainContainer: {
