@@ -234,7 +234,7 @@ export default function SaveImageScreen(props) {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container1}>
             {renderHeader()}
             <View style={styles.mainView}>
                 <View style={styles.topBox}>

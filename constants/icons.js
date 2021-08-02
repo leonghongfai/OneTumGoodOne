@@ -30,7 +30,7 @@ export const halal= require("../assets/icons/halal.png");
 export const pasta= require("../assets/icons/pasta.png");
 export const seafood= require("../assets/icons/seafood.png");
 export const western= require("../assets/icons/western.png");
-
+export const circleincircle= require("../assets/icons/circle-inside-circle-svg.png");
 
 
 export default {
@@ -66,4 +66,5 @@ export default {
     pasta,
     seafood,
     western,
+    circleincircle,
 }

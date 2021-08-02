@@ -174,7 +174,6 @@ const DisplayPost = (props) => {
         if (user === firebase.auth().currentUser.uid) {
             return (
                 <View>
-                    {console.log(userPosts)}
                     <FlatList
                         onScrollToIndexFailed={info => {
                             const wait = new Promise(resolve => setTimeout(resolve, 500));
