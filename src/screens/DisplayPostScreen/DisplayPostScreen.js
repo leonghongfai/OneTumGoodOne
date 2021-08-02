@@ -40,6 +40,7 @@ const DisplayPost = (props) => {
                     const id = doc.id;
                     return { id, ...data }
                 })
+
                 setUserPosts(posts)
                 scrollToItem()
             })
@@ -173,6 +174,7 @@ const DisplayPost = (props) => {
         if (user === firebase.auth().currentUser.uid) {
             return (
                 <View>
+                    {console.log(userPosts)}
                     <FlatList
                         onScrollToIndexFailed={info => {
                             const wait = new Promise(resolve => setTimeout(resolve, 500));
@@ -232,7 +234,6 @@ const DisplayPost = (props) => {
                                                     <TouchableOpacity
                                                         style={styles.editBox1}
                                                         onPress={() => {
-                                                            console.log("pressed!")
                                                             editPost(eateryToEdit)
                                                         }}
                                                     >

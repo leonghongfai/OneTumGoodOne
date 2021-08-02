@@ -56,53 +56,65 @@ const FollowPage = (props) => {
     }
 
     function renderFeed() {
-        return (
-            <View style={styles.mainContainer}>
-                <FlatList
-                    data={posts}
-                    contentContainerStyle={styles.flatList}
-                    renderItem={({ item }) => (
-                        <View style={styles.imageContainer}>
-                            <Text style={styles.username}
-                                onPress={() => props.navigation.navigate("Profile", { uid: item.user.uid })}
-                            >
-                                {item.user.username}
-                            </Text>
-                            <Text 
-                                style={styles.eateryName}
-                                onPress={() =>
-                                    props.navigation.navigate("Eatery", {
-                                        eateryId: item.id,
-                                    })
-                                }
-                            >
-                                @ {item.eatery}
-                            </Text>
-                            <View>
-                                <Image
-                                    style={styles.image}
-                                    source={{ uri: item.downloadURL }}
-                                    resizeMode='cover'
-                                />
+        if (posts.length !== 0) {
+            return (
+                <View style={styles.mainContainer}>
+                    <FlatList
+                        data={posts}
+                        contentContainerStyle={styles.flatList}
+                        renderItem={({ item }) => (
+                            <View style={styles.imageContainer}>
+                                <Text style={styles.username}
+                                    onPress={() => props.navigation.navigate("Profile", { uid: item.user.uid })}
+                                >
+                                    {item.user.username}
+                                </Text>
+                                <Text
+                                    style={styles.eateryName}
+                                    onPress={() =>
+                                        props.navigation.navigate("Eatery", {
+                                            eateryId: item.id,
+                                        })
+                                    }
+                                >
+                                    @ {item.eatery}
+                                </Text>
+                                <View>
+                                    <Image
+                                        style={styles.image}
+                                        source={{ uri: item.downloadURL }}
+                                        resizeMode='cover'
+                                    />
+                                </View>
+                                <View style={styles.rating}>
+                                    {
+                                        [1, 2, 3, 4, 5].map((rating) => (
+                                            <Icon
+                                                name={rating <= item.rating ? 'star' : 'star-outline'}
+                                                size={15}
+                                                color={rating <= item.rating ? 'gold' : 'gold'}
+                                            />
+                                        ))
+                                    }
+                                </View>
+                                <Text style={styles.caption}>{item.caption}</Text>
+                                <Text style={styles.date}>{getDay(item.creation.toDate().toString())}</Text>
                             </View>
-                            <View style={styles.rating}>
-                                {
-                                    [1, 2, 3, 4, 5].map((rating) => (
-                                        <Icon
-                                            name={rating <= item.rating ? 'star' : 'star-outline'}
-                                            size={15}
-                                            color={rating <= item.rating ? 'gold' : 'gold'}
-                                        />
-                                    ))
-                                }
-                            </View>
-                            <Text style={styles.caption}>{item.caption}</Text>
-                            <Text style={styles.date}>{getDay(item.creation.toDate().toString())}</Text>
-                        </View>
-                    )}
-                />
-            </View>
-        );
+                        )}
+                    />
+                </View>
+            )
+        } else {
+            return (
+                <View style={styles.mainContainer2}>
+                    <View style={styles.clickAbove}>
+                        <Text>Click above to search for users!</Text>
+                        <View style={styles.padding} />
+                        <Text>Followed users' posts will be displayed here!</Text>
+                    </View>
+                </View>
+            )
+        }
     }
 
     return (

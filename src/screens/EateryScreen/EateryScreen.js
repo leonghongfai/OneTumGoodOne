@@ -25,7 +25,7 @@ const EateryScreen = (props) => {
     const [eatery, setEatery] = React.useState("")
     const [menu, setMenu] = React.useState([])
     const [reviews, setReviews] = React.useState([])
-    
+
     useEffect(() => {
         firebase.firestore()
             .collection("eateries")
@@ -53,16 +53,16 @@ const EateryScreen = (props) => {
             })
 
         firebase.firestore()
-        .collection("eateries/" + currentEateryId + "/reviews")
-        .get()
-        .then((snapshot) => {
-            let reviewsData = snapshot.docs.map(doc => {
-                const id = doc.id
-                const data = doc.data()
-                return { id, ...data }
+            .collection("eateries/" + currentEateryId + "/reviews")
+            .get()
+            .then((snapshot) => {
+                let reviewsData = snapshot.docs.map(doc => {
+                    const id = doc.id
+                    const data = doc.data()
+                    return { id, ...data }
+                })
+                setReviews(reviewsData)
             })
-            setReviews(reviewsData)
-        })
 
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     }, [props.route.params.eateryId])
@@ -87,7 +87,7 @@ const EateryScreen = (props) => {
                                 source={icons.star}
                                 style={styles.ratingStar}
                             />
-						    <Text style={styles.ratingNumber}>{Number(eatery.currentRating).toFixed(2)}</Text>
+                            <Text style={styles.ratingNumber}>{Number(eatery.currentRating).toFixed(2)}</Text>
                             <Text style={styles.numRatingsText}>({eatery.numberOfRatings} reviews)</Text>
                         </View>
                     </View>
@@ -100,6 +100,9 @@ const EateryScreen = (props) => {
                     })}
                 >
                     <Ionicons name="camera" size={30} />
+                    <View style={styles.reviewTextBox}>
+                        <Text style={styles.reviewText}>Review</Text>
+                    </View>
                 </TouchableOpacity>
 
             </View>
