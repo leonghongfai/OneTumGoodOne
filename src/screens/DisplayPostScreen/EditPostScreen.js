@@ -49,11 +49,8 @@ export default function EditPostScreen(props)  {
     }, [props.route.params.info])
 
     function renderHeader() {
-        //console.log(info)
         return (
-            <View 
-            style={styles.header}
-            >
+            <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.backBox}
                     onPress={() => props.navigation.navigate("DisplayPost", {token: 1})}
@@ -96,6 +93,7 @@ export default function EditPostScreen(props)  {
         return (
             <View style={styles.ratingBox}>
                 <AirbnbRating
+                    defaultRating={info.rating}
                     reviews={['Forgettable', 'Not bad', 'Great', 'Shiok', 'Must Try!']}
                     onFinishRating={rating => setRating(rating)}
                     size={30}
@@ -110,7 +108,7 @@ export default function EditPostScreen(props)  {
                 <Image source={{ uri: props.route.params.image }} />
                 <TextInput
                     textAlign='center'
-                    placeholder= "Enter new review here!"
+                    defaultValue={info.caption}
                     onChangeText={(caption) => setCaption(caption)}
                     multiline={true}
                     style={styles.textInput}

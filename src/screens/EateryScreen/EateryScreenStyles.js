@@ -60,6 +60,14 @@ const styles = StyleSheet.create({
         width: 50,
         paddingRight: 20,
         justifyContent: 'center',
+        alignItems: 'center',
+    },
+    reviewTextBox: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    reviewText: {
+        fontSize: 8,
     },
     eateryPicturesBox: {
         alignItems: 'center',

@@ -5,6 +5,7 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
+        height: height,
     },
     containerTopPadding: {
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
@@ -104,6 +105,14 @@ const styles = StyleSheet.create({
         paddingTop: height * 0.01,
         backgroundColor: 'white',
     },
+    mainContainer2: {
+        paddingBottom: height * 0.01,
+        paddingTop: height * 0.01,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+    },
     flatList: {
         paddingBottom: height * 0.1,
     },
@@ -148,6 +157,14 @@ const styles = StyleSheet.create({
         paddingHorizontal: width * 0.03,
         fontSize: 13,
         color: 'darkgray',
+    },
+    clickAbove: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: height * 0.01,
+    },
+    padding: {
+        paddingTop: height * 0.35,
     },
 })
 
