@@ -35,8 +35,8 @@ export class HomeScreen extends Component {
 							iconName = focused ? "earth" : "earth-outline";
 						} else if (route.name === "Profile") {
 							iconName = focused ? "person" : "person-outline";
-						} else if (route.name === "Settings") {
-							iconName = focused ? "settings" : "settings-outline";
+						} else if (route.name === "Log Out") {
+							iconName = focused ? "exit" : "exit-outline";
 						}
 						return <Ionicons name={iconName} size={size} color={color} />;
 					},
@@ -54,7 +54,7 @@ export class HomeScreen extends Component {
 							event.preventDefault();
 							navigation.navigate("Profile", {uid: firebase.auth().currentUser.uid})
 						}})}/>
-				<Tab.Screen name="Settings" component={SettingsPage} />
+				<Tab.Screen name="Log Out" component={SettingsPage} />
 			</Tab.Navigator>
 		);
 	}

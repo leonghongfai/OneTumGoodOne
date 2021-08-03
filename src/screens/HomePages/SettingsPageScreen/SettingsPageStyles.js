@@ -7,21 +7,47 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 40,
+        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        backgroundColor: 'white',
+        paddingBottom: height * 0.03,
     },
-    containerInfo: {
-        margin: 20,
-    },
-    containerGallery: {
+    imageBox: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    image: {
-        flex:1,
-        aspectRatio: 1/1,
+    textBox: {
+        flex: 1,
+        justifyContent: 'space-around',
+        alignItems: 'center',
     },
-    containerImage: {
-        flex: 1/3
+    leaveIcon: {
+        height: 250,
+        width: 250,
     },
+    leaveBox: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems : 'center',
+    },
+    leaveText: {
+        fontSize: 22,
+    },
+    logOutBox: {
+        flex: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    logOutButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+        backgroundColor: 'hotpink',
+        padding: 30,
+    },
+    logOutText: {
+        fontSize: 22,
+    },  
 })
 
 export default styles;
