@@ -31,7 +31,7 @@ export const pasta= require("../assets/icons/pasta.png");
 export const seafood= require("../assets/icons/seafood.png");
 export const western= require("../assets/icons/western.png");
 export const circleincircle= require("../assets/icons/circle-inside-circle-svg.png");
-
+export const leave= require("../assets/icons/leave.png");
 
 export default {
     back,
@@ -67,4 +67,5 @@ export default {
     seafood,
     western,
     circleincircle,
+    leave,
 }
