@@ -146,14 +146,18 @@ const ProfilePage = (props) => {
             .doc(firebase.auth().currentUser.uid)
             .collection("userFollowing")
             .doc(props.route.params.uid)
-            .set({})
+            .set({
+                username: user.username,
+                uid: props.route.params.uid
+            })
 
         firebase.firestore()
             .collection("users")
             .doc(props.route.params.uid)
             .collection("follower").doc(firebase.auth().currentUser.displayName)
             .set({
-                username: firebase.auth().currentUser.displayName
+                username: firebase.auth().currentUser.displayName,
+                uid: firebase.auth().currentUser.uid
             })
 
         firebase.firestore()
@@ -204,11 +208,19 @@ const ProfilePage = (props) => {
                             <Text style={{ fontSize: 10, color: "grey" }}>Posts</Text>
                         </View>
                         <View style={{ alignItems: "center" }}>
-                            <Text>{listFollowing.length}</Text>
+                            <Text
+                                onPress={() => props.navigation.navigate("DisplayFollowing", {
+                                    user: props.route.params.uid
+                                })}
+                            >{listFollowing.length}</Text>
                             <Text style={{ fontSize: 10, color: "grey" }}>Following</Text>
                         </View>
                         <View style={{ alignItems: "center" }}>
-                            <Text>{listFollower.length}</Text>
+                            <Text
+                                 onPress={() => props.navigation.navigate("DisplayFollower", {
+                                    user: props.route.params.uid
+                                })}
+                            >{listFollower.length}</Text>
                             <Text style={{ fontSize: 10, color: "grey" }}>Followers</Text>
                         </View>
                     </View>
