@@ -20,6 +20,8 @@ import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './redux/reducers'
 import thunk from 'redux-thunk'
 import EditPostScreen from './src/screens/DisplayPostScreen/EditPostScreen';
+import DisplayFollowerScreen from './src/screens/HomePages/FollowerFollowingScreen/DisplayFollowerScreen';
+import DisplayFollowingScreen from './src/screens/HomePages/FollowerFollowingScreen/DisplayFollowingScreen';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCMC9BdNsV3AFN-IqRbFPweeXr0VHLE2xw",
@@ -87,6 +89,8 @@ export class App extends Component {
                         <Stack.Screen name="Category" component={CategoryScreen} />
                         <Stack.Screen name="DisplayPost" component={DisplayPost} />
                         <Stack.Screen name="EditPost" component={EditPostScreen} />
+                        <Stack.Screen name="DisplayFollower" component={DisplayFollowerScreen} />
+                        <Stack.Screen name="DisplayFollowing" component={DisplayFollowingScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             );
@@ -108,6 +112,8 @@ export class App extends Component {
                         <Stack.Screen name="Category" component={CategoryScreen} />
                         <Stack.Screen name="DisplayPost" component={DisplayPost} />
                         <Stack.Screen name="EditPost" component={EditPostScreen} />
+                        <Stack.Screen name="DisplayFollower" component={DisplayFollowerScreen} />
+                        <Stack.Screen name="DisplayFollowing" component={DisplayFollowingScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </Provider>
