@@ -40,7 +40,7 @@ const ProfilePage = (props) => {
                 .collection("posts")
                 .doc(props.route.params.uid)
                 .collection("userPosts")
-                .orderBy("creation", "asc")
+                .orderBy("creation", "desc")
                 .get()
                 .then((snapshot) => {
                     let posts = snapshot.docs.map(doc => {
@@ -58,8 +58,20 @@ const ProfilePage = (props) => {
         setUid(props.route.params.uid)
         if (props.route.params.uid === firebase.auth().currentUser.uid) {
             setUser(currentUser)
-            //console.log(currentUser)
-            setUserPosts(posts)
+            firebase.firestore()
+                .collection("posts")
+                .doc(props.route.params.uid)
+                .collection("userPosts")
+                .orderBy("creation", "desc")
+                .get()
+                .then((snapshot) => {
+                    let posts = snapshot.docs.map(doc => {
+                        const data = doc.data();
+                        const id = doc.id;
+                        return { id, ...data }
+                    })
+                    setUserPosts(posts)
+                })
         } else {
             firebase.firestore()
                 .collection("users")
@@ -78,7 +90,7 @@ const ProfilePage = (props) => {
                 .collection("posts")
                 .doc(props.route.params.uid)
                 .collection("userPosts")
-                .orderBy("creation", "asc")
+                .orderBy("creation", "desc")
                 .get()
                 .then((snapshot) => {
                     let posts = snapshot.docs.map(doc => {

@@ -32,7 +32,7 @@ const DisplayPost = (props) => {
             .collection("posts")
             .doc(user)
             .collection("userPosts")
-            .orderBy("creation", "asc")
+            .orderBy("creation", "desc")
             .get()
             .then((snapshot) => {
                 let posts = snapshot.docs.map(doc => {
