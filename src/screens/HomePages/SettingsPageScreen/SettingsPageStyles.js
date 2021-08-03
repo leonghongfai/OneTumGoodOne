@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 50,
         backgroundColor: 'hotpink',
-        padding: 30,
+        padding: 23,
     },
     logOutText: {
         fontSize: 22,
