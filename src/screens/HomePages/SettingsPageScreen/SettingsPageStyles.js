@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
-        backgroundColor: 'hotpink',
+        backgroundColor: 'gainsboro',
         padding: 23,
     },
     logOutText: {
